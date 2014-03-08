@@ -5,7 +5,7 @@ import java.io.InputStream;
 import java.util.Properties;
 import org.apache.log4j.Logger;
 
-public class PropertyManager {
+public final class PropertyManager {
 	private static final Logger LOGGER = Logger
 			.getLogger(PropertyManager.class);
 	public static final Properties properties = new Properties();

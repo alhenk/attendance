@@ -13,7 +13,7 @@ import org.xml.sax.helpers.DefaultHandler;
 
 import kz.trei.office.hr.Employee;
 import kz.trei.office.hr.Person;
-import kz.trei.office.structure.Table;
+import kz.trei.office.structure.Table1C;
 import kz.trei.office.util.FileManager;
 
 public class Runner {
@@ -74,9 +74,9 @@ public class Runner {
 				.setLastName("Koryagin").build();
 		LOGGER.info(person);
 		
-		Table table = Table.createID("tt12345678");
+		Table1C table = Table1C.createID("tt12345678");
 		LOGGER.info(table.getId());
-		table = Table.createRandomID();
+		table = Table1C.createRandomID();
 		LOGGER.info(table.getId());
 	}
 }

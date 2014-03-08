@@ -1,4 +1,4 @@
-package kz.trei.office.hr;
+package kz.trei.office.rfid;
 
 import java.util.Date;
 

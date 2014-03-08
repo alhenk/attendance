@@ -3,18 +3,19 @@ package kz.trei.office.hr;
 import java.util.Date;
 import java.util.UUID;
 
+import kz.trei.office.rfid.RfidTag;
 import kz.trei.office.structure.DepartmentType;
 import kz.trei.office.structure.PositionType;
 import kz.trei.office.structure.RoomType;
-import kz.trei.office.structure.Table;
+import kz.trei.office.structure.Table1C;
 
 public class Employee extends Person {
 	private static final long serialVersionUID = -8363247132437924285L;
 	private final UUID uuid;
-	private PositionType position; // enum PositionType
-	private DepartmentType department; // enum DepartmentType
-	private RoomType room; // enum RoomType
-	private Table tableId;
+	private PositionType position;
+	private DepartmentType department;
+	private RoomType room;
+	private Table1C tableId;
 	private RfidTag uid;
 
 	public Employee() {
@@ -26,7 +27,7 @@ public class Employee extends Person {
 	}
 
 	public Employee(PositionType position, DepartmentType department,
-			RoomType room, Table tableId, RfidTag uid) {
+			RoomType room, Table1C tableId, RfidTag uid) {
 		super();
 		this.uuid = UUID.randomUUID();
 		this.position = position;
@@ -60,16 +61,16 @@ public class Employee extends Person {
 		this.room = room;
 	}
 
-	public Table getTableId() {
+	public Table1C getTableId() {
 		return tableId;
 	}
 
-	public void setTableId(Table tableId) {
+	public void setTableId(Table1C tableId) {
 		this.tableId = tableId;
 	}
 
 	public void setTableId(String tableId) {
-		this.tableId = Table.createID(tableId);
+		this.tableId = Table1C.createID(tableId);
 	}
 
 	public RfidTag getUid() {
@@ -89,7 +90,7 @@ public class Employee extends Person {
 		private PositionType position;
 		private DepartmentType department;
 		private RoomType room;
-		private Table tableId;
+		private Table1C tableId;
 		private RfidTag uid;
 
 		public Builder setUUID(String uuid) {
@@ -142,7 +143,7 @@ public class Employee extends Person {
 			return this;
 		}
 
-		public Builder setTableId(Table tableId) {
+		public Builder setTableId(Table1C tableId) {
 			this.tableId = tableId;
 			return this;
 		}
