@@ -76,5 +76,7 @@ public class Runner {
 		
 		Table table = Table.createID("tt12345678");
 		LOGGER.info(table.getId());
+		table = Table.createRandomID();
+		LOGGER.info(table.getId());
 	}
 }

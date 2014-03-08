@@ -16,7 +16,7 @@ public class Table {
 	 * regex id verification
 	 */
 	public static boolean checkID(String id){
-		String tableIDregex = PropertyManager.getValue("structure.tableIDregex");
+		String tableIDregex = PropertyManager.getValue("structure.tableIDRegex");
 		Pattern tableIDPattern = Pattern.compile(tableIDregex,
 				Pattern.UNICODE_CHARACTER_CLASS|Pattern.CASE_INSENSITIVE);
 		Matcher tableIDMatcher = tableIDPattern.matcher(id);
@@ -27,8 +27,8 @@ public class Table {
 	 */
 	public static Table createRandomID(){
 		StringBuilder id = new StringBuilder();
-		long number = 1L+ (long)(Math.random()*99999999L);
-		id.append("\u041A\u041A");
+		long number = 1L+ (long)(Math.random()*9999L);
+		id.append(PropertyManager.getValue("structure.tablePrefix"));
 		return new Table(id.append(String.format("%08d",number)).toString());
 	}
 	/**
