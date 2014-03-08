@@ -1,4 +1,4 @@
-package kz.trei.office;
+package kz.trei.office.hr;
 
 import java.util.Date;
 

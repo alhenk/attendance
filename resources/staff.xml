@@ -13,7 +13,6 @@
 		<room>103</room>
 		<tableId>КК00000001</tableId>
 		<RfidTag uid="FE0467EF">
-			<!-- CARD KEYFOB STICKER -->
 			<tagtype>CARD</tagtype>
 			<protocol>ISO14443A</protocol>
 			<Issue>

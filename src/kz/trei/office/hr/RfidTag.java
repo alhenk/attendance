@@ -1,4 +1,4 @@
-package kz.trei.office;
+package kz.trei.office.hr;
 
 public class RfidTag {
 	private String uid;

@@ -1,4 +1,4 @@
-package kz.trei.office;
+package kz.trei.office.hr;
 
 import java.io.Serializable;
 import java.util.Date;

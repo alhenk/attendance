@@ -2,17 +2,22 @@ package kz.trei.office.structure;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import kz.trei.office.util.PropertyManager;
 /**
  * Table ID assigned to employee accordingly to
  * 1C account data base
  * @throws  IllegalArgumentException
  */
 public class Table {
+	static{
+		PropertyManager.load("office.properties");
+	}
 	/**
 	 * regex id verification
 	 */
 	public static boolean checkID(String id){
-		Pattern tableIDPattern = Pattern.compile("\\w{2}\\d{8}",
+		String tableIDregex = PropertyManager.getValue("structure.tableIDregex");
+		Pattern tableIDPattern = Pattern.compile(tableIDregex,
 				Pattern.UNICODE_CHARACTER_CLASS|Pattern.CASE_INSENSITIVE);
 		Matcher tableIDMatcher = tableIDPattern.matcher(id);
 		return tableIDMatcher.matches();
