@@ -2,16 +2,18 @@ package kz.trei.office.attendance;
 
 import java.util.Date;
 
+import kz.trei.office.rfid.RfidUID;
+
 public class Attendance {
-	private String uid;
-	private String direction;// enum IN OUT
-	private Date date;
-	private String time;
+	private RfidUID uid;
+	private DirectionType direction;
+	private Date date;   //TODO Date
+	private String time; //TODO Time 
 
 	public Attendance() {
 	}
 
-	public Attendance(String uid, String direction, Date date, String time) {
+	public Attendance(RfidUID uid, DirectionType direction, Date date, String time) {
 		super();
 		this.uid = uid;
 		this.direction = direction;
@@ -19,19 +21,19 @@ public class Attendance {
 		this.time = time;
 	}
 
-	public String getUid() {
+	public RfidUID getUid() {
 		return uid;
 	}
 
-	public void setUid(String uid) {
+	public void setUid(RfidUID uid) {
 		this.uid = uid;
 	}
 
-	public String getDirection() {
+	public DirectionType getDirection() {
 		return direction;
 	}
 
-	public void setDirection(String direction) {
+	public void setDirection(DirectionType direction) {
 		this.direction = direction;
 	}
 

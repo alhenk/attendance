@@ -18,7 +18,8 @@ public class Issue {
 	public Date getIssueDate() {
 		return issueDate;
 	}
-
+	// SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
+		// Date date = format.parse("20120405");
 	public void setIssueDate(Date issueDate) {
 		this.issueDate = issueDate;
 	}

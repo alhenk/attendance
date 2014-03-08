@@ -55,7 +55,7 @@
 				</xs:complexType>
 			</xs:element>
 		</xs:sequence>
-		<xs:attribute name="uid" type="tns:uid"></xs:attribute>
+		<xs:attribute name="uid" type="tns:uid" use="required"></xs:attribute>
 	</xs:complexType>
 
 	<xs:simpleType name="rfprotocol">

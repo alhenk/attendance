@@ -31,7 +31,7 @@
 		<department>ASSEMBLY</department>
 		<room>101</room>
 		<tableId>КУ00000002</tableId>
-		<RfidTag>
+		<RfidTag uid="E0040100594737350000">
 			<tagtype>KEYFOB</tagtype>
 			<protocol>ISO15693</protocol>
 			<Issue>

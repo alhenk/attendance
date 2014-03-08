@@ -5,6 +5,10 @@ import java.util.regex.Pattern;
 import kz.trei.office.util.PropertyManager;
 
 public final class RfidUID {
+	static{
+		PropertyManager.load("office.properties");
+	}
+	
 	private String uid;
 	
 	public RfidUID(){
