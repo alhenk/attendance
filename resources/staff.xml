@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:Staff xmlns:tns="http://www.trei.kz/attendance/tns"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.trei.kz/attendance/tns staff.xsd">
+
+	<tns:Employee uuid="d0f3de3a-260a-480f-af56-4d9086de61aa">
+		<firstName>Александр</firstName>
+		<patronim>Геннадьевич</patronim>
+		<lastName>Корягин</lastName>
+		<birthday>1967-06-10</birthday>
+		<position>DEPARTMENT_HEAD</position>
+		<department>RESEARCH_AND_DEVELOPMENT</department>
+		<room>103</room>
+		<tableId>КК00000001</tableId>
+		<RfidTag uid="FE0467EF">
+			<!-- CARD KEYFOB STICKER -->
+			<tagtype>CARD</tagtype>
+			<protocol>ISO14443A</protocol>
+			<Issue>
+				<issueDate>2014-03-05</issueDate>
+				<expirationDate>2015-03-05</expirationDate>
+			</Issue>
+		</RfidTag>
+	</tns:Employee>
+
+	<tns:Employee uuid="287460c6-c127-4722-b2d1-1659a35956be">
+		<firstName>Ivan</firstName>
+		<patronim>Ivanych</patronim>
+		<lastName>Ivanov</lastName>
+		<birthday>1991-08-02</birthday>
+		<position>ENGINEER</position>
+		<department>ASSEMBLY</department>
+		<room>101</room>
+		<tableId>КУ00000002</tableId>
+		<RfidTag>
+			<tagtype>KEYFOB</tagtype>
+			<protocol>ISO15693</protocol>
+			<Issue>
+				<issueDate>2014-02-20</issueDate>
+				<expirationDate>2015-02-20</expirationDate>
+			</Issue>
+		</RfidTag>
+	</tns:Employee>
+</tns:Staff>
