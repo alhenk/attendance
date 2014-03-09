@@ -1,20 +1,20 @@
 package kz.trei.office.hr;
 
 import java.io.Serializable;
-import java.util.Date;
+import kz.trei.office.util.CalendarDate;
 
 public abstract class Person implements Serializable, Comparable<Person> {
 	private static final long serialVersionUID = -756620067328644499L;
 	private String firstName;
 	private String patronym;
 	private String lastName;
-	private Date birthday;
+	private CalendarDate birthday;
 
 	public Person() {
 	}
 
 	public Person(String firstName, String patronym, String lastName,
-			Date birthday) {
+			CalendarDate birthday) {
 		this.firstName = firstName;
 		this.patronym = patronym;
 		this.lastName = lastName;
@@ -45,14 +45,11 @@ public abstract class Person implements Serializable, Comparable<Person> {
 		this.lastName = lastName;
 	}
 
-	public Date getBirthday() {
+	public CalendarDate getBirthday() {
 		return birthday;
 	}
 
-	// SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
-	// Date date = format.parse("20120405");
-	public void setBirthday(Date birthday) {
-		new Date();
+	public void setBirthday(CalendarDate birthday) {
 		this.birthday = birthday;
 	}
 

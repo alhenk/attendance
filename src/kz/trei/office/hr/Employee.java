@@ -1,6 +1,5 @@
 package kz.trei.office.hr;
 
-import java.util.Date;
 import java.util.UUID;
 
 import kz.trei.office.rfid.RfidTag;
@@ -8,6 +7,7 @@ import kz.trei.office.structure.DepartmentType;
 import kz.trei.office.structure.PositionType;
 import kz.trei.office.structure.RoomType;
 import kz.trei.office.structure.Table1C;
+import kz.trei.office.util.CalendarDate;
 
 public class Employee extends Person {
 	private static final long serialVersionUID = -8363247132437924285L;
@@ -86,7 +86,7 @@ public class Employee extends Person {
 		private String firstName;
 		private String patronym;
 		private String lastName;
-		private Date birthday;
+		private CalendarDate birthday;
 		private PositionType position;
 		private DepartmentType department;
 		private RoomType room;
@@ -123,7 +123,7 @@ public class Employee extends Person {
 			return this;
 		}
 
-		public Builder setBirthday(Date birthday) {
+		public Builder setBirthday(CalendarDate birthday) {
 			this.birthday = birthday;
 			return this;
 		}
