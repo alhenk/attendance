@@ -3,7 +3,7 @@ package kz.trei.office.rfid;
 import kz.trei.office.util.CalendarDate;
 
 public class Issue {
-	private CalendarDate issueDate; // Time 
+	private CalendarDate issueDate; 
 	private CalendarDate expirationDate;
 	
 	public Issue(){
@@ -18,8 +18,7 @@ public class Issue {
 	public CalendarDate getIssueDate() {
 		return issueDate;
 	}
-	// SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
-		// Date date = format.parse("20120405");
+	
 	public void setIssueDate(CalendarDate issueDate) {
 		this.issueDate = issueDate;
 	}
