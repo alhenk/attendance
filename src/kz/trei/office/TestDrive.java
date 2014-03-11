@@ -24,7 +24,6 @@ public class TestDrive {
 			LOGGER.info(date);
 			
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
