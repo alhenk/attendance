@@ -46,7 +46,7 @@ public class SaxPersonParser implements PersonParser {
 		try {
 			SchemaFactory schemaFactory = SchemaFactory
 					.newInstance(W3C_XML_SCHEMA);
-			Schema schema = schemaFactory.newSchema(new File("resources/staff.xsd"));
+			Schema schema = schemaFactory.newSchema(new File("./resources/staff.xsd"));
 			SAXParserFactory factory = SAXParserFactory.newInstance();
 			factory.setValidating(false);//"true" for using DTD!
 			factory.setSchema(schema);
