@@ -7,6 +7,7 @@ import org.apache.log4j.Logger;
 
 import kz.trei.office.hr.Person;
 import kz.trei.office.parser.PersonParser;
+import kz.trei.office.parser.SaxParserException;
 import kz.trei.office.parser.SaxPersonParser;
 import kz.trei.office.util.FileManager;
 
@@ -17,7 +18,11 @@ public class Runner {
 		List<Person> personnel = new ArrayList<Person>();
 
 		PersonParser parser = new SaxPersonParser();
-		personnel = parser.parse(FileManager.getResourceAsStream("staff.xml"));
-		LOGGER.info(personnel);
+		try {
+			personnel = parser.parse(FileManager.getResourceAsStream("staff.xml"));
+			LOGGER.info(personnel);
+		} catch (SaxParserException e) {
+			LOGGER.error(e);
+		}
 	}
 }

@@ -1,13 +1,14 @@
 package kz.trei.office.parser;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
-
 import kz.trei.office.hr.Employee;
 import kz.trei.office.hr.Person;
 import kz.trei.office.rfid.Issue;
@@ -26,24 +27,37 @@ import kz.trei.office.util.FileManager;
 import org.apache.log4j.Logger;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
+import org.xml.sax.SAXParseException;
 import org.xml.sax.helpers.DefaultHandler;
 
 public class SaxPersonParser implements PersonParser {
+		
 	private static final Logger LOGGER = Logger
 			.getLogger(SaxPersonParser.class);
 	private List<Person> personnel;
 
 	@Override
-	public List<Person> parse(InputStream input) {
+	public List<Person> parse(InputStream input) throws SaxParserException {
 		personnel = new ArrayList<Person>();
 		try {
 			SAXParserFactory factory = SAXParserFactory.newInstance();
+//			SchemaFactory schemaFactory = SchemaFactory
+//					.newInstance(W3C_XML_SCHEMA);
+//			factory.setValidating(false);
 			SAXParser saxParser = factory.newSAXParser();
 			DefaultHandler handler = new PersonHandler();
 			InputStream inputStream = FileManager
 					.getResourceAsStream("staff.xml");
 			saxParser.parse(inputStream, handler);
-		} catch (Exception e) {
+		} catch (ParserConfigurationException e) {
+			LOGGER.error(e);
+			throw new SaxParserException(e);
+		} catch (SAXException e) {
+			LOGGER.error(e);
+			throw new SaxParserException(e);
+		} catch (IOException e) {
+			LOGGER.error(e);
+			throw new SaxParserException(e);
 		}
 		return personnel;
 	}
@@ -61,6 +75,7 @@ public class SaxPersonParser implements PersonParser {
 			employee = new Employee.Builder();
 			tag = new RfidTag.Builder();
 			elementValue = new StringBuilder();
+			issue = new Issue.Builder();
 		}
 
 		public void startElement(String uri, String localName, String qName,
@@ -123,15 +138,15 @@ public class SaxPersonParser implements PersonParser {
 				tag.setIssue(issue.build());
 			} else if (qName.equalsIgnoreCase("ISSUEDATE")) {
 				try {
-					issue.setIssueDate(CalendarDate.createDate(elementValue.toString()
-							.trim()));
+					issue.setIssueDate(CalendarDate.createDate(elementValue
+							.toString().trim()));
 				} catch (CalendarDateException e) {
 					LOGGER.error(e);
 				}
 			} else if (qName.equalsIgnoreCase("EXPIRATIONDATE")) {
 				try {
-					issue.setExpirationDate(CalendarDate.createDate(elementValue
-							.toString().trim()));
+					issue.setExpirationDate(CalendarDate
+							.createDate(elementValue.toString().trim()));
 				} catch (CalendarDateException e) {
 					LOGGER.error(e);
 				}
@@ -141,9 +156,30 @@ public class SaxPersonParser implements PersonParser {
 		public void characters(char ch[], int start, int length) {
 			elementValue.append(new String(ch, start, length));
 		}
-		
-		public void endDocument(){
-			
+
+		public void endDocument() {
+		}
+
+		public void ignorableWhitespace(char[] cbuf, int start, int len) {
+		}
+
+		public void processingInstruction(String target, String data) {
+		}
+
+		public void warning(SAXParseException exception) {
+			LOGGER.error("WARNING: line " + exception.getLineNumber() + ": "
+					+ exception.getMessage());
+		}
+
+		public void error(SAXParseException exception) {
+			LOGGER.error("ERROR: line " + exception.getLineNumber() + ": "
+					+ exception.getMessage());
+		}
+
+		public void fatalError(SAXParseException exception) throws SAXException {
+			LOGGER.error("FATAL: line " + exception.getLineNumber() + ": "
+					+ exception.getMessage());
+			throw (exception);
 		}
 	}
 }
