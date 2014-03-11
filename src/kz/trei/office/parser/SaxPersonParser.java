@@ -51,8 +51,7 @@ public class SaxPersonParser implements PersonParser {
 	private class PersonHandler extends DefaultHandler {
 		Employee.Builder employee;
 		RfidTag.Builder tag;
-		CalendarDate issueDate;
-		CalendarDate expirationDate;
+		Issue.Builder issue;
 		StringBuilder elementValue;
 
 		public PersonHandler() {
@@ -121,18 +120,18 @@ public class SaxPersonParser implements PersonParser {
 				tag.setProtocol(ProtocolType.valueOf(elementValue.toString()
 						.trim()));
 			} else if (qName.equalsIgnoreCase("ISSUE")) {
-				tag.setIssue(new Issue(issueDate, expirationDate));
+				tag.setIssue(issue.build());
 			} else if (qName.equalsIgnoreCase("ISSUEDATE")) {
 				try {
-					issueDate = CalendarDate.createDate(elementValue.toString()
-							.trim());
+					issue.setIssueDate(CalendarDate.createDate(elementValue.toString()
+							.trim()));
 				} catch (CalendarDateException e) {
 					LOGGER.error(e);
 				}
 			} else if (qName.equalsIgnoreCase("EXPIRATIONDATE")) {
 				try {
-					expirationDate = CalendarDate.createDate(elementValue
-							.toString().trim());
+					issue.setExpirationDate(CalendarDate.createDate(elementValue
+							.toString().trim()));
 				} catch (CalendarDateException e) {
 					LOGGER.error(e);
 				}
@@ -141,6 +140,10 @@ public class SaxPersonParser implements PersonParser {
 
 		public void characters(char ch[], int start, int length) {
 			elementValue.append(new String(ch, start, length));
+		}
+		
+		public void endDocument(){
+			
 		}
 	}
 }

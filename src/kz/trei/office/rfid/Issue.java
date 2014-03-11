@@ -14,6 +14,24 @@ public class Issue {
 		this.issueDate = issueDate;
 		this.expirationDate = expirationDate;
 	}
+	
+	public static class Builder{
+		private CalendarDate issueDate; 
+		private CalendarDate expirationDate;
+		
+		public Builder setIssueDate(CalendarDate issueDate){
+			this.issueDate = issueDate;
+			return this;
+		}
+		public Builder setExpirationDate(CalendarDate experationDate){
+			this.expirationDate = experationDate;
+			return this;
+		}
+		public Issue build(){
+			return new Issue(issueDate, expirationDate);
+		}
+		
+	}
 
 	public CalendarDate getIssueDate() {
 		return issueDate;
