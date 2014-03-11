@@ -9,12 +9,12 @@ public final class RfidUID {
 		PropertyManager.load("office.properties");
 	}
 	
-	private String uid;
+	private String value;
 	
 	public RfidUID(){
 	}
-	private RfidUID(String uid){
-		this.uid = uid;
+	private RfidUID(String value){
+		this.value = value;
 	}
 	
 	private static boolean checkUID(String uid){
@@ -33,7 +33,7 @@ public final class RfidUID {
 		}
 	}
 	
-	public String getUid() {
-		return uid;
+	public String getValue() {
+		return value;
 	}
 }

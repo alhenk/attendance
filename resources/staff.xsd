@@ -27,7 +27,8 @@
 		<xs:complexContent>
 			<xs:extension base="tns:PersonType">
 				<xs:sequence>
-					<xs:element name="position" type="tns:position" maxOccurs="2"></xs:element>
+					<xs:element name="position" type="tns:position"
+						maxOccurs="2"></xs:element>
 					<xs:element name="department" type="tns:department"
 						minOccurs="0"></xs:element>
 					<xs:element name="room" type="xs:int" minOccurs="0"
@@ -46,13 +47,7 @@
 		<xs:sequence>
 			<xs:element name="tagtype" type="tns:cardtype"></xs:element>
 			<xs:element name="protocol" type="tns:rfprotocol"></xs:element>
-			<xs:element name="Issue">
-				<xs:complexType>
-					<xs:sequence>
-						<xs:element name="issueDate" type="xs:date"></xs:element>
-						<xs:element name="expirationDate" type="xs:date"></xs:element>
-					</xs:sequence>
-				</xs:complexType>
+			<xs:element name="issue" type="tns:issue">
 			</xs:element>
 		</xs:sequence>
 		<xs:attribute name="uid" type="tns:uid" use="required"></xs:attribute>
@@ -69,6 +64,13 @@
 		</xs:restriction>
 	</xs:simpleType>
 
+	<xs:complexType name="issue">
+		<xs:sequence>
+			<xs:element name="issueDate" type="xs:date"></xs:element>
+			<xs:element name="expirationDate" type="xs:date"></xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
 	<xs:simpleType name="cardtype">
 		<xs:restriction base="xs:string">
 			<xs:enumeration value="CARD" />
@@ -76,6 +78,8 @@
 			<xs:enumeration value="STICKER" />
 		</xs:restriction>
 	</xs:simpleType>
+
+
 
 	<xs:simpleType name="department">
 		<xs:restriction base="xs:string">
@@ -117,7 +121,7 @@
 			<xs:enumeration value="SENIOR_SOFTWARE_ENGINEER" />
 			<xs:enumeration value="LEAD_SOFTWARE_ENGINEER" />
 			<xs:enumeration value="COMMISSIONING_ENGINEER" />
-			<xs:enumeration value="APCS_ENGINEER"/>
+			<xs:enumeration value="APCS_ENGINEER" />
 			<xs:enumeration value="LEAD_APCS_ENGINEER" />
 			<xs:enumeration value="LEAD_DESIGNER" />
 			<xs:enumeration value="DESIGN_ENGINEER" />

@@ -16,7 +16,7 @@ public class Employee extends Person {
 	private DepartmentType department;
 	private RoomType room;
 	private Table1C tableId;
-	private RfidTag uid;
+	private RfidTag tag;
 
 	public Employee() {
 		uuid = UUID.randomUUID();
@@ -27,14 +27,14 @@ public class Employee extends Person {
 	}
 
 	public Employee(PositionType position, DepartmentType department,
-			RoomType room, Table1C tableId, RfidTag uid) {
+			RoomType room, Table1C tableId, RfidTag tag) {
 		super();
 		this.uuid = UUID.randomUUID();
 		this.position = position;
 		this.department = department;
 		this.room = room;
 		this.tableId = tableId;
-		this.uid = uid;
+		this.tag = tag;
 	}
 
 	public PositionType getPosition() {
@@ -73,12 +73,12 @@ public class Employee extends Person {
 		this.tableId = Table1C.createID(tableId);
 	}
 
-	public RfidTag getUid() {
-		return uid;
+	public RfidTag getTag() {
+		return tag;
 	}
 
 	public void setUid(RfidTag uid) {
-		this.uid = uid;
+		this.tag = uid;
 	}
 
 	public static class Builder {
@@ -91,7 +91,7 @@ public class Employee extends Person {
 		private DepartmentType department;
 		private RoomType room;
 		private Table1C tableId;
-		private RfidTag uid;
+		private RfidTag rfidTag;
 
 		public Builder setUUID(String uuid) {
 			this.uuid = UUID.fromString(uuid);
@@ -148,8 +148,8 @@ public class Employee extends Person {
 			return this;
 		}
 
-		public Builder setUid(RfidTag uid) {
-			this.uid = uid;
+		public Builder setTag(RfidTag tag) {
+			this.rfidTag = tag;
 			return this;
 		}
 
@@ -168,14 +168,15 @@ public class Employee extends Person {
 			((Employee) person).setPosition(position);
 			((Employee) person).setRoom(room);
 			((Employee) person).setTableId(tableId);
-			((Employee) person).setUid(uid);
+			((Employee) person).setUid(rfidTag);
 			return person;
 		}
 	}
 
 	@Override
 	public String toString() {
-		return "Employee [position=" + position + ", uid=" + uid + "]";
+		return "Employee [" + this.getLastName() + ", uid = "
+				+ tag.getUid().getValue() + "]";
 	}
 
 	@Override
@@ -188,7 +189,7 @@ public class Employee extends Person {
 				+ ((position == null) ? 0 : position.hashCode());
 		result = prime * result + ((room == null) ? 0 : room.hashCode());
 		result = prime * result + ((tableId == null) ? 0 : tableId.hashCode());
-		result = prime * result + ((uid == null) ? 0 : uid.hashCode());
+		result = prime * result + ((tag == null) ? 0 : tag.hashCode());
 		return result;
 	}
 
@@ -221,10 +222,10 @@ public class Employee extends Person {
 				return false;
 		} else if (!tableId.equals(other.tableId))
 			return false;
-		if (uid == null) {
-			if (other.uid != null)
+		if (tag == null) {
+			if (other.tag != null)
 				return false;
-		} else if (!uid.equals(other.uid))
+		} else if (!tag.equals(other.tag))
 			return false;
 		return true;
 	}

@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public enum RoomType {
+	DEFAULT(1,"DEFAULT"),
 	ROOM101(101, "SECURITY"),
 	ROOM102(102, "ASSEMBLY"),
 	ROOM103(103, "WAREHOUSE"),

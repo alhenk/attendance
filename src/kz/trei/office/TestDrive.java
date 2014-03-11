@@ -16,7 +16,7 @@ public class TestDrive {
 		//FileManager.readFile("office.properties");
 		//LOGGER.info(FileManager.readFile("office.properties"));
 		RfidUID uid = RfidUID.createUID("E0040100594737350000");
-		LOGGER.info("UID = " + uid.getUid());
+		LOGGER.info("UID = " + uid.getValue());
 		
 		SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
 		try {

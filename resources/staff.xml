@@ -15,10 +15,10 @@
 		<RfidTag uid="FE0467EF">
 			<tagtype>CARD</tagtype>
 			<protocol>ISO14443A</protocol>
-			<Issue>
+			<issue>
 				<issueDate>2014-03-05</issueDate>
 				<expirationDate>2015-03-05</expirationDate>
-			</Issue>
+			</issue>
 		</RfidTag>
 	</tns:Employee>
 
@@ -34,10 +34,10 @@
 		<RfidTag uid="E0040100594737350000">
 			<tagtype>KEYFOB</tagtype>
 			<protocol>ISO15693</protocol>
-			<Issue>
+			<issue>
 				<issueDate>2014-02-20</issueDate>
 				<expirationDate>2015-02-20</expirationDate>
-			</Issue>
+			</issue>
 		</RfidTag>
 	</tns:Employee>
 </tns:Staff>

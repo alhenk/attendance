@@ -1,5 +1,7 @@
 package kz.trei.office;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import org.apache.log4j.Logger;
@@ -28,6 +30,8 @@ public class Runner {
 		table = Table1C.createRandomID();
 		LOGGER.info(table.getId());
 		SaxPersonParser parser = new SaxPersonParser();
-		parser.parse(FileManager.getResourceAsStream("staff.xml"));
+		List<Person> personnel = new ArrayList<Person>();
+		personnel = parser.parse(FileManager.getResourceAsStream("staff.xml"));
+		LOGGER.info(personnel);
 	}
 }
