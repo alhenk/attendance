@@ -9,12 +9,39 @@ public class RfidTag {
 	public RfidTag(){
 	}
 
-	public RfidTag(RfidUID uid, RfidType type, ProtocolType protocol, Issue issue) {
+	private RfidTag(RfidUID uid, RfidType type, ProtocolType protocol, Issue issue) {
 		super();
 		this.uid = uid;
 		this.type = type;
 		this.protocol = protocol;
 		this.issue = issue;
+	}
+	
+	public static  class Builder{
+		private RfidUID uid;
+		private RfidType type;
+		private ProtocolType protocol;
+		private Issue issue;
+		
+		public Builder setRfidUID(RfidUID uid){
+			this.uid = uid;
+			return this;
+		}
+		public Builder setRfid(RfidType type){
+			this.type = type;
+			return this;
+		}
+		public Builder setProtocol(ProtocolType protocol){
+			this.protocol = protocol;
+			return this;
+		}
+		public Builder setIssue(Issue issue){
+			this.issue = issue;
+			return this;
+		}
+		public RfidTag build(){
+			return new RfidTag(uid , type , protocol, issue);
+		}
 	}
 
 	public RfidUID getUid() {

@@ -49,26 +49,19 @@ public class SaxPersonParser implements PersonParser {
 	}
 
 	private class PersonHandler extends DefaultHandler {
-		UUID uuid;
-		String firstName;
-		String patronym;
-		String lastName;
-		CalendarDate birthday;
-		PositionType position;
-		DepartmentType department;
-		RoomType room;
-		Table1C tableId;
-		RfidUID uid;
-		RfidTag tag;
-		RfidType tagType;
-		ProtocolType protocol;
-		Issue issue;
+		Employee.Builder employee;
+		RfidTag.Builder tag;
 		CalendarDate issueDate;
 		CalendarDate expirationDate;
-
-		StringBuilder elementValue = new StringBuilder();
+		StringBuilder elementValue;
 
 		public PersonHandler() {
+		}
+
+		public void startDocument() {
+			employee = new Employee.Builder();
+			tag = new RfidTag.Builder();
+			elementValue = new StringBuilder();
 		}
 
 		public void startElement(String uri, String localName, String qName,
@@ -77,95 +70,72 @@ public class SaxPersonParser implements PersonParser {
 			if (qName.equalsIgnoreCase("tns:EMPLOYEE")) {
 				String value = attributes.getValue("uuid");
 				if (value == null) {
-					uuid = UUID.randomUUID();
+					employee.setUUID(UUID.randomUUID());
 				} else {
-					uuid = UUID.fromString(value);
+					employee.setUUID(UUID.fromString(value));
+				}
+			} else if (qName.equalsIgnoreCase("RFIDTAG")) {
+				String value = attributes.getValue("uid");
+				if (value != null) {
+					tag.setRfidUID(RfidUID.createUID(value));
 				}
 			}
-			 else if (qName.equalsIgnoreCase("RFIDTAG")) {
-				String value = attributes.getValue("uid");
-				if (value == null) {
-					uid = null;
-				} else {
-					uid = RfidUID.createUID(value);
-				}
-			 }
 		}
 
 		public void endElement(String uri, String localName, String qName)
 				throws SAXException {
 			if (qName.equalsIgnoreCase("tns:EMPLOYEE")) {
-				Person employee = new Employee.Builder().setUUID(uuid)
-						.setFirstName(firstName).setPatronym(patronym)
-						.setLastName(lastName).setPosition(position)
-						.setRoom(room).setTableId(tableId).setTag(tag)
-						.build();
-				personnel.add(employee);
-				LOGGER.debug(employee);
+				personnel.add(employee.build());
 			} else if (qName.equalsIgnoreCase("FIRSTNAME")) {
-				firstName = elementValue.toString().trim();
-				LOGGER.debug(firstName);
+				employee.setFirstName(elementValue.toString().trim());
 			} else if (qName.equalsIgnoreCase("PATRONYM")) {
-				patronym = elementValue.toString().trim();
-				LOGGER.debug(patronym);
+				employee.setPatronym(elementValue.toString().trim());
 			} else if (qName.equalsIgnoreCase("LASTNAME")) {
-				lastName = elementValue.toString().trim();
-				LOGGER.debug(lastName);
+				employee.setLastName(elementValue.toString().trim());
 			} else if (qName.equalsIgnoreCase("BIRTHDAY")) {
 				try {
-					birthday = CalendarDate.createDate(elementValue.toString()
-							.trim());
+					employee.setBirthday(CalendarDate.createDate(elementValue
+							.toString().trim()));
 				} catch (CalendarDateException e) {
 					e.printStackTrace();
 				}
-				LOGGER.debug(birthday.getYear() + "-" + birthday.getMonth()
-						+ "-" + birthday.getDay());
 			} else if (qName.equalsIgnoreCase("POSITION")) {
-				position = PositionType.valueOf(elementValue.toString().trim());
-				LOGGER.debug(position);
+				employee.setPosition(PositionType.valueOf(elementValue
+						.toString().trim()));
 			}
 			if (qName.equalsIgnoreCase("DEPARTMENT")) {
-				department = DepartmentType.valueOf(elementValue.toString()
-						.trim());
-				LOGGER.debug(department);
+				employee.setDepartment(DepartmentType.valueOf(elementValue
+						.toString().trim()));
 			} else if (qName.equalsIgnoreCase("ROOM")) {
-				RoomType _room = RoomType.DEFAULT;
-				room = _room.select(Integer.valueOf(elementValue.toString()
-						.trim()));
-				LOGGER.debug(room.getRoomName());
+				RoomType room = RoomType.DEFAULT;
+				employee.setRoom(room.select(Integer.valueOf(elementValue
+						.toString().trim())));
 			} else if (qName.equalsIgnoreCase("TABLEID")) {
-				tableId = Table1C.createID(elementValue.toString().trim());
-				LOGGER.debug(tableId.getId());
+				employee.setTableId(Table1C.createID(elementValue.toString()
+						.trim()));
 			} else if (qName.equalsIgnoreCase("RFIDTAG")) {
-				tag = new RfidTag(uid, tagType, protocol, issue);
-				LOGGER.debug(tag);
+				employee.setTag(tag.build());
 			} else if (qName.equalsIgnoreCase("TAGTYPE")) {
-				tagType = RfidType.valueOf(elementValue.toString().trim());
-				LOGGER.debug(tagType);
+				tag.setRfid(RfidType.valueOf(elementValue.toString().trim()));
 			} else if (qName.equalsIgnoreCase("PROTOCOL")) {
-				protocol = ProtocolType.valueOf(elementValue.toString().trim());
-				LOGGER.debug(protocol);
+				tag.setProtocol(ProtocolType.valueOf(elementValue.toString()
+						.trim()));
 			} else if (qName.equalsIgnoreCase("ISSUE")) {
-				issue = new Issue(issueDate, expirationDate);
-				LOGGER.debug(issue);
+				tag.setIssue(new Issue(issueDate, expirationDate));
 			} else if (qName.equalsIgnoreCase("ISSUEDATE")) {
 				try {
 					issueDate = CalendarDate.createDate(elementValue.toString()
 							.trim());
 				} catch (CalendarDateException e) {
-					e.printStackTrace();
-					LOGGER.debug(e);
+					LOGGER.error(e);
 				}
-				LOGGER.debug(issueDate);
 			} else if (qName.equalsIgnoreCase("EXPIRATIONDATE")) {
 				try {
 					expirationDate = CalendarDate.createDate(elementValue
 							.toString().trim());
 				} catch (CalendarDateException e) {
-					e.printStackTrace();
-					LOGGER.debug(e);
+					LOGGER.error(e);
 				}
-				LOGGER.debug(expirationDate);
 			}
 		}
 
