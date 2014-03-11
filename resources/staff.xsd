@@ -15,7 +15,7 @@
 	<xs:complexType name="PersonType">
 		<xs:sequence>
 			<xs:element name="firstName" type="tns:personalName"></xs:element>
-			<xs:element name="patronim" type="tns:personalName"
+			<xs:element name="patronym" type="tns:personalName"
 				minOccurs="0"></xs:element>
 			<xs:element name="lastName" type="tns:personalName"></xs:element>
 			<xs:element name="birthday" type="xs:date"></xs:element>

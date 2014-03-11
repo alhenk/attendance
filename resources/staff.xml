@@ -5,7 +5,7 @@
 
 	<tns:Employee uuid="d0f3de3a-260a-480f-af56-4d9086de61aa">
 		<firstName>Александр</firstName>
-		<patronim>Геннадьевич</patronim>
+		<patronym>Геннадьевич</patronym>
 		<lastName>Корягин</lastName>
 		<birthday>1967-06-10</birthday>
 		<position>DEPARTMENT_HEAD</position>
@@ -24,7 +24,7 @@
 
 	<tns:Employee uuid="287460c6-c127-4722-b2d1-1659a35956be">
 		<firstName>Ivan</firstName>
-		<patronim>Ivanych</patronim>
+		<patronym>Ivanych</patronym>
 		<lastName>Ivanov</lastName>
 		<birthday>1991-08-02</birthday>
 		<position>ENGINEER</position>
