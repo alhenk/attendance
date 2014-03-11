@@ -88,4 +88,9 @@ public class CalendarDate implements Serializable {
 		return day;
 	}
 
+	@Override
+	public String toString() {
+		return year + "-" + month + "-" + day;
+	}
+	
 }
