@@ -1,5 +1,6 @@
 package kz.trei.office.parser;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -9,6 +10,9 @@ import java.util.UUID;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
+import javax.xml.validation.Schema;
+import javax.xml.validation.SchemaFactory;
+
 import kz.trei.office.hr.Employee;
 import kz.trei.office.hr.Person;
 import kz.trei.office.rfid.Issue;
@@ -40,11 +44,15 @@ public class SaxPersonParser implements PersonParser {
 	public List<Person> parse(InputStream input) throws SaxParserException {
 		personnel = new ArrayList<Person>();
 		try {
+			SchemaFactory schemaFactory = SchemaFactory
+					.newInstance(W3C_XML_SCHEMA);
+			Schema schema = schemaFactory.newSchema(new File("resources/staff.xsd"));
 			SAXParserFactory factory = SAXParserFactory.newInstance();
-//			SchemaFactory schemaFactory = SchemaFactory
-//					.newInstance(W3C_XML_SCHEMA);
-//			factory.setValidating(false);
+			factory.setValidating(false);//"true" for using DTD!
+			factory.setSchema(schema);
+			factory.setNamespaceAware(true);
 			SAXParser saxParser = factory.newSAXParser();
+			
 			DefaultHandler handler = new PersonHandler();
 			InputStream inputStream = FileManager
 					.getResourceAsStream("staff.xml");
@@ -86,7 +94,12 @@ public class SaxPersonParser implements PersonParser {
 				if (value == null) {
 					employee.setUUID(UUID.randomUUID());
 				} else {
-					employee.setUUID(UUID.fromString(value));
+					
+					try {
+						employee.setUUID(UUID.fromString(value));
+					} catch (NumberFormatException e) {
+						LOGGER.error(e);
+					}
 				}
 			} else if (qName.equalsIgnoreCase("RFIDTAG")) {
 				String value = attributes.getValue("uid");
@@ -111,7 +124,7 @@ public class SaxPersonParser implements PersonParser {
 					employee.setBirthday(CalendarDate.createDate(elementValue
 							.toString().trim()));
 				} catch (CalendarDateException e) {
-					e.printStackTrace();
+					LOGGER.error(e);
 				}
 			} else if (qName.equalsIgnoreCase("POSITION")) {
 				employee.setPosition(PositionType.valueOf(elementValue

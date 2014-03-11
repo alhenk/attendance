@@ -59,8 +59,6 @@
 			<xs:enumeration value="ISO14443A" />
 			<xs:enumeration value="ISO14443B" />
 			<xs:enumeration value="ISO15693" />
-			<xs:enumeration>
-			</xs:enumeration>
 		</xs:restriction>
 	</xs:simpleType>
 
@@ -93,8 +91,6 @@
 			<xs:enumeration value="METROLOGICAL_SERVICE" />
 			<xs:enumeration value="VERIFICATION_LABORATORY" />
 			<xs:enumeration value="ADMINISTRATIVE_SERVICE_UTILITY" />
-			<xs:enumeration>
-			</xs:enumeration>
 		</xs:restriction>
 	</xs:simpleType>
 
