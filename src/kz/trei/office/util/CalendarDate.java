@@ -8,12 +8,13 @@ import java.util.Date;
 
 import org.apache.log4j.Logger;
 
-public class CalendarDate implements Serializable {
+public class CalendarDate implements Serializable, Comparable<Date> {
 	private static final long serialVersionUID = -8961625269572879384L;
 	private static final Logger LOGGER = Logger.getLogger(CalendarDate.class);
 	private static SimpleDateFormat format;
+
 	public static boolean isValid(String date) {
-		format = new SimpleDateFormat("yyyyMMdd");
+		format = new SimpleDateFormat("yyyy-MM-dd");
 		try {
 			format.setLenient(false);
 			format.parse(date);
@@ -27,13 +28,13 @@ public class CalendarDate implements Serializable {
 		return true;
 	}
 
-	public static CalendarDate createDate(String date) throws CalendarDateException {
+	public static CalendarDate createDate(String date){
 		int year;
 		int month;
 		int day;
 		Date unixDate;
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-		Calendar calendar = Calendar.getInstance(); 
+		Calendar calendar = Calendar.getInstance();
 		try {
 			format.setLenient(false);
 			unixDate = format.parse(date);
@@ -41,37 +42,34 @@ public class CalendarDate implements Serializable {
 			year = calendar.get(Calendar.YEAR);
 			month = calendar.get(Calendar.MONTH);
 			day = calendar.get(Calendar.DAY_OF_MONTH);
-		
+			return new CalendarDate(year, month, day, unixDate);
 		} catch (ParseException e) {
 			LOGGER.error("String yyyy-MM-dd is invalid" + e);
-			throw new CalendarDateException(e) ;
+			return null;
 		} catch (ArrayIndexOutOfBoundsException e) {
-			LOGGER.error("" + e);
-			throw new CalendarDateException(e) ;
+			LOGGER.error(e);
+			return null;
 		}
-		return new CalendarDate(year,month,day,unixDate);
 	}
-	
-	public static CalendarDate createDate(Date date){
+
+	public static CalendarDate createDate(Date date) {
 		int year;
 		int month;
 		int day;
 
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-		Calendar calendar = Calendar.getInstance(); 
+		Calendar calendar = Calendar.getInstance();
 		try {
 			format.setLenient(false);
 			calendar.setTime(date);
 			year = calendar.get(Calendar.YEAR);
 			month = calendar.get(Calendar.MONTH);
 			day = calendar.get(Calendar.DAY_OF_MONTH);
-			return new CalendarDate(year,month,day,date);
+			return new CalendarDate(year, month, day, date);
 		} catch (ArrayIndexOutOfBoundsException e) {
 			LOGGER.error("" + e);
 			return null;
-			//throw new CalendarDateException(e) ;
 		}
-		
 	}
 
 	private int year;
@@ -147,5 +145,15 @@ public class CalendarDate implements Serializable {
 		if (year != other.year)
 			return false;
 		return true;
+	}
+
+	@Override
+	public int compareTo(Date anotherDate) {
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		long thisTime = calendar.getTimeInMillis();
+		calendar.setTime(anotherDate);
+		long anotherTime = calendar.getTimeInMillis();
+		return (thisTime < anotherTime ? -1 : (thisTime == anotherTime ? 0 : 1));
 	}
 }

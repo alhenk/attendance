@@ -43,16 +43,18 @@ public class Attendance {
 		return date;
 	}
 
+	public void setDate(Date date) {
+		this.date = CalendarDate.createDate(date);
+		this.time = TimeStamp.create(date);
+	}
+	
 	public void setDate(CalendarDate date) {
 		this.date = date;
+		this.time = TimeStamp.create(date.getDate());
 	}
 
 	public TimeStamp getTime() {
 		return time;
-	}
-
-	public void setTime(TimeStamp time) {
-		this.time = time;
 	}
 
 	@Override

@@ -24,7 +24,6 @@ import kz.trei.office.structure.PositionType;
 import kz.trei.office.structure.RoomType;
 import kz.trei.office.structure.Table1C;
 import kz.trei.office.util.CalendarDate;
-import kz.trei.office.util.CalendarDateException;
 import kz.trei.office.util.FileManager;
 
 import org.apache.log4j.Logger;
@@ -34,7 +33,7 @@ import org.xml.sax.SAXParseException;
 import org.xml.sax.helpers.DefaultHandler;
 
 public class SaxPersonParser implements PersonParser {
-		
+
 	private static final Logger LOGGER = Logger
 			.getLogger(SaxPersonParser.class);
 	private List<Person> personnel;
@@ -45,13 +44,13 @@ public class SaxPersonParser implements PersonParser {
 		try {
 			SchemaFactory schemaFactory = SchemaFactory
 					.newInstance(W3C_XML_SCHEMA);
-			Schema schema = schemaFactory.newSchema(new File("./resources/staff.xsd"));
+			Schema schema = schemaFactory.newSchema(new File(
+					"./resources/staff.xsd"));
 			SAXParserFactory factory = SAXParserFactory.newInstance();
-			factory.setValidating(false);//"true" for using DTD!
+			factory.setValidating(false);// "true" for using DTD!
 			factory.setSchema(schema);
 			factory.setNamespaceAware(true);
 			SAXParser saxParser = factory.newSAXParser();
-			
 			DefaultHandler handler = new PersonHandler();
 			InputStream inputStream = FileManager
 					.getResourceAsStream("staff.xml");
@@ -93,7 +92,6 @@ public class SaxPersonParser implements PersonParser {
 				if (value == null) {
 					employee.setTableId(Table1C.createRandomID());
 				} else {
-					
 					try {
 						employee.setTableId(Table1C.createID(value));
 					} catch (IllegalArgumentException e) {
@@ -119,17 +117,12 @@ public class SaxPersonParser implements PersonParser {
 			} else if (qName.equalsIgnoreCase("LASTNAME")) {
 				employee.setLastName(elementValue.toString().trim());
 			} else if (qName.equalsIgnoreCase("BIRTHDAY")) {
-				try {
-					employee.setBirthday(CalendarDate.createDate(elementValue
-							.toString().trim()));
-				} catch (CalendarDateException e) {
-					LOGGER.error(e);
-				}
+				employee.setBirthday(CalendarDate.createDate(elementValue
+						.toString().trim()));
 			} else if (qName.equalsIgnoreCase("POSITION")) {
 				employee.setPosition(PositionType.valueOf(elementValue
 						.toString().trim()));
-			}
-			if (qName.equalsIgnoreCase("DEPARTMENT")) {
+			} else if (qName.equalsIgnoreCase("DEPARTMENT")) {
 				employee.setDepartment(DepartmentType.valueOf(elementValue
 						.toString().trim()));
 			} else if (qName.equalsIgnoreCase("ROOM")) {
@@ -149,19 +142,11 @@ public class SaxPersonParser implements PersonParser {
 			} else if (qName.equalsIgnoreCase("ISSUE")) {
 				tag.setIssue(issue.build());
 			} else if (qName.equalsIgnoreCase("ISSUEDATE")) {
-				try {
-					issue.setIssueDate(CalendarDate.createDate(elementValue
-							.toString().trim()));
-				} catch (CalendarDateException e) {
-					LOGGER.error(e);
-				}
+				issue.setIssueDate(CalendarDate.createDate(elementValue
+						.toString().trim()));
 			} else if (qName.equalsIgnoreCase("EXPIRATIONDATE")) {
-				try {
-					issue.setExpirationDate(CalendarDate
-							.createDate(elementValue.toString().trim()));
-				} catch (CalendarDateException e) {
-					LOGGER.error(e);
-				}
+				issue.setExpirationDate(CalendarDate.createDate(elementValue
+						.toString().trim()));
 			}
 		}
 
