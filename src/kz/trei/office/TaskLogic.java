@@ -10,6 +10,7 @@ import kz.trei.office.hr.Person;
 import kz.trei.office.parser.PersonParser;
 import kz.trei.office.parser.SaxParserException;
 import kz.trei.office.parser.SaxPersonParser;
+import kz.trei.office.parser.StaxPersonParser;
 import kz.trei.office.util.PropertyManager;
 
 public final class TaskLogic {
@@ -30,6 +31,20 @@ public final class TaskLogic {
 		} catch (SaxParserException e) {
 			LOGGER.error(e);
 		}
+		printStaff(staff);
+	}
+	public static void runStaxParser(String xmlfile,String xsdfile){
+		List<Person> staff = new ArrayList<Person>();
+		PersonParser parser = new StaxPersonParser();
+		try {
+			staff = parser.parse(xmlfile, xsdfile);
+			LOGGER.info(staff);
+		} catch (SaxParserException e) {
+			LOGGER.error(e);
+		}
+		printStaff(staff);
+	}
+	private static void printStaff(List<Person> staff){
 		for (Person employee: staff){
 			LOGGER.info(((Employee)employee).getFirstName());
 			LOGGER.info(((Employee)employee).getPatronym());

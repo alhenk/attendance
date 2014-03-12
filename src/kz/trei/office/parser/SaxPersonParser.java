@@ -33,12 +33,12 @@ public class SaxPersonParser implements PersonParser {
 	
 	private static final Logger LOGGER = Logger
 			.getLogger(SaxPersonParser.class);
-	private List<Person> personnel;
+	private List<Person> staff;
 
 	@Override
 	public List<Person> parse(String xmlfile, String xsdfile)
 			throws SaxParserException {
-		personnel = new ArrayList<Person>();
+		staff = new ArrayList<Person>();
 		try {
 			SchemaFactory schemaFactory = SchemaFactory
 					.newInstance(W3C_XML_SCHEMA);
@@ -60,7 +60,7 @@ public class SaxPersonParser implements PersonParser {
 			LOGGER.error(e);
 			throw new SaxParserException(e);
 		}
-		return personnel;
+		return staff;
 	}
 
 	private class PersonHandler extends DefaultHandler {
@@ -104,7 +104,7 @@ public class SaxPersonParser implements PersonParser {
 		public void endElement(String uri, String localName, String qName)
 				throws SAXException {
 			if (qName.equalsIgnoreCase("tns:EMPLOYEE")) {
-				personnel.add(employee.build());
+				staff.add(employee.build());
 			} else if (qName.equalsIgnoreCase("FIRSTNAME")) {
 				employee.setFirstName(elementValue.toString().trim());
 			} else if (qName.equalsIgnoreCase("PATRONYM")) {
