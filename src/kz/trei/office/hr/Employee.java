@@ -1,7 +1,5 @@
 package kz.trei.office.hr;
 
-import java.util.UUID;
-
 import kz.trei.office.rfid.RfidTag;
 import kz.trei.office.structure.DepartmentType;
 import kz.trei.office.structure.PositionType;
@@ -11,7 +9,6 @@ import kz.trei.office.util.CalendarDate;
 
 public class Employee extends Person {
 	private static final long serialVersionUID = -8363247132437924285L;
-	private final UUID uuid;
 	private PositionType position;
 	private DepartmentType department;
 	private RoomType room;
@@ -19,17 +16,15 @@ public class Employee extends Person {
 	private RfidTag tag;
 
 	public Employee() {
-		uuid = UUID.randomUUID();
 	}
 
-	public Employee(UUID uuid) {
-		this.uuid = uuid;
+	public Employee(Table1C tableId) {
+		this.tableId = tableId;
 	}
 
 	public Employee(PositionType position, DepartmentType department,
 			RoomType room, Table1C tableId, RfidTag tag) {
 		super();
-		this.uuid = UUID.randomUUID();
 		this.position = position;
 		this.department = department;
 		this.room = room;
@@ -82,7 +77,7 @@ public class Employee extends Person {
 	}
 
 	public static class Builder {
-		private UUID uuid;
+		private Table1C tableId;
 		private String firstName;
 		private String patronym;
 		private String lastName;
@@ -90,24 +85,13 @@ public class Employee extends Person {
 		private PositionType position;
 		private DepartmentType department;
 		private RoomType room;
-		private Table1C tableId;
 		private RfidTag rfidTag;
-
-		public Builder setUUID(String uuid) {
-			this.uuid = UUID.fromString(uuid);
+	
+		public Builder setTableId(Table1C tableId) {
+			this.tableId = tableId;
 			return this;
 		}
-
-		public Builder setUUID(UUID uuid) {
-			this.uuid = uuid;
-			return this;
-		}
-
-		public Builder randomUUID() {
-			this.uuid = UUID.randomUUID();
-			return this;
-		}
-
+		
 		public Builder setFirstName(String firstName) {
 			this.firstName = firstName;
 			return this;
@@ -143,11 +127,6 @@ public class Employee extends Person {
 			return this;
 		}
 
-		public Builder setTableId(Table1C tableId) {
-			this.tableId = tableId;
-			return this;
-		}
-
 		public Builder setTag(RfidTag tag) {
 			this.rfidTag = tag;
 			return this;
@@ -155,11 +134,8 @@ public class Employee extends Person {
 
 		public Person build() {
 			Person person;
-			if (this.uuid != null) {
-				person = new Employee(this.uuid);
-			} else {
-				person = new Employee();
-			}
+			person = new Employee();
+			((Employee) person).setTableId(tableId);
 			((Employee) person).setBirthday(birthday);
 			((Employee) person).setDepartment(department);
 			((Employee) person).setFirstName(firstName);
@@ -167,7 +143,6 @@ public class Employee extends Person {
 			((Employee) person).setPatronym(patronym);
 			((Employee) person).setPosition(position);
 			((Employee) person).setRoom(room);
-			((Employee) person).setTableId(tableId);
 			((Employee) person).setUid(rfidTag);
 			return person;
 		}
@@ -176,7 +151,7 @@ public class Employee extends Person {
 	@Override
 	public String toString() {
 		return "Employee [" + this.getLastName() + ", uid = "
-				+ tag.getUid().getValue() + "]";
+				+ tag.getUid().getValue() + "tableID = "+this.tableId.getId()+"]";
 	}
 
 	@Override
@@ -234,9 +209,5 @@ public class Employee extends Person {
 	public int compareTo(Person person) {
 		return super.getLastName().toLowerCase()
 				.compareTo(person.getLastName().toLowerCase());
-	}
-
-	public UUID getUuid() {
-		return uuid;
 	}
 }

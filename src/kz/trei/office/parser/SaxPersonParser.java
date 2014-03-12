@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
@@ -90,14 +89,14 @@ public class SaxPersonParser implements PersonParser {
 				Attributes attributes) throws SAXException {
 			elementValue.setLength(0);
 			if (qName.equalsIgnoreCase("tns:EMPLOYEE")) {
-				String value = attributes.getValue("uuid");
+				String value = attributes.getValue("tableId");
 				if (value == null) {
-					employee.setUUID(UUID.randomUUID());
+					employee.setTableId(Table1C.createRandomID());
 				} else {
 					
 					try {
-						employee.setUUID(UUID.fromString(value));
-					} catch (NumberFormatException e) {
+						employee.setTableId(Table1C.createID(value));
+					} catch (IllegalArgumentException e) {
 						LOGGER.error(e);
 					}
 				}
