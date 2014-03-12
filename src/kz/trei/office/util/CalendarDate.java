@@ -8,7 +8,7 @@ import java.util.Date;
 
 import org.apache.log4j.Logger;
 
-public class CalendarDate implements Serializable, Comparable<Date> {
+public class CalendarDate implements Serializable, Comparable<CalendarDate> {
 	private static final long serialVersionUID = -8961625269572879384L;
 	private static final Logger LOGGER = Logger.getLogger(CalendarDate.class);
 	private static SimpleDateFormat format;
@@ -149,11 +149,11 @@ public class CalendarDate implements Serializable, Comparable<Date> {
 	}
 
 	@Override
-	public int compareTo(Date anotherDate) {
+	public int compareTo(CalendarDate anotherDate) {
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(date);
 		long thisTime = calendar.getTimeInMillis();
-		calendar.setTime(anotherDate);
+		calendar.setTime(anotherDate.getDate());
 		long anotherTime = calendar.getTimeInMillis();
 		return (thisTime < anotherTime ? -1 : (thisTime == anotherTime ? 0 : 1));
 	}

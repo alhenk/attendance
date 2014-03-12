@@ -1,6 +1,9 @@
 package kz.trei.office.rfid;
 
-public class RfidTag {
+import java.io.Serializable;
+
+public class RfidTag implements Serializable, Comparable<RfidTag>{
+	private static final long serialVersionUID = -1380395087317256237L;
 	private RfidUID uid;
 	private RfidType type;
 	private ProtocolType protocol;
@@ -113,4 +116,17 @@ public class RfidTag {
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "RfidTag [uid=" + uid.getValue() + ", type=" + type + "]";
+	}
+
+	@Override
+	public int compareTo(RfidTag anotherTag) {
+		String anotherUid = anotherTag.getUid().getValue();
+		String thisUid = this.uid.getValue();
+		return thisUid.compareTo(anotherUid);
+	}
+	
 }
