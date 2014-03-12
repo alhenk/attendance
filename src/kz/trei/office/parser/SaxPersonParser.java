@@ -42,7 +42,7 @@ public class SaxPersonParser implements PersonParser {
 	private List<Person> personnel;
 
 	@Override
-	public List<Person> parse(InputStream xmlfile) throws SaxParserException {
+	public List<Person> parse(String xmlfile) throws SaxParserException {
 		personnel = new ArrayList<Person>();
 		try {
 			SchemaFactory schemaFactory = SchemaFactory
@@ -55,10 +55,7 @@ public class SaxPersonParser implements PersonParser {
 			factory.setNamespaceAware(true);
 			SAXParser saxParser = factory.newSAXParser();
 			DefaultHandler handler = new PersonHandler();
-			InputStream inputStream = FileManager
-					.getResourceAsStream("staff.xml");
-			
-			saxParser.parse(inputStream, handler);
+			saxParser.parse(xmlfile, handler);
 		} catch (ParserConfigurationException e) {
 			LOGGER.error(e);
 			throw new SaxParserException(e);

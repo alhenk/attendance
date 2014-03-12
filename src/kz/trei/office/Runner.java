@@ -11,16 +11,19 @@ import kz.trei.office.parser.PersonParser;
 import kz.trei.office.parser.SaxParserException;
 import kz.trei.office.parser.SaxPersonParser;
 import kz.trei.office.util.FileManager;
+import kz.trei.office.util.PropertyManager;
 
 public class Runner {
 	private static final Logger LOGGER = Logger.getLogger(Runner.class);
-	
+	static {
+		PropertyManager.load("configure.properties");
+	}
 	public static void main(String[] args) {
 		List<Person> personnel = new ArrayList<Person>();
-
 		PersonParser parser = new SaxPersonParser();
+		String xmlfile = PropertyManager.getValue("parser.staff.xmlfile");
 		try {
-			personnel = parser.parse(FileManager.getResourceAsStream("staff.xml"));
+			personnel = parser.parse(xmlfile);
 			LOGGER.info(personnel);
 		} catch (SaxParserException e) {
 			LOGGER.error(e);
