@@ -110,7 +110,8 @@ public class CalendarDate implements Serializable, Comparable<Date> {
 
 	@Override
 	public String toString() {
-		return year + "-" + month + "-" + day;
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		return dateFormat.format(date);
 	}
 
 	@Override

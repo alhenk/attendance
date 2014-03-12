@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
+import kz.trei.office.hr.Employee;
 import kz.trei.office.hr.Person;
 import kz.trei.office.parser.PersonParser;
 import kz.trei.office.parser.SaxParserException;
@@ -23,6 +24,18 @@ public class Runner {
 			LOGGER.info(personnel);
 		} catch (SaxParserException e) {
 			LOGGER.error(e);
+		}
+		for (Person employee: personnel){
+			LOGGER.info(((Employee)employee).getFirstName());
+			LOGGER.info(((Employee)employee).getPatronym());
+			LOGGER.info(((Employee)employee).getLastName());
+			LOGGER.info(((Employee)employee).getBirthday());
+			LOGGER.info(((Employee)employee).getPosition());
+			LOGGER.info(((Employee)employee).getRoom().getRoomName());
+			LOGGER.info(((Employee)employee).getTableId().getId());
+			LOGGER.info(((Employee)employee).getTag().getUid().getValue());
+
+			LOGGER.info(" ");
 		}
 	}
 }
