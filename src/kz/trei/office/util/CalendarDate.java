@@ -43,13 +43,35 @@ public class CalendarDate implements Serializable {
 			day = calendar.get(Calendar.DAY_OF_MONTH);
 		
 		} catch (ParseException e) {
-			LOGGER.error("" + e);
+			LOGGER.error("String yyyy-MM-dd is invalid" + e);
 			throw new CalendarDateException(e) ;
-		} catch (IllegalArgumentException e) {
+		} catch (ArrayIndexOutOfBoundsException e) {
 			LOGGER.error("" + e);
 			throw new CalendarDateException(e) ;
 		}
 		return new CalendarDate(year,month,day,unixDate);
+	}
+	
+	public static CalendarDate createDate(Date date){
+		int year;
+		int month;
+		int day;
+
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		Calendar calendar = Calendar.getInstance(); 
+		try {
+			format.setLenient(false);
+			calendar.setTime(date);
+			year = calendar.get(Calendar.YEAR);
+			month = calendar.get(Calendar.MONTH);
+			day = calendar.get(Calendar.DAY_OF_MONTH);
+			return new CalendarDate(year,month,day,date);
+		} catch (ArrayIndexOutOfBoundsException e) {
+			LOGGER.error("" + e);
+			return null;
+			//throw new CalendarDateException(e) ;
+		}
+		
 	}
 
 	private int year;
@@ -92,5 +114,38 @@ public class CalendarDate implements Serializable {
 	public String toString() {
 		return year + "-" + month + "-" + day;
 	}
-	
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((date == null) ? 0 : date.hashCode());
+		result = prime * result + day;
+		result = prime * result + month;
+		result = prime * result + year;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		CalendarDate other = (CalendarDate) obj;
+		if (date == null) {
+			if (other.date != null)
+				return false;
+		} else if (!date.equals(other.date))
+			return false;
+		if (day != other.day)
+			return false;
+		if (month != other.month)
+			return false;
+		if (year != other.year)
+			return false;
+		return true;
+	}
 }

@@ -1,5 +1,7 @@
 package kz.trei.office.attendance;
 
+import java.util.Date;
+
 import kz.trei.office.rfid.RfidUID;
 import kz.trei.office.util.CalendarDate;
 import kz.trei.office.util.TimeStamp;
@@ -13,12 +15,12 @@ public class Attendance {
 	public Attendance() {
 	}
 
-	public Attendance(RfidUID uid, DirectionType direction, CalendarDate date, TimeStamp time) {
+	public Attendance(RfidUID uid, DirectionType direction, Date date) {
 		super();
 		this.uid = uid;
 		this.direction = direction;
-		this.date = date;
-		this.time = time;
+		this.date = CalendarDate.createDate(date);
+		this.time = TimeStamp.create(date);
 	}
 
 	public RfidUID getUid() {
@@ -53,4 +55,44 @@ public class Attendance {
 		this.time = time;
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((date == null) ? 0 : date.hashCode());
+		result = prime * result
+				+ ((direction == null) ? 0 : direction.hashCode());
+		result = prime * result + ((time == null) ? 0 : time.hashCode());
+		result = prime * result + ((uid == null) ? 0 : uid.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Attendance other = (Attendance) obj;
+		if (date == null) {
+			if (other.date != null)
+				return false;
+		} else if (!date.equals(other.date))
+			return false;
+		if (direction != other.direction)
+			return false;
+		if (time == null) {
+			if (other.time != null)
+				return false;
+		} else if (!time.equals(other.time))
+			return false;
+		if (uid == null) {
+			if (other.uid != null)
+				return false;
+		} else if (!uid.equals(other.uid))
+			return false;
+		return true;
+	}
 }

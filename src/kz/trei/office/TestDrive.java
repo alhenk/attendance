@@ -2,7 +2,9 @@ package kz.trei.office;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+
 import org.apache.log4j.Logger;
 
 import kz.trei.office.rfid.RfidUID;
@@ -22,6 +24,12 @@ public class TestDrive {
 		LOGGER.info(table.getId());
 		table = Table1C.createRandomID();
 		LOGGER.info(table.getId());
+		
+		long timeInMillis = System.currentTimeMillis();
+		Calendar calendar = Calendar.getInstance(); 
+		calendar.setTimeInMillis(timeInMillis);
+		SimpleDateFormat _format = new SimpleDateFormat("hh:mm");
+		System.out.println(_format.format(calendar.getTime())+"!!!!!!!!!!!!!!!!");
 		
 		SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
 		try {

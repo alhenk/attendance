@@ -177,20 +177,11 @@ public class Employee extends Person {
 		if (getClass() != obj.getClass())
 			return false;
 		Employee other = (Employee) obj;
-		if (department == null) {
-			if (other.department != null)
-				return false;
-		} else if (!department.equals(other.department))
+		if (department != other.department)
 			return false;
-		if (position == null) {
-			if (other.position != null)
-				return false;
-		} else if (!position.equals(other.position))
+		if (position != other.position)
 			return false;
-		if (room == null) {
-			if (other.room != null)
-				return false;
-		} else if (!room.equals(other.room))
+		if (room != other.room)
 			return false;
 		if (tableId == null) {
 			if (other.tableId != null)
