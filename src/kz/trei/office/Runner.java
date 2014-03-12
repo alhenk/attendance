@@ -10,7 +10,6 @@ import kz.trei.office.hr.Person;
 import kz.trei.office.parser.PersonParser;
 import kz.trei.office.parser.SaxParserException;
 import kz.trei.office.parser.SaxPersonParser;
-import kz.trei.office.util.FileManager;
 import kz.trei.office.util.PropertyManager;
 
 public class Runner {
@@ -22,8 +21,9 @@ public class Runner {
 		List<Person> personnel = new ArrayList<Person>();
 		PersonParser parser = new SaxPersonParser();
 		String xmlfile = PropertyManager.getValue("parser.staff.xmlfile");
+		String xsdfile = PropertyManager.getValue("parser.staff.xsdfile");
 		try {
-			personnel = parser.parse(xmlfile);
+			personnel = parser.parse(xmlfile, xsdfile);
 			LOGGER.info(personnel);
 		} catch (SaxParserException e) {
 			LOGGER.error(e);

@@ -2,7 +2,6 @@ package kz.trei.office.parser;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +23,6 @@ import kz.trei.office.structure.PositionType;
 import kz.trei.office.structure.RoomType;
 import kz.trei.office.structure.Table1C;
 import kz.trei.office.util.CalendarDate;
-import kz.trei.office.util.FileManager;
 import kz.trei.office.util.PropertyManager;
 
 import org.apache.log4j.Logger;
@@ -42,13 +40,13 @@ public class SaxPersonParser implements PersonParser {
 	private List<Person> personnel;
 
 	@Override
-	public List<Person> parse(String xmlfile) throws SaxParserException {
+	public List<Person> parse(String xmlfile, String xsdfile)
+			throws SaxParserException {
 		personnel = new ArrayList<Person>();
 		try {
 			SchemaFactory schemaFactory = SchemaFactory
 					.newInstance(W3C_XML_SCHEMA);
-			Schema schema = schemaFactory.newSchema(new File(PropertyManager
-					.getValue("parser.staff.schema")));
+			Schema schema = schemaFactory.newSchema(new File(xsdfile));
 			SAXParserFactory factory = SAXParserFactory.newInstance();
 			factory.setValidating(false);// "true" for using DTD!
 			factory.setSchema(schema);
