@@ -23,8 +23,6 @@ import kz.trei.office.structure.PositionType;
 import kz.trei.office.structure.RoomType;
 import kz.trei.office.structure.Table1C;
 import kz.trei.office.util.CalendarDate;
-import kz.trei.office.util.PropertyManager;
-
 import org.apache.log4j.Logger;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
@@ -32,9 +30,7 @@ import org.xml.sax.SAXParseException;
 import org.xml.sax.helpers.DefaultHandler;
 
 public class SaxPersonParser implements PersonParser {
-	static {
-		PropertyManager.load("configure.properties");
-	}
+	
 	private static final Logger LOGGER = Logger
 			.getLogger(SaxPersonParser.class);
 	private List<Person> personnel;
