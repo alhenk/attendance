@@ -11,5 +11,5 @@ public interface PersonParser {
 	static final String W3C_XML_SCHEMA = "http://www.w3.org/2001/XMLSchema"; 
 	static final String JAXP_SCHEMA_SOURCE = "http://java.sun.com/xml/jaxp/properties/schemaSource";
 
-	List<Person> parse(InputStream input) throws SaxParserException;
+	List<Person> parse(InputStream xmlfile) throws SaxParserException;
 }

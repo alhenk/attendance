@@ -25,6 +25,7 @@ import kz.trei.office.structure.RoomType;
 import kz.trei.office.structure.Table1C;
 import kz.trei.office.util.CalendarDate;
 import kz.trei.office.util.FileManager;
+import kz.trei.office.util.PropertyManager;
 
 import org.apache.log4j.Logger;
 import org.xml.sax.Attributes;
@@ -33,19 +34,21 @@ import org.xml.sax.SAXParseException;
 import org.xml.sax.helpers.DefaultHandler;
 
 public class SaxPersonParser implements PersonParser {
-
+	static {
+		PropertyManager.load("configure.properties");
+	}
 	private static final Logger LOGGER = Logger
 			.getLogger(SaxPersonParser.class);
 	private List<Person> personnel;
 
 	@Override
-	public List<Person> parse(InputStream input) throws SaxParserException {
+	public List<Person> parse(InputStream xmlfile) throws SaxParserException {
 		personnel = new ArrayList<Person>();
 		try {
 			SchemaFactory schemaFactory = SchemaFactory
 					.newInstance(W3C_XML_SCHEMA);
-			Schema schema = schemaFactory.newSchema(new File(
-					"./resources/staff.xsd"));
+			Schema schema = schemaFactory.newSchema(new File(PropertyManager
+					.getValue("parser.staff.schema")));
 			SAXParserFactory factory = SAXParserFactory.newInstance();
 			factory.setValidating(false);// "true" for using DTD!
 			factory.setSchema(schema);
@@ -54,6 +57,7 @@ public class SaxPersonParser implements PersonParser {
 			DefaultHandler handler = new PersonHandler();
 			InputStream inputStream = FileManager
 					.getResourceAsStream("staff.xml");
+			
 			saxParser.parse(inputStream, handler);
 		} catch (ParserConfigurationException e) {
 			LOGGER.error(e);

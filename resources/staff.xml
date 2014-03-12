@@ -10,7 +10,7 @@
 		<birthday>1967-06-10</birthday>
 		<position>DEPARTMENT_HEAD</position>
 		<department>RESEARCH_AND_DEVELOPMENT</department>
-		<room>103</room>
+		<room>107</room>
 		<RfidTag uid="FE0467EF">
 			<tagtype>CARD</tagtype>
 			<protocol>ISO14443A</protocol>
@@ -28,7 +28,7 @@
 		<birthday>1991-08-02</birthday>
 		<position>ENGINEER</position>
 		<department>ASSEMBLY</department>
-		<room>101</room>
+		<room>102</room>
 		<RfidTag uid="E0040100594737350000">
 			<tagtype>KEYFOB</tagtype>
 			<protocol>ISO15693</protocol>

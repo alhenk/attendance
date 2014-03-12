@@ -34,8 +34,12 @@ public class Runner {
 			LOGGER.info(((Employee)employee).getRoom().getRoomName());
 			LOGGER.info(((Employee)employee).getTableId().getId());
 			LOGGER.info(((Employee)employee).getTag().getUid().getValue());
+			LOGGER.info(((Employee)employee).getTag().getProtocol());
+			LOGGER.info(((Employee)employee).getTag().getType());
+			LOGGER.info(((Employee)employee).getTag().getIssue().getIssueDate());
+			LOGGER.info(((Employee)employee).getTag().getIssue().getExpirationDate());
 
-			LOGGER.info(" ");
+			LOGGER.info("**************************************");
 		}
 	}
 }
