@@ -1,6 +1,5 @@
 package kz.trei.office.hr;
 
-import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -161,8 +160,9 @@ public class Employee extends Person {
 
 	@Override
 	public String toString() {
-		return "Employee [" + this.getLastName() + ", uid = "
-				+ tag.getUid().getValue() + "tableID = " + this.tableId.getId()
+		return "Employee [" + this.getLastName() 
+				+ ", uid = " + ((tag!=null && tag.getUid()!=null) ? tag.getUid().getValue():"null") 
+				+ ", tableID = " + ((this.tableId!=null) ? this.tableId.getId() : "null")
 				+ "]";
 	}
 

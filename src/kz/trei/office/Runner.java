@@ -5,6 +5,7 @@ import java.io.File;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
+import javax.xml.bind.Unmarshaller;
 
 import org.apache.log4j.Logger;
 
@@ -52,12 +53,25 @@ public class Runner {
 			// output pretty printed
 			jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 
-			//jaxbMarshaller.marshal(person, file);
+			jaxbMarshaller.marshal(person, file);
 			jaxbMarshaller.marshal(person, System.out);
 
 		} catch (JAXBException e) {
 			e.printStackTrace();
 		}
+		
+		
+		 try {
+				File _file = new File("./resources/staff_.xml");
+				JAXBContext jaxbContext = JAXBContext.newInstance(Employee.class);
+		 
+				Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+				Person worker = (Person) jaxbUnmarshaller.unmarshal(_file);
+				System.out.println(worker);
+		 
+			  } catch (JAXBException e) {
+				e.printStackTrace();
+			  }
 	}
 
 }
