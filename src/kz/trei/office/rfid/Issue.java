@@ -1,7 +1,10 @@
 package kz.trei.office.rfid;
 
-import kz.trei.office.util.CalendarDate;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
+import kz.trei.office.util.CalendarDate;
+@XmlRootElement
 public class Issue {
 	private CalendarDate issueDate;
 	private CalendarDate expirationDate;
@@ -38,7 +41,7 @@ public class Issue {
 	public CalendarDate getIssueDate() {
 		return issueDate;
 	}
-
+	@XmlElement
 	public void setIssueDate(CalendarDate issueDate) {
 		this.issueDate = issueDate;
 	}
@@ -46,7 +49,7 @@ public class Issue {
 	public CalendarDate getExpirationDate() {
 		return expirationDate;
 	}
-
+	@XmlElement
 	public void setExpirationDate(CalendarDate expirationDate) {
 		this.expirationDate = expirationDate;
 	}

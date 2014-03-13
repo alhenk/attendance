@@ -3,8 +3,12 @@ package kz.trei.office.rfid;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlRootElement;
+
 import kz.trei.office.util.PropertyManager;
 
+@XmlRootElement
 public final class RfidUID {
 	static {
 		PropertyManager.load("office.properties");
@@ -16,7 +20,7 @@ public final class RfidUID {
 	}
 
 	private RfidUID(String value) {
-		this.value = value;
+		this.setValue(value); 
 	}
 
 	private static boolean checkUID(String uid) {
@@ -37,6 +41,10 @@ public final class RfidUID {
 
 	public String getValue() {
 		return value;
+	}
+	@XmlAttribute
+	private void setValue(String value) {
+		this.value = value;
 	}
 
 	@Override

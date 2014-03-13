@@ -1,8 +1,12 @@
 package kz.trei.office.hr;
 
 import java.io.Serializable;
-import kz.trei.office.util.CalendarDate;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
+import kz.trei.office.util.CalendarDate;
+@XmlRootElement
 public abstract class Person implements Serializable, Comparable<Person> {
 	private static final long serialVersionUID = -756620067328644499L;
 	private String firstName;
@@ -24,7 +28,7 @@ public abstract class Person implements Serializable, Comparable<Person> {
 	public String getFirstName() {
 		return firstName;
 	}
-
+	@XmlElement
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
@@ -32,7 +36,7 @@ public abstract class Person implements Serializable, Comparable<Person> {
 	public String getPatronym() {
 		return patronym;
 	}
-
+	@XmlElement
 	public void setPatronym(String patronym) {
 		this.patronym = patronym;
 	}
@@ -40,7 +44,7 @@ public abstract class Person implements Serializable, Comparable<Person> {
 	public String getLastName() {
 		return lastName;
 	}
-
+	@XmlElement
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
@@ -48,7 +52,7 @@ public abstract class Person implements Serializable, Comparable<Person> {
 	public CalendarDate getBirthday() {
 		return birthday;
 	}
-
+	@XmlElement
 	public void setBirthday(CalendarDate birthday) {
 		this.birthday = birthday;
 	}

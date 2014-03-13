@@ -1,5 +1,9 @@
 package kz.trei.office.hr;
 
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
 import kz.trei.office.rfid.RfidTag;
 import kz.trei.office.structure.DepartmentType;
 import kz.trei.office.structure.PositionType;
@@ -7,6 +11,7 @@ import kz.trei.office.structure.RoomType;
 import kz.trei.office.structure.Table1C;
 import kz.trei.office.util.CalendarDate;
 
+@XmlRootElement
 public class Employee extends Person {
 	private static final long serialVersionUID = -8363247132437924285L;
 	private PositionType position;
@@ -36,6 +41,7 @@ public class Employee extends Person {
 		return position;
 	}
 
+	@XmlElement
 	public void setPosition(PositionType position) {
 		this.position = position;
 	}
@@ -44,6 +50,7 @@ public class Employee extends Person {
 		return department;
 	}
 
+	@XmlElement
 	public void setDepartment(DepartmentType department) {
 		this.department = department;
 	}
@@ -52,14 +59,17 @@ public class Employee extends Person {
 		return room;
 	}
 
+	@XmlElement
 	public void setRoom(RoomType room) {
 		this.room = room;
 	}
 
+	//@XmlAttribute
 	public Table1C getTableId() {
 		return tableId;
 	}
 
+	@XmlElement
 	public void setTableId(Table1C tableId) {
 		this.tableId = tableId;
 	}
@@ -68,12 +78,13 @@ public class Employee extends Person {
 		this.tableId = Table1C.createID(tableId);
 	}
 
-	public RfidTag getTag() {
-		return tag;
+	@XmlElement
+	public void setTag(RfidTag tag) {
+		this.tag = tag;
 	}
 
-	public void setUid(RfidTag uid) {
-		this.tag = uid;
+	public RfidTag getTag() {
+		return tag;
 	}
 
 	public static class Builder {
@@ -86,12 +97,12 @@ public class Employee extends Person {
 		private DepartmentType department;
 		private RoomType room;
 		private RfidTag rfidTag;
-	
+
 		public Builder setTableId(Table1C tableId) {
 			this.tableId = tableId;
 			return this;
 		}
-		
+
 		public Builder setFirstName(String firstName) {
 			this.firstName = firstName;
 			return this;
@@ -143,7 +154,7 @@ public class Employee extends Person {
 			((Employee) person).setPatronym(patronym);
 			((Employee) person).setPosition(position);
 			((Employee) person).setRoom(room);
-			((Employee) person).setUid(rfidTag);
+			((Employee) person).setTag(rfidTag);
 			return person;
 		}
 	}
@@ -151,7 +162,8 @@ public class Employee extends Person {
 	@Override
 	public String toString() {
 		return "Employee [" + this.getLastName() + ", uid = "
-				+ tag.getUid().getValue() + "tableID = "+this.tableId.getId()+"]";
+				+ tag.getUid().getValue() + "tableID = " + this.tableId.getId()
+				+ "]";
 	}
 
 	@Override

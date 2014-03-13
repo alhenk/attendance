@@ -6,8 +6,11 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-import org.apache.log4j.Logger;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
+import org.apache.log4j.Logger;
+@XmlRootElement
 public class CalendarDate implements Serializable, Comparable<CalendarDate> {
 	private static final long serialVersionUID = -8961625269572879384L;
 	private static final Logger LOGGER = Logger.getLogger(CalendarDate.class);
@@ -91,7 +94,7 @@ public class CalendarDate implements Serializable, Comparable<CalendarDate> {
 	public Date getDate() {
 		return date;
 	}
-
+	@XmlElement
 	public void setDate(Date date) {
 		this.date = date;
 	}
