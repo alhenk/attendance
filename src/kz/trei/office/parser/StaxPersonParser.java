@@ -24,7 +24,7 @@ import kz.trei.office.structure.DepartmentType;
 import kz.trei.office.structure.PositionType;
 import kz.trei.office.structure.RoomType;
 import kz.trei.office.structure.Table1C;
-import kz.trei.office.util.CalendarDate;
+import kz.trei.office.util.DateStamp;
 
 public class StaxPersonParser implements PersonParser {
 	private static final Logger LOGGER = Logger
@@ -88,7 +88,7 @@ public class StaxPersonParser implements PersonParser {
 					} else if (elementName.equalsIgnoreCase("LASTNAME")) {
 						employee.setLastName(elementText);
 					} else if (elementName.equalsIgnoreCase("BIRTHDAY")) {
-						employee.setBirthday(CalendarDate
+						employee.setBirthday(DateStamp
 								.createDate(elementText));
 					} else if (elementName.equalsIgnoreCase("POSITION")) {
 						employee.setPosition(PositionType.valueOf(elementText));
@@ -110,9 +110,9 @@ public class StaxPersonParser implements PersonParser {
 					} else if (elementName.equalsIgnoreCase("ISSUE")) {
 						tag.setIssue(issue.build());
 					} else if (elementName.equalsIgnoreCase("ISSUEDATE")) {
-						issue.setIssueDate(CalendarDate.createDate(elementText));
+						issue.setIssueDate(DateStamp.createDate(elementText));
 					} else if (elementName.equalsIgnoreCase("EXPIRATIONDATE")) {
-						issue.setExpirationDate(CalendarDate
+						issue.setExpirationDate(DateStamp
 								.createDate(elementText));
 					}
 					break;

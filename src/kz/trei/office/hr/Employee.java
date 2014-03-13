@@ -8,7 +8,7 @@ import kz.trei.office.structure.DepartmentType;
 import kz.trei.office.structure.PositionType;
 import kz.trei.office.structure.RoomType;
 import kz.trei.office.structure.Table1C;
-import kz.trei.office.util.CalendarDate;
+import kz.trei.office.util.DateStamp;
 
 @XmlRootElement
 public class Employee extends Person {
@@ -91,7 +91,7 @@ public class Employee extends Person {
 		private String firstName;
 		private String patronym;
 		private String lastName;
-		private CalendarDate birthday;
+		private DateStamp birthday;
 		private PositionType position;
 		private DepartmentType department;
 		private RoomType room;
@@ -117,7 +117,7 @@ public class Employee extends Person {
 			return this;
 		}
 
-		public Builder setBirthday(CalendarDate birthday) {
+		public Builder setBirthday(DateStamp birthday) {
 			this.birthday = birthday;
 			return this;
 		}

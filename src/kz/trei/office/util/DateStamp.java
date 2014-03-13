@@ -11,9 +11,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import org.apache.log4j.Logger;
 @XmlRootElement
-public class CalendarDate implements Serializable, Comparable<CalendarDate> {
+public class DateStamp implements Serializable, Comparable<DateStamp> {
 	private static final long serialVersionUID = -8961625269572879384L;
-	private static final Logger LOGGER = Logger.getLogger(CalendarDate.class);
+	private static final Logger LOGGER = Logger.getLogger(DateStamp.class);
 	private static SimpleDateFormat format;
 
 	public static boolean isValid(String date) {
@@ -31,7 +31,7 @@ public class CalendarDate implements Serializable, Comparable<CalendarDate> {
 		return true;
 	}
 
-	public static CalendarDate createDate(String date){
+	public static DateStamp createDate(String date){
 		int year;
 		int month;
 		int day;
@@ -45,7 +45,7 @@ public class CalendarDate implements Serializable, Comparable<CalendarDate> {
 			year = calendar.get(Calendar.YEAR);
 			month = calendar.get(Calendar.MONTH);
 			day = calendar.get(Calendar.DAY_OF_MONTH);
-			return new CalendarDate(year, month, day, unixDate);
+			return new DateStamp(year, month, day, unixDate);
 		} catch (ParseException e) {
 			LOGGER.error("String yyyy-MM-dd is invalid" + e);
 			return null;
@@ -55,7 +55,7 @@ public class CalendarDate implements Serializable, Comparable<CalendarDate> {
 		}
 	}
 
-	public static CalendarDate createDate(Date date) {
+	public static DateStamp createDate(Date date) {
 		int year;
 		int month;
 		int day;
@@ -68,7 +68,7 @@ public class CalendarDate implements Serializable, Comparable<CalendarDate> {
 			year = calendar.get(Calendar.YEAR);
 			month = calendar.get(Calendar.MONTH);
 			day = calendar.get(Calendar.DAY_OF_MONTH);
-			return new CalendarDate(year, month, day, date);
+			return new DateStamp(year, month, day, date);
 		} catch (ArrayIndexOutOfBoundsException e) {
 			LOGGER.error("" + e);
 			return null;
@@ -80,10 +80,10 @@ public class CalendarDate implements Serializable, Comparable<CalendarDate> {
 	private int day;
 	private Date date;
 
-	public CalendarDate() {
+	public DateStamp() {
 	}
 
-	private CalendarDate(int year, int month, int day, Date date) {
+	private DateStamp(int year, int month, int day, Date date) {
 		super();
 		this.year = year;
 		this.month = month;
@@ -136,7 +136,7 @@ public class CalendarDate implements Serializable, Comparable<CalendarDate> {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		CalendarDate other = (CalendarDate) obj;
+		DateStamp other = (DateStamp) obj;
 		if (date == null) {
 			if (other.date != null)
 				return false;
@@ -152,7 +152,7 @@ public class CalendarDate implements Serializable, Comparable<CalendarDate> {
 	}
 
 	@Override
-	public int compareTo(CalendarDate anotherDate) {
+	public int compareTo(DateStamp anotherDate) {
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(date);
 		long thisTime = calendar.getTimeInMillis();

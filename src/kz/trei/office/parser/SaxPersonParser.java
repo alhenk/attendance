@@ -22,7 +22,7 @@ import kz.trei.office.structure.DepartmentType;
 import kz.trei.office.structure.PositionType;
 import kz.trei.office.structure.RoomType;
 import kz.trei.office.structure.Table1C;
-import kz.trei.office.util.CalendarDate;
+import kz.trei.office.util.DateStamp;
 import org.apache.log4j.Logger;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
@@ -112,7 +112,7 @@ public class SaxPersonParser implements PersonParser {
 			} else if (qName.equalsIgnoreCase("LASTNAME")) {
 				employee.setLastName(elementValue.toString().trim());
 			} else if (qName.equalsIgnoreCase("BIRTHDAY")) {
-				employee.setBirthday(CalendarDate.createDate(elementValue
+				employee.setBirthday(DateStamp.createDate(elementValue
 						.toString().trim()));
 			} else if (qName.equalsIgnoreCase("POSITION")) {
 				employee.setPosition(PositionType.valueOf(elementValue
@@ -137,10 +137,10 @@ public class SaxPersonParser implements PersonParser {
 			} else if (qName.equalsIgnoreCase("ISSUE")) {
 				tag.setIssue(issue.build());
 			} else if (qName.equalsIgnoreCase("ISSUEDATE")) {
-				issue.setIssueDate(CalendarDate.createDate(elementValue
+				issue.setIssueDate(DateStamp.createDate(elementValue
 						.toString().trim()));
 			} else if (qName.equalsIgnoreCase("EXPIRATIONDATE")) {
-				issue.setExpirationDate(CalendarDate.createDate(elementValue
+				issue.setExpirationDate(DateStamp.createDate(elementValue
 						.toString().trim()));
 			}
 		}

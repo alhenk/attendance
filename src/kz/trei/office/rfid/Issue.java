@@ -3,31 +3,31 @@ package kz.trei.office.rfid;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import kz.trei.office.util.CalendarDate;
+import kz.trei.office.util.DateStamp;
 @XmlRootElement
 public class Issue {
-	private CalendarDate issueDate;
-	private CalendarDate expirationDate;
+	private DateStamp issueDate;
+	private DateStamp expirationDate;
 
 	public Issue() {
 	}
 
-	public Issue(CalendarDate issueDate, CalendarDate expirationDate) {
+	public Issue(DateStamp issueDate, DateStamp expirationDate) {
 		super();
 		this.issueDate = issueDate;
 		this.expirationDate = expirationDate;
 	}
 
 	public static class Builder {
-		private CalendarDate issueDate;
-		private CalendarDate expirationDate;
+		private DateStamp issueDate;
+		private DateStamp expirationDate;
 
-		public Builder setIssueDate(CalendarDate issueDate) {
+		public Builder setIssueDate(DateStamp issueDate) {
 			this.issueDate = issueDate;
 			return this;
 		}
 
-		public Builder setExpirationDate(CalendarDate experationDate) {
+		public Builder setExpirationDate(DateStamp experationDate) {
 			this.expirationDate = experationDate;
 			return this;
 		}
@@ -38,19 +38,19 @@ public class Issue {
 
 	}
 
-	public CalendarDate getIssueDate() {
+	public DateStamp getIssueDate() {
 		return issueDate;
 	}
 	@XmlElement
-	public void setIssueDate(CalendarDate issueDate) {
+	public void setIssueDate(DateStamp issueDate) {
 		this.issueDate = issueDate;
 	}
 
-	public CalendarDate getExpirationDate() {
+	public DateStamp getExpirationDate() {
 		return expirationDate;
 	}
 	@XmlElement
-	public void setExpirationDate(CalendarDate expirationDate) {
+	public void setExpirationDate(DateStamp expirationDate) {
 		this.expirationDate = expirationDate;
 	}
 

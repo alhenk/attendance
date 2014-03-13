@@ -16,7 +16,7 @@ import kz.trei.office.structure.DepartmentType;
 import kz.trei.office.structure.PositionType;
 import kz.trei.office.structure.RoomType;
 import kz.trei.office.structure.Table1C;
-import kz.trei.office.util.CalendarDate;
+import kz.trei.office.util.DateStamp;
 import kz.trei.office.util.PropertyManager;
 
 public class Runner {
@@ -35,7 +35,7 @@ public class Runner {
 //		TaskLogic.runStaxParser(xmlfile, xsdfile);
 
 		Person person = new Employee(Table1C.createID("КК00000007"));
-		person.setBirthday(CalendarDate.createDate("1967-06-10"));
+		person.setBirthday(DateStamp.createDate("1967-06-10"));
 		person.setFirstName("Alexandr");
 		person.setLastName("Koryagin");
 		((Employee) person)

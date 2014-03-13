@@ -5,20 +5,20 @@ import java.io.Serializable;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import kz.trei.office.util.CalendarDate;
+import kz.trei.office.util.DateStamp;
 @XmlRootElement
 public abstract class Person implements Serializable, Comparable<Person> {
 	private static final long serialVersionUID = -756620067328644499L;
 	private String firstName;
 	private String patronym;
 	private String lastName;
-	private CalendarDate birthday;
+	private DateStamp birthday;
 
 	public Person() {
 	}
 
 	public Person(String firstName, String patronym, String lastName,
-			CalendarDate birthday) {
+			DateStamp birthday) {
 		this.firstName = firstName;
 		this.patronym = patronym;
 		this.lastName = lastName;
@@ -49,11 +49,11 @@ public abstract class Person implements Serializable, Comparable<Person> {
 		this.lastName = lastName;
 	}
 
-	public CalendarDate getBirthday() {
+	public DateStamp getBirthday() {
 		return birthday;
 	}
 	@XmlElement
-	public void setBirthday(CalendarDate birthday) {
+	public void setBirthday(DateStamp birthday) {
 		this.birthday = birthday;
 	}
 
