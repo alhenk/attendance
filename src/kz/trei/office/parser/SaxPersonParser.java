@@ -112,7 +112,7 @@ public class SaxPersonParser implements PersonParser {
 			} else if (qName.equalsIgnoreCase("LASTNAME")) {
 				employee.setLastName(elementValue.toString().trim());
 			} else if (qName.equalsIgnoreCase("BIRTHDAY")) {
-				employee.setBirthday(DateStamp.createDate(elementValue
+				employee.setBirthday(DateStamp.create(elementValue
 						.toString().trim()));
 			} else if (qName.equalsIgnoreCase("POSITION")) {
 				employee.setPosition(PositionType.valueOf(elementValue
@@ -137,10 +137,10 @@ public class SaxPersonParser implements PersonParser {
 			} else if (qName.equalsIgnoreCase("ISSUE")) {
 				tag.setIssue(issue.build());
 			} else if (qName.equalsIgnoreCase("ISSUEDATE")) {
-				issue.setIssueDate(DateStamp.createDate(elementValue
+				issue.setIssueDate(DateStamp.create(elementValue
 						.toString().trim()));
 			} else if (qName.equalsIgnoreCase("EXPIRATIONDATE")) {
-				issue.setExpirationDate(DateStamp.createDate(elementValue
+				issue.setExpirationDate(DateStamp.create(elementValue
 						.toString().trim()));
 			}
 		}

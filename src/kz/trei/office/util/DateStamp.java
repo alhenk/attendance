@@ -3,12 +3,8 @@ package kz.trei.office.util;
 import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
-
-import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-
 import org.apache.log4j.Logger;
 
 @XmlRootElement
@@ -16,10 +12,51 @@ public class DateStamp implements Serializable, Comparable<DateStamp> {
 	private static final long serialVersionUID = -8961625269572879384L;
 	private static final Logger LOGGER = Logger.getLogger(DateStamp.class);
 	private static SimpleDateFormat format;
+	static {
+		PropertyManager.load("configure.properties");
+	}
+
+	private String date;
+
+	private static String toDateStampString(Date date) {
+		String pattern = PropertyManager
+				.getValue("util.datetime.dateStampFormat");
+		SimpleDateFormat dateStampFormat = new SimpleDateFormat(pattern);
+		return dateStampFormat.format(date);
+	}
+
+	public static DateStamp create(Date date) {
+		return new DateStamp(toDateStampString(date));
+	}
+
+	public static DateStamp create(String date) {
+		if (isValid(date)) {
+			return new DateStamp(date);
+		}
+		LOGGER.error(date + " is not a valid timestamp");
+		return null;
+	}
+
+	/**
+	 * Default constructor gets the current Date
+	 */
+	public DateStamp() {
+		date = toDateStampString(new Date());
+	}
+
+	private DateStamp(String date) {
+		this.date = date;
+	}
+
+	public String getDate() {
+		return date;
+	}
 
 	public static boolean isValid(String date) {
+		String pattern = PropertyManager
+				.getValue("util.datetime.dateStampFormat");
 		try {
-			format = new SimpleDateFormat("yyyy-MM-dd");
+			format = new SimpleDateFormat(pattern);
 			format.setLenient(false);
 			format.parse(date);
 		} catch (ParseException e) {
@@ -35,91 +72,10 @@ public class DateStamp implements Serializable, Comparable<DateStamp> {
 		return true;
 	}
 
-	public static DateStamp createDate(String date) {
-		int year;
-		int month;
-		int day;
-		Date unixDate;
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-		Calendar calendar = Calendar.getInstance();
-		try {
-			format.setLenient(false);
-			unixDate = format.parse(date);
-			calendar.setTime(unixDate);
-			year = calendar.get(Calendar.YEAR);
-			month = calendar.get(Calendar.MONTH);
-			day = calendar.get(Calendar.DAY_OF_MONTH);
-			return new DateStamp(year, month, day, unixDate);
-		} catch (ParseException e) {
-			LOGGER.error("String yyyy-MM-dd is invalid" + e);
-			return null;
-		} catch (ArrayIndexOutOfBoundsException e) {
-			LOGGER.error(e);
-			return null;
-		}
-	}
-
-	public static DateStamp createDate(Date date) {
-		int year;
-		int month;
-		int day;
-
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-		Calendar calendar = Calendar.getInstance();
-		try {
-			format.setLenient(false);
-			calendar.setTime(date);
-			year = calendar.get(Calendar.YEAR);
-			month = calendar.get(Calendar.MONTH);
-			day = calendar.get(Calendar.DAY_OF_MONTH);
-			return new DateStamp(year, month, day, date);
-		} catch (ArrayIndexOutOfBoundsException e) {
-			LOGGER.error("" + e);
-			return null;
-		}
-	}
-
-	private int year;
-	private int month;
-	private int day;
-	private Date date;
-
-	public DateStamp() {
-	}
-
-	private DateStamp(int year, int month, int day, Date date) {
-		super();
-		this.year = year;
-		this.month = month;
-		this.day = day;
-		this.date = date;
-	}
-
-	public Date getDate() {
-		return date;
-	}
-
-	@XmlElement
-	public void setDate(Date date) {
-		this.date = date;
-	}
-
-	public int getYear() {
-		return year;
-	}
-
-	public int getMonth() {
-		return month;
-	}
-
-	public int getDay() {
-		return day;
-	}
-
+	
 	@Override
 	public String toString() {
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-		return dateFormat.format(date);
+		return "DateStamp [date=" + date + "]";
 	}
 
 	@Override
@@ -127,9 +83,6 @@ public class DateStamp implements Serializable, Comparable<DateStamp> {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((date == null) ? 0 : date.hashCode());
-		result = prime * result + day;
-		result = prime * result + month;
-		result = prime * result + year;
 		return result;
 	}
 
@@ -147,22 +100,11 @@ public class DateStamp implements Serializable, Comparable<DateStamp> {
 				return false;
 		} else if (!date.equals(other.date))
 			return false;
-		if (day != other.day)
-			return false;
-		if (month != other.month)
-			return false;
-		if (year != other.year)
-			return false;
 		return true;
 	}
 
 	@Override
 	public int compareTo(DateStamp anotherDate) {
-		Calendar calendar = Calendar.getInstance();
-		calendar.setTime(date);
-		long thisTime = calendar.getTimeInMillis();
-		calendar.setTime(anotherDate.getDate());
-		long anotherTime = calendar.getTimeInMillis();
-		return (thisTime < anotherTime ? -1 : (thisTime == anotherTime ? 0 : 1));
+		return date.compareTo(anotherDate.getDate());
 	}
 }

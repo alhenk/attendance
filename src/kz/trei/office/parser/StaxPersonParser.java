@@ -89,7 +89,7 @@ public class StaxPersonParser implements PersonParser {
 						employee.setLastName(elementText);
 					} else if (elementName.equalsIgnoreCase("BIRTHDAY")) {
 						employee.setBirthday(DateStamp
-								.createDate(elementText));
+								.create(elementText));
 					} else if (elementName.equalsIgnoreCase("POSITION")) {
 						employee.setPosition(PositionType.valueOf(elementText));
 					} else if (elementName.equalsIgnoreCase("DEPARTMENT")) {
@@ -110,10 +110,10 @@ public class StaxPersonParser implements PersonParser {
 					} else if (elementName.equalsIgnoreCase("ISSUE")) {
 						tag.setIssue(issue.build());
 					} else if (elementName.equalsIgnoreCase("ISSUEDATE")) {
-						issue.setIssueDate(DateStamp.createDate(elementText));
+						issue.setIssueDate(DateStamp.create(elementText));
 					} else if (elementName.equalsIgnoreCase("EXPIRATIONDATE")) {
 						issue.setExpirationDate(DateStamp
-								.createDate(elementText));
+								.create(elementText));
 					}
 					break;
 				default:

@@ -1,41 +1,27 @@
 package kz.trei.office.util;
 
 import static org.junit.Assert.*;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import org.apache.log4j.Logger;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 public class TimeStampTest {
 	private static final Logger LOGGER = Logger.getLogger(TimeStampTest.class);
 	private String timeStamp = "12:37:21";
-	private String dateStamp = "2014-03-14";
-	private int timeZone = -6;
-
 	private SimpleDateFormat timeformat = new SimpleDateFormat("hh:mm:ss");
-	private SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");
 	private Date testDate = null;
 
 	@Before
 	public void setUp() {
 		try {
-			Date d = timeformat.parse(timeStamp);
-			Date t = dateformat.parse(dateStamp);
-			testDate = new Date(d.getTime() + t.getTime() + timeZone * 60 * 60
-					* 1000);
-
+			Date date = timeformat.parse(timeStamp);
+			testDate = new Date(date.getTime());
 		} catch (ParseException e) {
 			LOGGER.error(e);
 		}
-	}
-
-	@After
-	public void tearDown() {
-
 	}
 
 	@Test

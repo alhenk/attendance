@@ -29,13 +29,13 @@ public class Runner {
 
 		String xmlfile = PropertyManager.getValue("parser.staff.xmlfile");
 		String xsdfile = PropertyManager.getValue("parser.staff.xsdfile");
-//		LOGGER.info("RUN SAXPARSER");
-//		TaskLogic.runSaxParser(xmlfile, xsdfile);
-//		LOGGER.info("RUN StAXPARSER");
-//		TaskLogic.runStaxParser(xmlfile, xsdfile);
+		LOGGER.info("RUN SAXPARSER");
+		TaskLogic.runSaxParser(xmlfile, xsdfile);
+		LOGGER.info("RUN StAXPARSER");
+		TaskLogic.runStaxParser(xmlfile, xsdfile);
 
 		Person person = new Employee(Table1C.createID("КК00000007"));
-		person.setBirthday(DateStamp.createDate("1967-06-10"));
+		person.setBirthday(DateStamp.create("1967-06-10"));
 		person.setFirstName("Alexandr");
 		person.setLastName("Koryagin");
 		((Employee) person)

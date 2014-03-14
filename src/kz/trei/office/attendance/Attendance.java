@@ -19,7 +19,7 @@ public class Attendance {
 		super();
 		this.uid = uid;
 		this.direction = direction;
-		this.date = DateStamp.createDate(date);
+		this.date = DateStamp.create(date);
 		this.time = TimeStamp.create(date);
 	}
 
@@ -44,7 +44,7 @@ public class Attendance {
 	}
 
 	public void setDate(Date date) {
-		this.date = DateStamp.createDate(date);
+		this.date = DateStamp.create(date);
 		this.time = TimeStamp.create(date);
 	}
 	
