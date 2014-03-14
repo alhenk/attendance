@@ -1,5 +1,8 @@
 package kz.trei.office.structure;
 
+import javax.xml.bind.annotation.XmlEnum;
+
+@XmlEnum
 public enum PositionType {
 	GENERAL_DIRECTOR,
 	COMMERCIAL_DIRECTOR,

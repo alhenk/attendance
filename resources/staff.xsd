@@ -2,17 +2,17 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	targetNamespace="http://www.trei.kz/attendance/tns" xmlns:tns="http://www.trei.kz/attendance/tns">
 
-	<xs:element name="Staff">
+	<xs:element name="staff">
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element ref="tns:Person" maxOccurs="unbounded"></xs:element>
+				<xs:element ref="tns:person" maxOccurs="unbounded"></xs:element>
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
 
-	<xs:element name="Person" abstract="true" type="tns:PersonType"></xs:element>
+	<xs:element name="person" abstract="true" type="tns:personType"></xs:element>
 
-	<xs:complexType name="PersonType">
+	<xs:complexType name="personType">
 		<xs:sequence>
 			<xs:element name="firstName" type="tns:personalName"></xs:element>
 			<xs:element name="patronym" type="tns:personalName"
@@ -23,9 +23,9 @@
 		<xs:attribute name="tableId" type="tns:tableId" use="required"></xs:attribute>
 	</xs:complexType>
 
-	<xs:complexType name="EmployeeType">
+	<xs:complexType name="employeeType">
 		<xs:complexContent>
-			<xs:extension base="tns:PersonType">
+			<xs:extension base="tns:personType">
 				<xs:sequence>
 					<xs:element name="position" type="tns:position"
 						maxOccurs="2"></xs:element>
@@ -33,16 +33,16 @@
 						minOccurs="0"></xs:element>
 					<xs:element name="room" type="xs:int" minOccurs="0"
 						maxOccurs="unbounded"></xs:element>
-					<xs:element name="RfidTag" type="tns:RfidTag" />
+					<xs:element name="rfidTag" type="tns:rfidTag" />
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
 
-	<xs:element name="Employee" substitutionGroup="tns:Person"
-		type="tns:EmployeeType"></xs:element>
+	<xs:element name="employee" substitutionGroup="tns:person"
+		type="tns:employeeType"></xs:element>
 
-	<xs:complexType name="RfidTag">
+	<xs:complexType name="rfidTag">
 		<xs:sequence>
 			<xs:element name="tagtype" type="tns:cardtype"></xs:element>
 			<xs:element name="protocol" type="tns:rfprotocol"></xs:element>
@@ -75,8 +75,6 @@
 			<xs:enumeration value="STICKER" />
 		</xs:restriction>
 	</xs:simpleType>
-
-
 
 	<xs:simpleType name="department">
 		<xs:restriction base="xs:string">

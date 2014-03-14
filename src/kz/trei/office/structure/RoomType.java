@@ -3,6 +3,8 @@ package kz.trei.office.structure;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.xml.bind.annotation.XmlEnum;
+@XmlEnum
 public enum RoomType {
 	DEFAULT(1,"DEFAULT"),
 	ROOM101(101, "SECURITY"),

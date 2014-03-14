@@ -4,20 +4,24 @@ import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 
 import kz.trei.office.util.DateStamp;
 import kz.trei.office.util.PropertyManager;
 
-@XmlRootElement
-public class Issue implements Serializable, Comparable<Issue>{
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "issue")
+public class Issue implements Serializable, Comparable<Issue> {
 	private static final long serialVersionUID = -7410469239152467286L;
-
 	static {
 		PropertyManager.load("configure.properties");
 	}
+	@XmlElement
 	private DateStamp issueDate;
+	@XmlElement
 	private DateStamp expirationDate;
 
 	/**
@@ -63,7 +67,7 @@ public class Issue implements Serializable, Comparable<Issue>{
 		return issueDate;
 	}
 
-	@XmlElement
+	
 	public void setIssueDate(DateStamp issueDate) {
 		this.issueDate = issueDate;
 	}
@@ -72,7 +76,7 @@ public class Issue implements Serializable, Comparable<Issue>{
 		return expirationDate;
 	}
 
-	@XmlElement
+	
 	public void setExpirationDate(DateStamp expirationDate) {
 		this.expirationDate = expirationDate;
 	}
@@ -112,15 +116,13 @@ public class Issue implements Serializable, Comparable<Issue>{
 
 	@Override
 	public String toString() {
-		return "Issue [issueDate=" + issueDate + ", expirationDate="
-				+ expirationDate + "]";
+		return "Issue [issueDate = " + issueDate.getDate() + ", expirationDate = "
+				+ expirationDate.getDate() + "]";
 	}
 
 	@Override
 	public int compareTo(Issue anotherIssue) {
 		return issueDate.compareTo(anotherIssue.getIssueDate());
 	}
-
-	
 
 }

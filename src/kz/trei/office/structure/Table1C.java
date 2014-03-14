@@ -3,15 +3,19 @@ package kz.trei.office.structure;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlType;
+
 import kz.trei.office.util.PropertyManager;
 /**
  * Table ID assigned to employee accordingly to
  * 1C account data base
  * @throws  IllegalArgumentException
  */
+@XmlType(name = "tableId")
 public final class Table1C {
 	static{
-		PropertyManager.load("office.properties");
+		PropertyManager.load("configure.properties");
 	}
 	/**
 	 * regex id verification
@@ -46,6 +50,7 @@ public final class Table1C {
 	/**
 	 * Table ID number (KK00000001)
 	 */
+	@XmlAttribute
 	private String id;
 	/**
 	 * Default constructor

@@ -1,12 +1,15 @@
 package kz.trei.office.rfid;
 
 import java.io.Serializable;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlType;
 
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "rfidTag")
 public class RfidTag implements Serializable, Comparable<RfidTag>{
 	private static final long serialVersionUID = -1380395087317256237L;
+	
 	private RfidUID uid;
 	private RfidType type;
 	private ProtocolType protocol;
@@ -33,7 +36,7 @@ public class RfidTag implements Serializable, Comparable<RfidTag>{
 			this.uid = uid;
 			return this;
 		}
-		public Builder setRfid(RfidType type){
+		public Builder setRfidType(RfidType type){
 			this.type = type;
 			return this;
 		}
@@ -53,7 +56,7 @@ public class RfidTag implements Serializable, Comparable<RfidTag>{
 	public RfidUID getUid() {
 		return uid;
 	}
-	@XmlElement
+	
 	public void setUid(RfidUID uid) {
 		this.uid = uid;
 	}
@@ -61,7 +64,7 @@ public class RfidTag implements Serializable, Comparable<RfidTag>{
 	public RfidType getType() {
 		return type;
 	}
-	@XmlElement
+	
 	public void setType(RfidType type) {
 		this.type = type;
 	}
@@ -69,7 +72,7 @@ public class RfidTag implements Serializable, Comparable<RfidTag>{
 	public ProtocolType getProtocol() {
 		return protocol;
 	}
-	@XmlElement
+	
 	public void setProtocol(ProtocolType protocol) {
 		this.protocol = protocol;
 	}
@@ -77,7 +80,7 @@ public class RfidTag implements Serializable, Comparable<RfidTag>{
 	public Issue getIssue() {
 		return issue;
 	}
-	@XmlElement
+	
 	public void setIssue(Issue issue) {
 		this.issue = issue;
 	}
@@ -131,5 +134,4 @@ public class RfidTag implements Serializable, Comparable<RfidTag>{
 		String thisUid = this.uid.getValue();
 		return thisUid.compareTo(anotherUid);
 	}
-	
 }

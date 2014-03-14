@@ -104,7 +104,7 @@ public class StaxPersonParser implements PersonParser {
 					} else if (elementName.equalsIgnoreCase("RFIDTAG")) {
 						employee.setTag(tag.build());
 					} else if (elementName.equalsIgnoreCase("TAGTYPE")) {
-						tag.setRfid(RfidType.valueOf(elementText));
+						tag.setRfidType(RfidType.valueOf(elementText));
 					} else if (elementName.equalsIgnoreCase("PROTOCOL")) {
 						tag.setProtocol(ProtocolType.valueOf(elementText));
 					} else if (elementName.equalsIgnoreCase("ISSUE")) {

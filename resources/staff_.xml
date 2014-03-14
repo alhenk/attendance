@@ -1,13 +1,28 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <employee>
     <birthday>
-        <date>1967-06-10T00:00:00+06:00</date>
+        <date>1967-06-10</date>
     </birthday>
     <firstName>Alexandr</firstName>
     <lastName>Koryagin</lastName>
+    <patronym>G.</patronym>
     <department>RESEARCH_AND_DEVELOPMENT</department>
     <position>DEPARTMENT_HEAD</position>
     <room>ROOM107</room>
-    <tableId/>
-    <tag/>
+    <tableId id="КК00000007"/>
+    <tag>
+        <uid>
+            <value>E0040100594737350000</value>
+        </uid>
+        <type>CARD</type>
+        <protocol>ISO14443A</protocol>
+        <issue>
+            <issueDate>
+                <date>2014-03-14</date>
+            </issueDate>
+            <expirationDate>
+                <date>2015-03-14</date>
+            </expirationDate>
+        </issue>
+    </tag>
 </employee>

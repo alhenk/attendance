@@ -1,29 +1,33 @@
 package kz.trei.office.rfid;
 
+import java.io.Serializable;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlType;
 
 import kz.trei.office.util.PropertyManager;
 
-@XmlRootElement
-public final class RfidUID {
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "rfidUid")
+public final class RfidUID implements Serializable, Comparable<RfidUID> {
+	private static final long serialVersionUID = 2727289459571896461L;
 	static {
-		PropertyManager.load("office.properties");
+		PropertyManager.load("configure.properties");
 	}
-
+	
 	private String value;
 
 	public RfidUID() {
 	}
 
 	private RfidUID(String value) {
-		this.setValue(value); 
+		this.value = value;
 	}
 
-	private static boolean checkUID(String uid) {
+	public static boolean isValid(String uid) {
 		String uidRegex = PropertyManager.getValue("rfid.uidRegex");
 		Pattern uidPattern = Pattern.compile(uidRegex,
 				Pattern.UNICODE_CHARACTER_CLASS | Pattern.CASE_INSENSITIVE);
@@ -32,19 +36,24 @@ public final class RfidUID {
 	}
 
 	public static RfidUID createUID(String uid) {
-		if (checkUID(uid)) {
+		if (isValid(uid)) {
 			return new RfidUID(uid);
 		} else {
 			throw new IllegalArgumentException();
 		}
 	}
-
+	
 	public String getValue() {
 		return value;
 	}
-	@XmlAttribute
-	private void setValue(String value) {
-		this.value = value;
+
+	
+	public void setValue(String value) {
+		if (isValid(value)) {
+			this.value = value;
+		} else{
+			throw new IllegalArgumentException(value +" is not valid UID");
+		}
 	}
 
 	@Override
@@ -71,4 +80,15 @@ public final class RfidUID {
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "RfidUID [UID = " + value + "]";
+	}
+
+	@Override
+	public int compareTo(RfidUID anotherUID) {
+		return value.compareTo(anotherUID.getValue());
+	}
+
 }

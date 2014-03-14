@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tns:Staff xmlns:tns="http://www.trei.kz/attendance/tns"
+<tns:staff xmlns:tns="http://www.trei.kz/attendance/tns"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.trei.kz/attendance/tns staff.xsd">
 
-	<tns:Employee tableId="КК00000001">
+	<tns:employee tableId="КК00000001">
 		<firstName>Александр</firstName>
 		<patronym>Геннадьевич</patronym>
 		<lastName>Корягин</lastName>
@@ -11,17 +11,17 @@
 		<position>DEPARTMENT_HEAD</position>
 		<department>RESEARCH_AND_DEVELOPMENT</department>
 		<room>107</room>
-		<RfidTag uid="FE0467EF">
+		<rfidTag uid="FE0467EF">
 			<tagtype>CARD</tagtype>
 			<protocol>ISO14443A</protocol>
 			<issue>
 				<issueDate>2014-03-05</issueDate>
 				<expirationDate>2015-03-05</expirationDate>
 			</issue>
-		</RfidTag>
-	</tns:Employee>
+		</rfidTag>
+	</tns:employee>
 
-	<tns:Employee tableId="КУ00000002">
+	<tns:employee tableId="КУ00000002">
 		<firstName>Ivan</firstName>
 		<patronym>Ivanych</patronym>
 		<lastName>Ivanov</lastName>
@@ -29,13 +29,13 @@
 		<position>ENGINEER</position>
 		<department>ASSEMBLY</department>
 		<room>102</room>
-		<RfidTag uid="E0040100594737350000">
+		<rfidTag uid="E0040100594737350000">
 			<tagtype>KEYFOB</tagtype>
 			<protocol>ISO15693</protocol>
 			<issue>
 				<issueDate>2014-02-20</issueDate>
 				<expirationDate>2015-02-20</expirationDate>
 			</issue>
-		</RfidTag>
-	</tns:Employee>
-</tns:Staff>
+		</rfidTag>
+	</tns:employee>
+</tns:staff>

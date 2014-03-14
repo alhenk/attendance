@@ -130,7 +130,7 @@ public class SaxPersonParser implements PersonParser {
 			} else if (qName.equalsIgnoreCase("RFIDTAG")) {
 				employee.setTag(tag.build());
 			} else if (qName.equalsIgnoreCase("TAGTYPE")) {
-				tag.setRfid(RfidType.valueOf(elementValue.toString().trim()));
+				tag.setRfidType(RfidType.valueOf(elementValue.toString().trim()));
 			} else if (qName.equalsIgnoreCase("PROTOCOL")) {
 				tag.setProtocol(ProtocolType.valueOf(elementValue.toString()
 						.trim()));

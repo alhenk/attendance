@@ -5,8 +5,14 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlType;
+
 import org.apache.log4j.Logger;
 
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType
 public class TimeStamp implements Serializable, Comparable<TimeStamp> {
 	private static final long serialVersionUID = -2891638740457501189L;
 	private static final Logger LOGGER = Logger.getLogger(TimeStamp.class);

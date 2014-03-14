@@ -11,7 +11,11 @@ import org.apache.log4j.Logger;
 
 import kz.trei.office.hr.Employee;
 import kz.trei.office.hr.Person;
+import kz.trei.office.rfid.Issue;
+import kz.trei.office.rfid.ProtocolType;
 import kz.trei.office.rfid.RfidTag;
+import kz.trei.office.rfid.RfidType;
+import kz.trei.office.rfid.RfidUID;
 import kz.trei.office.structure.DepartmentType;
 import kz.trei.office.structure.PositionType;
 import kz.trei.office.structure.RoomType;
@@ -37,12 +41,19 @@ public class Runner {
 		Person person = new Employee(Table1C.createID("КК00000007"));
 		person.setBirthday(DateStamp.create("1967-06-10"));
 		person.setFirstName("Alexandr");
+		person.setPatronym("G.");
 		person.setLastName("Koryagin");
 		((Employee) person)
 				.setDepartment(DepartmentType.RESEARCH_AND_DEVELOPMENT);
 		((Employee) person).setPosition(PositionType.DEPARTMENT_HEAD);
 		((Employee) person).setRoom(RoomType.ROOM107);
-		((Employee) person).setTag(new RfidTag());
+		Issue issue = new Issue();
+		System.out.println(issue);
+		RfidTag rfidTag = new RfidTag.Builder().setProtocol(ProtocolType.ISO14443A)
+				.setRfidUID(RfidUID.createUID("E0040100594737350000"))
+				.setIssue(issue).setRfidType(RfidType.CARD).build() ;
+		
+		((Employee) person).setTag(rfidTag);
 
 		try {
 
