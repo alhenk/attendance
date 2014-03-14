@@ -1,19 +1,41 @@
 package kz.trei.office.rfid;
 
+import java.io.Serializable;
+import java.util.Calendar;
+import java.util.Date;
+
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import kz.trei.office.util.DateStamp;
+import kz.trei.office.util.PropertyManager;
+
 @XmlRootElement
-public class Issue {
+public class Issue implements Serializable, Comparable<Issue>{
+	private static final long serialVersionUID = -7410469239152467286L;
+
+	static {
+		PropertyManager.load("configure.properties");
+	}
 	private DateStamp issueDate;
 	private DateStamp expirationDate;
 
+	/**
+	 * Default constructor sets issue to current date and expiration to default
+	 * value in configure properties
+	 */
 	public Issue() {
+		Integer defaultExpirationInMonths = new Integer(
+				PropertyManager.getValue("issue.defaultExpirationInMonths"));
+		Calendar calendar = Calendar.getInstance();
+		Date currentDate = new Date();
+		calendar.setTime(currentDate);
+		calendar.add(Calendar.MONTH, defaultExpirationInMonths);
+		this.issueDate = DateStamp.create(currentDate);
+		this.expirationDate = DateStamp.create(calendar.getTime());
 	}
 
 	public Issue(DateStamp issueDate, DateStamp expirationDate) {
-		super();
 		this.issueDate = issueDate;
 		this.expirationDate = expirationDate;
 	}
@@ -35,12 +57,12 @@ public class Issue {
 		public Issue build() {
 			return new Issue(issueDate, expirationDate);
 		}
-
 	}
 
 	public DateStamp getIssueDate() {
 		return issueDate;
 	}
+
 	@XmlElement
 	public void setIssueDate(DateStamp issueDate) {
 		this.issueDate = issueDate;
@@ -49,6 +71,7 @@ public class Issue {
 	public DateStamp getExpirationDate() {
 		return expirationDate;
 	}
+
 	@XmlElement
 	public void setExpirationDate(DateStamp expirationDate) {
 		this.expirationDate = expirationDate;
@@ -86,5 +109,18 @@ public class Issue {
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "Issue [issueDate=" + issueDate + ", expirationDate="
+				+ expirationDate + "]";
+	}
+
+	@Override
+	public int compareTo(Issue anotherIssue) {
+		return issueDate.compareTo(anotherIssue.getIssueDate());
+	}
+
+	
 
 }

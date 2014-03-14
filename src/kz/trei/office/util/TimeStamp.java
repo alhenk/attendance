@@ -1,12 +1,14 @@
 package kz.trei.office.util;
 
+import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.apache.log4j.Logger;
 
-public class TimeStamp {
+public class TimeStamp implements Serializable, Comparable<TimeStamp> {
+	private static final long serialVersionUID = -2891638740457501189L;
 	private static final Logger LOGGER = Logger.getLogger(TimeStamp.class);
 	private static SimpleDateFormat format;
 	static {
@@ -94,6 +96,11 @@ public class TimeStamp {
 	@Override
 	public String toString() {
 		return "TimeStamp [time=" + time + "]";
+	}
+
+	@Override
+	public int compareTo(TimeStamp anotherTime) {
+		return time.compareTo(anotherTime.getTime());
 	}
 
 }
