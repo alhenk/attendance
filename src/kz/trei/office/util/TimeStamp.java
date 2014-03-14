@@ -1,28 +1,71 @@
 package kz.trei.office.util;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 
+import org.apache.log4j.Logger;
+
 public class TimeStamp {
-	private String time;
-	
-	public TimeStamp(){
+	private static final Logger LOGGER = Logger.getLogger(TimeStamp.class);
+	private static SimpleDateFormat format;
+	static {
+		PropertyManager.load("configure.properties");
 	}
-	private TimeStamp(String time){
+
+	private String time;
+
+	public TimeStamp() {
+		time = toTimeStampString(new Date());
+	}
+
+	private TimeStamp(String time) {
 		this.time = time;
 	}
-	
-	public static TimeStamp create(Date date){
-		Calendar calendar = Calendar.getInstance(); 
-		calendar.setTime(date);
-		SimpleDateFormat time = new SimpleDateFormat("hh:mm");
-		return new TimeStamp(time.format(calendar.getTime()));
+
+	public static TimeStamp create(Date date) {
+		return new TimeStamp(toTimeStampString(date));
+	}
+
+	public static TimeStamp create(String time) {
+		if (isValid(time)) {
+			return new TimeStamp(time);
+		}
+		LOGGER.error(time + " is not a valid timestamp");
+		return null;
+	}
+
+	public static boolean isValid(String time) {
+		String pattern = PropertyManager
+				.getValue("util.datetime.timeStampFormat");
+		try {
+			format = new SimpleDateFormat(pattern);
+			format.setLenient(false);
+			format.parse(time);
+		} catch (ParseException e) {
+			LOGGER.error(e);
+			return false;
+		} catch (IllegalArgumentException e) {
+			LOGGER.error(e);
+			return false;
+		} catch (NullPointerException e) {
+			LOGGER.error(e);
+			return false;
+		}
+		return true;
+	}
+
+	private static String toTimeStampString(Date date) {
+		String pattern = PropertyManager
+				.getValue("util.datetime.timeStampFormat");
+		SimpleDateFormat timeStampFormat = new SimpleDateFormat(pattern);
+		return timeStampFormat.format(date);
 	}
 
 	public String getTime() {
 		return time;
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -30,6 +73,7 @@ public class TimeStamp {
 		result = prime * result + ((time == null) ? 0 : time.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -46,4 +90,10 @@ public class TimeStamp {
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "TimeStamp [time=" + time + "]";
+	}
+
 }

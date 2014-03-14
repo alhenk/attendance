@@ -10,6 +10,7 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import org.apache.log4j.Logger;
+
 @XmlRootElement
 public class DateStamp implements Serializable, Comparable<DateStamp> {
 	private static final long serialVersionUID = -8961625269572879384L;
@@ -17,21 +18,24 @@ public class DateStamp implements Serializable, Comparable<DateStamp> {
 	private static SimpleDateFormat format;
 
 	public static boolean isValid(String date) {
-		format = new SimpleDateFormat("yyyy-MM-dd");
 		try {
+			format = new SimpleDateFormat("yyyy-MM-dd");
 			format.setLenient(false);
 			format.parse(date);
 		} catch (ParseException e) {
-			LOGGER.error("" + e);
+			LOGGER.error(e);
 			return false;
 		} catch (IllegalArgumentException e) {
-			LOGGER.error("" + e);
+			LOGGER.error(e);
+			return false;
+		} catch (NullPointerException e) {
+			LOGGER.error(e);
 			return false;
 		}
 		return true;
 	}
 
-	public static DateStamp createDate(String date){
+	public static DateStamp createDate(String date) {
 		int year;
 		int month;
 		int day;
@@ -94,6 +98,7 @@ public class DateStamp implements Serializable, Comparable<DateStamp> {
 	public Date getDate() {
 		return date;
 	}
+
 	@XmlElement
 	public void setDate(Date date) {
 		this.date = date;
