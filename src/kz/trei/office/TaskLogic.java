@@ -44,6 +44,7 @@ public final class TaskLogic {
 		}
 		printStaff(staff);
 	}
+	
 	private static void printStaff(List<Person> staff){
 		for (Person employee: staff){
 			LOGGER.info(((Employee)employee).getFirstName());

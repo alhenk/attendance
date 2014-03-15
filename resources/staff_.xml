@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <employee>
+    <firstName>Alexandr</firstName>
+    <patronym>G.</patronym>
+    <lastName>Koryagin</lastName>
     <birthday>
         <date>1967-06-10</date>
     </birthday>
-    <firstName>Alexandr</firstName>
-    <lastName>Koryagin</lastName>
-    <patronym>G.</patronym>
-    <department>RESEARCH_AND_DEVELOPMENT</department>
     <position>DEPARTMENT_HEAD</position>
+    <department>RESEARCH_AND_DEVELOPMENT</department>
     <room>ROOM107</room>
     <tableId id="КК00000007"/>
-    <tag>
+    <rfidTag>
         <uid>
             <value>E0040100594737350000</value>
         </uid>
@@ -18,11 +18,11 @@
         <protocol>ISO14443A</protocol>
         <issue>
             <issueDate>
-                <date>2014-03-14</date>
+                <date>2014-03-15</date>
             </issueDate>
             <expirationDate>
-                <date>2015-03-14</date>
+                <date>2015-03-15</date>
             </expirationDate>
         </issue>
-    </tag>
+    </rfidTag>
 </employee>
