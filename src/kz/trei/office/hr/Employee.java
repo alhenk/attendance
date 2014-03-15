@@ -22,7 +22,8 @@ import kz.trei.office.util.DateStamp;
 public class Employee extends Person {
 	private static final long serialVersionUID = -8363247132437924285L;
 	@XmlElement(required = true)
-	private PositionType position;
+	@XmlElementWrapper( name="positions" )
+	private Set<PositionType> position;
 	@XmlElement(required = true)
 	private DepartmentType department;
 	@XmlElement(name = "room", required = true)
@@ -35,14 +36,16 @@ public class Employee extends Person {
 
 	public Employee() {
 		this.room = new HashSet<RoomType>();
+		this.position = new HashSet<PositionType>();
 	}
 
 	public Employee(Table1C tableId) {
 		this.tableId = tableId;
 		this.room = new HashSet<RoomType>();
+		this.position = new HashSet<PositionType>();
 	}
 
-	public Employee(PositionType position, DepartmentType department,
+	public Employee(Set<PositionType> position, DepartmentType department,
 			Set<RoomType> room, Table1C tableId, RfidTag tag) {
 		this();
 		this.position = position;
@@ -52,7 +55,7 @@ public class Employee extends Person {
 		this.rfidTag = tag;
 	}
 
-	public PositionType getPosition() {
+	public Set<PositionType> getPosition() {
 		return position;
 	}
 	
@@ -63,8 +66,16 @@ public class Employee extends Person {
 	public void removeRoom(RoomType room){
 		this.room.remove(room);
 	}
+	
+	public void addPosition(PositionType position){
+		this.position.add(position);
+	}
+	
+	public void removePosition(PositionType position){
+		this.position.remove(position);
+	}
 
-	public void setPosition(PositionType position) {
+	public void setPosition(Set<PositionType> position) {
 		this.position = position;
 	}
 
@@ -115,7 +126,7 @@ public class Employee extends Person {
 		private String patronym;
 		private String lastName;
 		private DateStamp birthday;
-		private PositionType position;
+		private Set<PositionType> position  = new HashSet<PositionType>();
 		private DepartmentType department;
 		private Set<RoomType> room = new HashSet<RoomType>();
 		private RfidTag rfidTag;
@@ -134,8 +145,14 @@ public class Employee extends Person {
 			this.patronym = patronym;
 			return this;
 		}
+		
 		public Builder addRoom(RoomType room) {
 			this.room.add(room);
+			return this;
+		}
+		
+		public Builder addPosition(PositionType position) {
+			this.position.add(position);
 			return this;
 		}
 
@@ -149,7 +166,7 @@ public class Employee extends Person {
 			return this;
 		}
 
-		public Builder setPosition(PositionType position) {
+		public Builder setPosition(Set<PositionType> position) {
 			this.position = position;
 			return this;
 		}

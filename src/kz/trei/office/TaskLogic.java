@@ -12,6 +12,7 @@ import kz.trei.office.parser.JaxbEmployeeParser;
 import kz.trei.office.parser.XmlParserException;
 import kz.trei.office.parser.SaxEmployeeParser;
 import kz.trei.office.parser.StaxEmployeeParser;
+import kz.trei.office.structure.PositionType;
 import kz.trei.office.structure.RoomType;
 import kz.trei.office.util.PropertyManager;
 
@@ -65,10 +66,18 @@ public final class TaskLogic {
 			LOGGER.info(((Employee) employee).getFirstName());
 			LOGGER.info(((Employee) employee).getPatronym());
 			LOGGER.info(((Employee) employee).getLastName());
-			LOGGER.info("Birthday " + ((Employee) employee).getBirthday().getDate());
-			LOGGER.info(((Employee) employee).getPosition());
-			for (RoomType room : ((Employee) employee).getRoom()) {
-				LOGGER.info(room);
+			LOGGER.info("Birthday "
+					+ ((Employee) employee).getBirthday().getDate());
+			if (((Employee) employee).getPosition() != null) {
+				for (PositionType position : ((Employee) employee)
+						.getPosition()) {
+					LOGGER.info(position);
+				}
+			}
+			if (((Employee) employee).getRoom() != null) {
+				for (RoomType room : ((Employee) employee).getRoom()) {
+					LOGGER.info(room);
+				}
 			}
 			LOGGER.info(((Employee) employee).getTableId().getId());
 			LOGGER.info(((Employee) employee).getTag().getRfidUid().getValue());

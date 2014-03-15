@@ -116,7 +116,7 @@ public class SaxEmployeeParser implements EmployeeParser {
 				employee.setBirthday(DateStamp.create(elementValue
 						.toString().trim()));
 			} else if (qName.equalsIgnoreCase("POSITION")) {
-				employee.setPosition(PositionType.valueOf(elementValue
+				employee.addPosition(PositionType.valueOf(elementValue
 						.toString().trim()));
 			} else if (qName.equalsIgnoreCase("DEPARTMENT")) {
 				employee.setDepartment(DepartmentType.valueOf(elementValue

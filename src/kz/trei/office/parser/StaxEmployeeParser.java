@@ -94,7 +94,7 @@ public class StaxEmployeeParser implements EmployeeParser {
 					} else if (elementName.equalsIgnoreCase("BIRTHDAY")) {
 						employee.setBirthday(DateStamp.create(elementText));
 					} else if (elementName.equalsIgnoreCase("POSITION")) {
-						employee.setPosition(PositionType.valueOf(elementText));
+						employee.addPosition(PositionType.valueOf(elementText));
 					} else if (elementName.equalsIgnoreCase("DEPARTMENT")) {
 						employee.setDepartment(DepartmentType
 								.valueOf(elementText));

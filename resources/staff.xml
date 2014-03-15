@@ -27,6 +27,7 @@
 		<lastName>Ivanov</lastName>
 		<birthday>1991-08-02</birthday>
 		<position>ENGINEER</position>
+		<position>WAREHOUSE_MANAGER</position>
 		<department>ASSEMBLY</department>
 		<room>102</room>
 		<room>204</room>
