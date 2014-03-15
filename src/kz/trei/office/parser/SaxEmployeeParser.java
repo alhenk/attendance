@@ -73,16 +73,14 @@ public class SaxEmployeeParser implements EmployeeParser {
 		}
 
 		public void startDocument() {
-			employee = new Employee.Builder();
-			tag = new RfidTag.Builder();
 			elementValue = new StringBuilder();
-			issue = new Issue.Builder();
 		}
 
 		public void startElement(String uri, String localName, String qName,
 				Attributes attributes) throws SAXException {
 			elementValue.setLength(0);
 			if (qName.equalsIgnoreCase("tns:EMPLOYEE")) {
+				employee = new Employee.Builder();
 				String value = attributes.getValue("tableId");
 				if (value == null) {
 					employee.setTableId(Table1C.createRandomID());
@@ -94,10 +92,13 @@ public class SaxEmployeeParser implements EmployeeParser {
 					}
 				}
 			} else if (qName.equalsIgnoreCase("RFIDTAG")) {
+				tag = new RfidTag.Builder();
 				String value = attributes.getValue("uid");
 				if (value != null) {
 					tag.setRfidUID(RfidUID.createUID(value));
 				}
+			} else if (qName.equalsIgnoreCase("ISSUE")){
+				issue = new Issue.Builder();
 			}
 		}
 
@@ -115,14 +116,14 @@ public class SaxEmployeeParser implements EmployeeParser {
 				employee.setBirthday(DateStamp.create(elementValue
 						.toString().trim()));
 			} else if (qName.equalsIgnoreCase("POSITION")) {
-				employee.setPosition(PositionType.valueOf(elementValue
+				employee.addPosition(PositionType.valueOf(elementValue
 						.toString().trim()));
 			} else if (qName.equalsIgnoreCase("DEPARTMENT")) {
 				employee.setDepartment(DepartmentType.valueOf(elementValue
 						.toString().trim()));
 			} else if (qName.equalsIgnoreCase("ROOM")) {
 				RoomType room = RoomType.DEFAULT;
-				employee.setRoom(room.select(Integer.valueOf(elementValue
+				employee.addRoom(room.select(Integer.valueOf(elementValue
 						.toString().trim())));
 			} else if (qName.equalsIgnoreCase("TABLEID")) {
 				employee.setTableId(Table1C.createID(elementValue.toString()

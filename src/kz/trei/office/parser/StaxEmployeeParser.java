@@ -45,7 +45,7 @@ public class StaxEmployeeParser implements EmployeeParser {
 		String elementText = "";
 		List<Person> staff = new ArrayList<>();
 
-		Employee.Builder employee=new Employee.Builder();
+		Employee.Builder employee = new Employee.Builder();
 		RfidTag.Builder tag = new RfidTag.Builder();
 		Issue.Builder issue = new Issue.Builder();
 		try {
@@ -56,6 +56,7 @@ public class StaxEmployeeParser implements EmployeeParser {
 				case XMLStreamConstants.START_ELEMENT:
 					elementName = reader.getLocalName();
 					if (elementName.equalsIgnoreCase("EMPLOYEE")) {
+						employee = new Employee.Builder();
 						String value = reader
 								.getAttributeValue(null, "tableId");
 						if (value == null) {
@@ -68,10 +69,13 @@ public class StaxEmployeeParser implements EmployeeParser {
 							}
 						}
 					} else if (elementName.equalsIgnoreCase("RFIDTAG")) {
+						tag = new RfidTag.Builder();
 						String value = reader.getAttributeValue(null, "uid");
 						if (value != null) {
 							tag.setRfidUID(RfidUID.createUID(value));
 						}
+					} else if (elementName.equalsIgnoreCase("ISSUE")){
+						issue = new Issue.Builder();
 					}
 					break;
 				case XMLStreamConstants.CHARACTERS:
@@ -88,16 +92,15 @@ public class StaxEmployeeParser implements EmployeeParser {
 					} else if (elementName.equalsIgnoreCase("LASTNAME")) {
 						employee.setLastName(elementText);
 					} else if (elementName.equalsIgnoreCase("BIRTHDAY")) {
-						employee.setBirthday(DateStamp
-								.create(elementText));
+						employee.setBirthday(DateStamp.create(elementText));
 					} else if (elementName.equalsIgnoreCase("POSITION")) {
-						employee.setPosition(PositionType.valueOf(elementText));
+						employee.addPosition(PositionType.valueOf(elementText));
 					} else if (elementName.equalsIgnoreCase("DEPARTMENT")) {
 						employee.setDepartment(DepartmentType
 								.valueOf(elementText));
 					} else if (elementName.equalsIgnoreCase("ROOM")) {
 						RoomType room = RoomType.DEFAULT;
-						employee.setRoom(room.select(Integer
+						employee.addRoom(room.select(Integer
 								.valueOf(elementText)));
 					} else if (elementName.equalsIgnoreCase("TABLEID")) {
 						employee.setTableId(Table1C.createID(elementText));
@@ -112,8 +115,7 @@ public class StaxEmployeeParser implements EmployeeParser {
 					} else if (elementName.equalsIgnoreCase("ISSUEDATE")) {
 						issue.setIssueDate(DateStamp.create(elementText));
 					} else if (elementName.equalsIgnoreCase("EXPIRATIONDATE")) {
-						issue.setExpirationDate(DateStamp
-								.create(elementText));
+						issue.setExpirationDate(DateStamp.create(elementText));
 					}
 					break;
 				default:

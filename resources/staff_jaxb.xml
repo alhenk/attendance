@@ -4,9 +4,15 @@
     <patronym>G.</patronym>
     <lastName>Koryagin</lastName>
     <birthday>1967-06-10</birthday>
-    <position>DEPARTMENT_HEAD</position>
+    <positions>
+        <position>CHIEF_METROLOGIST</position>
+        <position>DEPARTMENT_HEAD</position>
+    </positions>
     <department>RESEARCH_AND_DEVELOPMENT</department>
-    <room>ROOM107</room>
+    <rooms>
+        <room>ROOM107</room>
+        <room>ROOM204</room>
+    </rooms>
     <rfidTag uid="E0040100594737350000">
         <type>CARD</type>
         <protocol>ISO14443A</protocol>
