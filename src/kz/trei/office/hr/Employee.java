@@ -41,6 +41,7 @@ public class Employee extends Person {
 		super();
 		this.position = position;
 		this.department = department;
+		//List<room>
 		this.room = room;
 		this.tableId = tableId;
 		this.rfidTag = tag;
