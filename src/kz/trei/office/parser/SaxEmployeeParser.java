@@ -30,7 +30,7 @@ import org.xml.sax.SAXParseException;
 import org.xml.sax.helpers.DefaultHandler;
 
 public class SaxEmployeeParser implements EmployeeParser {
-	
+
 	private static final Logger LOGGER = Logger
 			.getLogger(SaxEmployeeParser.class);
 	private List<Person> staff;
@@ -97,7 +97,7 @@ public class SaxEmployeeParser implements EmployeeParser {
 				if (value != null) {
 					tag.setRfidUID(RfidUID.createUID(value));
 				}
-			} else if (qName.equalsIgnoreCase("ISSUE")){
+			} else if (qName.equalsIgnoreCase("ISSUE")) {
 				issue = new Issue.Builder();
 			}
 		}
@@ -113,8 +113,8 @@ public class SaxEmployeeParser implements EmployeeParser {
 			} else if (qName.equalsIgnoreCase("LASTNAME")) {
 				employee.setLastName(elementValue.toString().trim());
 			} else if (qName.equalsIgnoreCase("BIRTHDAY")) {
-				employee.setBirthday(DateStamp.create(elementValue
-						.toString().trim()));
+				employee.setBirthday(DateStamp.create(elementValue.toString()
+						.trim()));
 			} else if (qName.equalsIgnoreCase("POSITION")) {
 				employee.addPosition(PositionType.valueOf(elementValue
 						.toString().trim()));
@@ -131,15 +131,16 @@ public class SaxEmployeeParser implements EmployeeParser {
 			} else if (qName.equalsIgnoreCase("RFIDTAG")) {
 				employee.setTag(tag.build());
 			} else if (qName.equalsIgnoreCase("TAGTYPE")) {
-				tag.setRfidType(RfidType.valueOf(elementValue.toString().trim()));
+				tag.setRfidType(RfidType
+						.valueOf(elementValue.toString().trim()));
 			} else if (qName.equalsIgnoreCase("PROTOCOL")) {
 				tag.setProtocol(ProtocolType.valueOf(elementValue.toString()
 						.trim()));
 			} else if (qName.equalsIgnoreCase("ISSUE")) {
 				tag.setIssue(issue.build());
 			} else if (qName.equalsIgnoreCase("ISSUEDATE")) {
-				issue.setIssueDate(DateStamp.create(elementValue
-						.toString().trim()));
+				issue.setIssueDate(DateStamp.create(elementValue.toString()
+						.trim()));
 			} else if (qName.equalsIgnoreCase("EXPIRATIONDATE")) {
 				issue.setExpirationDate(DateStamp.create(elementValue
 						.toString().trim()));

@@ -22,13 +22,13 @@ import kz.trei.office.util.DateStamp;
 public class Employee extends Person {
 	private static final long serialVersionUID = -8363247132437924285L;
 	@XmlElement(required = true)
-	@XmlElementWrapper( name="positions" )
+	@XmlElementWrapper(name = "positions")
 	private Set<PositionType> position;
 	@XmlElement(required = true)
 	private DepartmentType department;
 	@XmlElement(name = "room", required = true)
-	@XmlElementWrapper( name="rooms" )
-	private	Set<RoomType> room;
+	@XmlElementWrapper(name = "rooms")
+	private Set<RoomType> room;
 	@XmlElement(required = true)
 	private Table1C tableId;
 	@XmlElement(required = true)
@@ -58,20 +58,20 @@ public class Employee extends Person {
 	public Set<PositionType> getPosition() {
 		return position;
 	}
-	
-	public void addRoom(RoomType room){
+
+	public void addRoom(RoomType room) {
 		this.room.add(room);
 	}
-	
-	public void removeRoom(RoomType room){
+
+	public void removeRoom(RoomType room) {
 		this.room.remove(room);
 	}
-	
-	public void addPosition(PositionType position){
+
+	public void addPosition(PositionType position) {
 		this.position.add(position);
 	}
-	
-	public void removePosition(PositionType position){
+
+	public void removePosition(PositionType position) {
 		this.position.remove(position);
 	}
 
@@ -126,7 +126,7 @@ public class Employee extends Person {
 		private String patronym;
 		private String lastName;
 		private DateStamp birthday;
-		private Set<PositionType> position  = new HashSet<PositionType>();
+		private Set<PositionType> position = new HashSet<PositionType>();
 		private DepartmentType department;
 		private Set<RoomType> room = new HashSet<RoomType>();
 		private RfidTag rfidTag;
@@ -145,12 +145,12 @@ public class Employee extends Person {
 			this.patronym = patronym;
 			return this;
 		}
-		
+
 		public Builder addRoom(RoomType room) {
 			this.room.add(room);
 			return this;
 		}
-		
+
 		public Builder addPosition(PositionType position) {
 			this.position.add(position);
 			return this;

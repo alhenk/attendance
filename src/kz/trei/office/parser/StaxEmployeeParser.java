@@ -74,7 +74,7 @@ public class StaxEmployeeParser implements EmployeeParser {
 						if (value != null) {
 							tag.setRfidUID(RfidUID.createUID(value));
 						}
-					} else if (elementName.equalsIgnoreCase("ISSUE")){
+					} else if (elementName.equalsIgnoreCase("ISSUE")) {
 						issue = new Issue.Builder();
 					}
 					break;
