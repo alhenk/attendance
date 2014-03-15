@@ -12,6 +12,7 @@ import kz.trei.office.parser.JaxbEmployeeParser;
 import kz.trei.office.parser.XmlParserException;
 import kz.trei.office.parser.SaxEmployeeParser;
 import kz.trei.office.parser.StaxEmployeeParser;
+import kz.trei.office.structure.RoomType;
 import kz.trei.office.util.PropertyManager;
 
 public final class TaskLogic {
@@ -64,17 +65,21 @@ public final class TaskLogic {
 			LOGGER.info(((Employee) employee).getFirstName());
 			LOGGER.info(((Employee) employee).getPatronym());
 			LOGGER.info(((Employee) employee).getLastName());
-			LOGGER.info(((Employee) employee).getBirthday());
+			LOGGER.info("Birthday " + ((Employee) employee).getBirthday().getDate());
 			LOGGER.info(((Employee) employee).getPosition());
-			LOGGER.info(((Employee) employee).getRoom().getRoomName());
+			for (RoomType room : ((Employee) employee).getRoom()) {
+				LOGGER.info(room);
+			}
 			LOGGER.info(((Employee) employee).getTableId().getId());
 			LOGGER.info(((Employee) employee).getTag().getRfidUid().getValue());
 			LOGGER.info(((Employee) employee).getTag().getProtocol());
 			LOGGER.info(((Employee) employee).getTag().getType());
-			LOGGER.info(((Employee) employee).getTag().getIssue()
-					.getIssueDate());
-			LOGGER.info(((Employee) employee).getTag().getIssue()
-					.getExpirationDate());
+			LOGGER.info("Issue Date "
+					+ ((Employee) employee).getTag().getIssue().getIssueDate()
+							.getDate());
+			LOGGER.info("Expiration Date "
+					+ ((Employee) employee).getTag().getIssue()
+							.getExpirationDate().getDate());
 			LOGGER.info("**************************************");
 		}
 	}

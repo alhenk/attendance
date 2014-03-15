@@ -6,7 +6,10 @@
     <birthday>1967-06-10</birthday>
     <position>DEPARTMENT_HEAD</position>
     <department>RESEARCH_AND_DEVELOPMENT</department>
-    <room>ROOM107</room>
+    <rooms>
+        <room>ROOM204</room>
+        <room>ROOM107</room>
+    </rooms>
     <rfidTag uid="E0040100594737350000">
         <type>CARD</type>
         <protocol>ISO14443A</protocol>

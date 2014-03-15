@@ -81,7 +81,7 @@ public class DateStamp implements Serializable, Comparable<DateStamp> {
 	
 	@Override
 	public String toString() {
-		return "DateStamp [date=" + date + "]";
+		return "DateStamp [" + date + "]";
 	}
 
 	@Override

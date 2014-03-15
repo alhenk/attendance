@@ -1,9 +1,12 @@
 package kz.trei.office.hr;
 
+import java.util.HashSet;
+import java.util.Set;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 import kz.trei.office.rfid.RfidTag;
@@ -22,26 +25,28 @@ public class Employee extends Person {
 	private PositionType position;
 	@XmlElement(required = true)
 	private DepartmentType department;
-	@XmlElement(required = true)
-	private RoomType room;
+	@XmlElement(name = "room", required = true)
+	@XmlElementWrapper( name="rooms" )
+	private	Set<RoomType> room;
 	@XmlElement(required = true)
 	private Table1C tableId;
 	@XmlElement(required = true)
 	private RfidTag rfidTag;
 
 	public Employee() {
+		this.room = new HashSet<RoomType>();
 	}
 
 	public Employee(Table1C tableId) {
 		this.tableId = tableId;
+		this.room = new HashSet<RoomType>();
 	}
 
 	public Employee(PositionType position, DepartmentType department,
-			RoomType room, Table1C tableId, RfidTag tag) {
-		super();
+			Set<RoomType> room, Table1C tableId, RfidTag tag) {
+		this();
 		this.position = position;
 		this.department = department;
-		//List<room>
 		this.room = room;
 		this.tableId = tableId;
 		this.rfidTag = tag;
@@ -49,6 +54,14 @@ public class Employee extends Person {
 
 	public PositionType getPosition() {
 		return position;
+	}
+	
+	public void addRoom(RoomType room){
+		this.room.add(room);
+	}
+	
+	public void removeRoom(RoomType room){
+		this.room.remove(room);
 	}
 
 	public void setPosition(PositionType position) {
@@ -63,11 +76,11 @@ public class Employee extends Person {
 		this.department = department;
 	}
 
-	public RoomType getRoom() {
+	public Set<RoomType> getRoom() {
 		return room;
 	}
 
-	public void setRoom(RoomType room) {
+	public void setRoom(Set<RoomType> room) {
 		this.room = room;
 	}
 
@@ -104,7 +117,7 @@ public class Employee extends Person {
 		private DateStamp birthday;
 		private PositionType position;
 		private DepartmentType department;
-		private RoomType room;
+		private Set<RoomType> room = new HashSet<RoomType>();
 		private RfidTag rfidTag;
 
 		public Builder setTableId(Table1C tableId) {
@@ -119,6 +132,10 @@ public class Employee extends Person {
 
 		public Builder setPatronym(String patronym) {
 			this.patronym = patronym;
+			return this;
+		}
+		public Builder addRoom(RoomType room) {
+			this.room.add(room);
 			return this;
 		}
 
@@ -142,7 +159,7 @@ public class Employee extends Person {
 			return this;
 		}
 
-		public Builder setRoom(RoomType room) {
+		public Builder setRoom(Set<RoomType> room) {
 			this.room = room;
 			return this;
 		}

@@ -52,7 +52,8 @@ public class JaxbEmployeeParser implements EmployeeParser {
 		((Employee) person)
 				.setDepartment(DepartmentType.RESEARCH_AND_DEVELOPMENT);
 		((Employee) person).setPosition(PositionType.DEPARTMENT_HEAD);
-		((Employee) person).setRoom(RoomType.ROOM107);
+		((Employee) person).addRoom(RoomType.ROOM107);
+		((Employee) person).addRoom(RoomType.ROOM204);
 		Issue issue = new Issue();
 		System.out.println(issue);
 		RfidTag rfidTag = new RfidTag.Builder()
