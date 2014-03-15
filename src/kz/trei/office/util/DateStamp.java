@@ -8,6 +8,7 @@ import java.util.Date;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.XmlValue;
 
 import org.apache.log4j.Logger;
 
@@ -20,7 +21,7 @@ public class DateStamp implements Serializable, Comparable<DateStamp> {
 	static {
 		PropertyManager.load("configure.properties");
 	}
-
+	@XmlValue
 	private String date;
 
 	private static String toDateStampString(Date date) {

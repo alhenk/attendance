@@ -7,10 +7,10 @@ import org.apache.log4j.Logger;
 
 import kz.trei.office.hr.Employee;
 import kz.trei.office.hr.Person;
-import kz.trei.office.parser.PersonParser;
-import kz.trei.office.parser.SaxParserException;
-import kz.trei.office.parser.SaxPersonParser;
-import kz.trei.office.parser.StaxPersonParser;
+import kz.trei.office.parser.EmployeeParser;
+import kz.trei.office.parser.XmlParserException;
+import kz.trei.office.parser.SaxEmployeeParser;
+import kz.trei.office.parser.StaxEmployeeParser;
 import kz.trei.office.util.PropertyManager;
 
 public final class TaskLogic {
@@ -24,22 +24,22 @@ public final class TaskLogic {
 
 	public static void runSaxParser(String xmlfile,String xsdfile){
 		List<Person> staff = new ArrayList<Person>();
-		PersonParser parser = new SaxPersonParser();
+		EmployeeParser parser = new SaxEmployeeParser();
 		try {
 			staff = parser.parse(xmlfile, xsdfile);
 			LOGGER.info(staff);
-		} catch (SaxParserException e) {
+		} catch (XmlParserException e) {
 			LOGGER.error(e);
 		}
 		printStaff(staff);
 	}
 	public static void runStaxParser(String xmlfile,String xsdfile){
 		List<Person> staff = new ArrayList<Person>();
-		PersonParser parser = new StaxPersonParser();
+		EmployeeParser parser = new StaxEmployeeParser();
 		try {
 			staff = parser.parse(xmlfile, xsdfile);
 			LOGGER.info(staff);
-		} catch (SaxParserException e) {
+		} catch (XmlParserException e) {
 			LOGGER.error(e);
 		}
 		printStaff(staff);
@@ -54,7 +54,7 @@ public final class TaskLogic {
 			LOGGER.info(((Employee)employee).getPosition());
 			LOGGER.info(((Employee)employee).getRoom().getRoomName());
 			LOGGER.info(((Employee)employee).getTableId().getId());
-			LOGGER.info(((Employee)employee).getTag().getUid().getValue());
+			LOGGER.info(((Employee)employee).getTag().getRfidUid().getValue());
 			LOGGER.info(((Employee)employee).getTag().getProtocol());
 			LOGGER.info(((Employee)employee).getTag().getType());
 			LOGGER.info(((Employee)employee).getTag().getIssue().getIssueDate());

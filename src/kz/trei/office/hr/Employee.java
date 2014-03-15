@@ -2,6 +2,7 @@ package kz.trei.office.hr;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
@@ -14,11 +15,9 @@ import kz.trei.office.util.DateStamp;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement (name = "employee")
-@XmlType (propOrder={"position","department","room","tableId","rfidTag"})
+@XmlType (propOrder={"position","department","room","rfidTag","tableId"})
 public class Employee extends Person {
 	private static final long serialVersionUID = -8363247132437924285L;
-	//@XmlAttribute(required = true)
-	//@XmlJavaTypeAdapter(CollapsedStringAdapter.class)
 	@XmlElement(required = true)
 	private PositionType position;
 	@XmlElement(required = true)
@@ -51,7 +50,6 @@ public class Employee extends Person {
 		return position;
 	}
 
-	//@XmlElement
 	public void setPosition(PositionType position) {
 		this.position = position;
 	}
@@ -60,7 +58,6 @@ public class Employee extends Person {
 		return department;
 	}
 
-	//@XmlElement
 	public void setDepartment(DepartmentType department) {
 		this.department = department;
 	}
@@ -69,17 +66,20 @@ public class Employee extends Person {
 		return room;
 	}
 
-	//@XmlElement
 	public void setRoom(RoomType room) {
 		this.room = room;
 	}
 
-	//@XmlAttribute
+	
 	public Table1C getTableId() {
 		return tableId;
 	}
+	
+	@XmlAttribute (name = "tableId")
+	public String getTableIdValue(){
+		return tableId.getId();
+	}
 
-	//@XmlElement
 	public void setTableId(Table1C tableId) {
 		this.tableId = tableId;
 	}
@@ -88,7 +88,6 @@ public class Employee extends Person {
 		this.tableId = Table1C.createID(tableId);
 	}
 
-	//@XmlElement
 	public void setTag(RfidTag tag) {
 		this.rfidTag = tag;
 	}
@@ -172,7 +171,7 @@ public class Employee extends Person {
 	@Override
 	public String toString() {
 		return "Employee [" + this.getLastName() 
-				+ ", uid = " + ((rfidTag!=null && rfidTag.getUid()!=null) ? rfidTag.getUid().getValue():"null") 
+				+ ", uid = " + ((rfidTag!=null && rfidTag.getRfidUid()!=null) ? rfidTag.getRfidUid().getValue():"null") 
 				+ ", tableID = " + ((this.tableId!=null) ? this.tableId.getId() : "null")
 				+ "]";
 	}

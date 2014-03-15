@@ -1,28 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<employee>
+<employee tableId="КК00000007">
     <firstName>Alexandr</firstName>
     <patronym>G.</patronym>
     <lastName>Koryagin</lastName>
-    <birthday>
-        <date>1967-06-10</date>
-    </birthday>
+    <birthday>1967-06-10</birthday>
     <position>DEPARTMENT_HEAD</position>
     <department>RESEARCH_AND_DEVELOPMENT</department>
     <room>ROOM107</room>
-    <tableId id="КК00000007"/>
-    <rfidTag>
-        <rfidUid>
-            <uid>E0040100594737350000</uid>
-        </rfidUid>
+    <rfidTag uid="E0040100594737350000">
         <type>CARD</type>
         <protocol>ISO14443A</protocol>
         <issue>
-            <issueDate>
-                <date>2014-03-15</date>
-            </issueDate>
-            <expirationDate>
-                <date>2015-03-15</date>
-            </expirationDate>
+            <issueDate>2014-03-15</issueDate>
+            <expirationDate>2015-03-15</expirationDate>
         </issue>
+        <rfidUid>E0040100594737350000</rfidUid>
     </rfidTag>
+    <tableId id="КК00000007"/>
 </employee>

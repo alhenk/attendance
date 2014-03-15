@@ -2,25 +2,23 @@ package kz.trei.office.rfid;
 
 import java.io.Serializable;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
 @XmlRootElement(name = "RfidTag")
-@XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(propOrder = {"uid", "type", "protocol", "issue" })
+//@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(propOrder = {"type", "protocol", "issue" ,"rfidUid"})
 public class RfidTag implements Serializable, Comparable<RfidTag> {
 	private static final long serialVersionUID = -1380395087317256237L;
 	@XmlElement(name="rfidUid")
-	//@XmlAttribute(name="uid")
-	private RfidUID uid;
-	@XmlElement(required = true)
+	private RfidUID rfidUid;
+	
 	private RfidType type;
-	@XmlElement(required = true)
+	
 	private ProtocolType protocol;
-	@XmlElement(required = true)
+	
 	private Issue issue;
 
 	public RfidTag() {
@@ -29,7 +27,7 @@ public class RfidTag implements Serializable, Comparable<RfidTag> {
 	private RfidTag(RfidUID uid, RfidType type, ProtocolType protocol,
 			Issue issue) {
 		super();
-		this.uid = uid;
+		this.rfidUid = uid;
 		this.type = type;
 		this.protocol = protocol;
 		this.issue = issue;
@@ -65,15 +63,20 @@ public class RfidTag implements Serializable, Comparable<RfidTag> {
 			return new RfidTag(uid, type, protocol, issue);
 		}
 	}
-
-	public RfidUID getUid() {
-		return uid;
+	
+	public RfidUID getRfidUid() {
+		return rfidUid;
 	}
-
+	
+	@XmlAttribute(name="uid")
+	public String getUidValue(){
+		return rfidUid.getValue();
+	}
+	
 	public void setUid(RfidUID uid) {
-		this.uid = uid;
+		this.rfidUid = uid;
 	}
-
+	@XmlElement(required = true)
 	public RfidType getType() {
 		return type;
 	}
@@ -81,7 +84,7 @@ public class RfidTag implements Serializable, Comparable<RfidTag> {
 	public void setType(RfidType type) {
 		this.type = type;
 	}
-
+	@XmlElement(required = true)
 	public ProtocolType getProtocol() {
 		return protocol;
 	}
@@ -89,7 +92,7 @@ public class RfidTag implements Serializable, Comparable<RfidTag> {
 	public void setProtocol(ProtocolType protocol) {
 		this.protocol = protocol;
 	}
-
+	@XmlElement(required = true)
 	public Issue getIssue() {
 		return issue;
 	}
@@ -106,7 +109,7 @@ public class RfidTag implements Serializable, Comparable<RfidTag> {
 		result = prime * result
 				+ ((protocol == null) ? 0 : protocol.hashCode());
 		result = prime * result + ((type == null) ? 0 : type.hashCode());
-		result = prime * result + ((uid == null) ? 0 : uid.hashCode());
+		result = prime * result + ((rfidUid == null) ? 0 : rfidUid.hashCode());
 		return result;
 	}
 
@@ -128,23 +131,23 @@ public class RfidTag implements Serializable, Comparable<RfidTag> {
 			return false;
 		if (type != other.type)
 			return false;
-		if (uid == null) {
-			if (other.uid != null)
+		if (rfidUid == null) {
+			if (other.rfidUid != null)
 				return false;
-		} else if (!uid.equals(other.uid))
+		} else if (!rfidUid.equals(other.rfidUid))
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "RfidTag [uid=" + uid.getValue() + ", type=" + type + "]";
+		return "RfidTag [uid=" + rfidUid.getValue() + ", type=" + type + "]";
 	}
 
 	@Override
 	public int compareTo(RfidTag anotherTag) {
-		String anotherUid = anotherTag.getUid().getValue();
-		String thisUid = this.uid.getValue();
+		String anotherUid = anotherTag.getRfidUid().getValue();
+		String thisUid = this.rfidUid.getValue();
 		return thisUid.compareTo(anotherUid);
 	}
 }

@@ -7,6 +7,7 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.XmlValue;
 
 import kz.trei.office.util.PropertyManager;
 
@@ -18,6 +19,7 @@ public final class RfidUID implements Serializable, Comparable<RfidUID> {
 	static {
 		PropertyManager.load("configure.properties");
 	}
+	@XmlValue
 	private String uid;
 
 	public RfidUID() {
@@ -42,7 +44,7 @@ public final class RfidUID implements Serializable, Comparable<RfidUID> {
 			throw new IllegalArgumentException();
 		}
 	}
-	//@XmlAttribute(name="uid")
+	
 	public String getValue() {
 		return uid;
 	}

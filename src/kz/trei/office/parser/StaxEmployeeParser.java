@@ -26,13 +26,13 @@ import kz.trei.office.structure.RoomType;
 import kz.trei.office.structure.Table1C;
 import kz.trei.office.util.DateStamp;
 
-public class StaxPersonParser implements PersonParser {
+public class StaxEmployeeParser implements EmployeeParser {
 	private static final Logger LOGGER = Logger
-			.getLogger(StaxPersonParser.class);
+			.getLogger(StaxEmployeeParser.class);
 
 	@Override
 	public List<Person> parse(String xmlfile, String xsdfile)
-			throws SaxParserException {
+			throws XmlParserException {
 		InputStream inputStream = null;
 		try {
 			inputStream = new FileInputStream(xmlfile);

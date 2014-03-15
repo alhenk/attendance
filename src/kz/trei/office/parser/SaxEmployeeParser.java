@@ -29,15 +29,15 @@ import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 import org.xml.sax.helpers.DefaultHandler;
 
-public class SaxPersonParser implements PersonParser {
+public class SaxEmployeeParser implements EmployeeParser {
 	
 	private static final Logger LOGGER = Logger
-			.getLogger(SaxPersonParser.class);
+			.getLogger(SaxEmployeeParser.class);
 	private List<Person> staff;
 
 	@Override
 	public List<Person> parse(String xmlfile, String xsdfile)
-			throws SaxParserException {
+			throws XmlParserException {
 		staff = new ArrayList<Person>();
 		try {
 			SchemaFactory schemaFactory = SchemaFactory
@@ -52,13 +52,13 @@ public class SaxPersonParser implements PersonParser {
 			saxParser.parse(xmlfile, handler);
 		} catch (ParserConfigurationException e) {
 			LOGGER.error(e);
-			throw new SaxParserException(e);
+			throw new XmlParserException(e);
 		} catch (SAXException e) {
 			LOGGER.error(e);
-			throw new SaxParserException(e);
+			throw new XmlParserException(e);
 		} catch (IOException e) {
 			LOGGER.error(e);
-			throw new SaxParserException(e);
+			throw new XmlParserException(e);
 		}
 		return staff;
 	}
