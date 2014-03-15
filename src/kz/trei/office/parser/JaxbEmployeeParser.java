@@ -68,7 +68,6 @@ public class JaxbEmployeeParser implements EmployeeParser {
 			JAXBContext jaxbContext = JAXBContext.newInstance(new Class[] {
 					Employee.class, RfidTag.class, Table1C.class });
 			Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
-
 			// output pretty printed
 			jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 
@@ -76,7 +75,7 @@ public class JaxbEmployeeParser implements EmployeeParser {
 			jaxbMarshaller.marshal(person, System.out);
 
 		} catch (JAXBException e) {
-			e.printStackTrace();
+			LOGGER.error(e);
 		}
 	}
 }

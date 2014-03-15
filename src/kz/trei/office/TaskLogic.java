@@ -8,6 +8,7 @@ import org.apache.log4j.Logger;
 import kz.trei.office.hr.Employee;
 import kz.trei.office.hr.Person;
 import kz.trei.office.parser.EmployeeParser;
+import kz.trei.office.parser.JaxbEmployeeParser;
 import kz.trei.office.parser.XmlParserException;
 import kz.trei.office.parser.SaxEmployeeParser;
 import kz.trei.office.parser.StaxEmployeeParser;
@@ -18,11 +19,11 @@ public final class TaskLogic {
 		PropertyManager.load("configure.properties");
 	}
 	private static final Logger LOGGER = Logger.getLogger(TaskLogic.class);
-	
-	private TaskLogic(){
+
+	private TaskLogic() {
 	}
 
-	public static void runSaxParser(String xmlfile,String xsdfile){
+	public static void runSaxParser(String xmlfile, String xsdfile) {
 		List<Person> staff = new ArrayList<Person>();
 		EmployeeParser parser = new SaxEmployeeParser();
 		try {
@@ -33,7 +34,8 @@ public final class TaskLogic {
 		}
 		printStaff(staff);
 	}
-	public static void runStaxParser(String xmlfile,String xsdfile){
+
+	public static void runStaxParser(String xmlfile, String xsdfile) {
 		List<Person> staff = new ArrayList<Person>();
 		EmployeeParser parser = new StaxEmployeeParser();
 		try {
@@ -44,21 +46,35 @@ public final class TaskLogic {
 		}
 		printStaff(staff);
 	}
-	
-	private static void printStaff(List<Person> staff){
-		for (Person employee: staff){
-			LOGGER.info(((Employee)employee).getFirstName());
-			LOGGER.info(((Employee)employee).getPatronym());
-			LOGGER.info(((Employee)employee).getLastName());
-			LOGGER.info(((Employee)employee).getBirthday());
-			LOGGER.info(((Employee)employee).getPosition());
-			LOGGER.info(((Employee)employee).getRoom().getRoomName());
-			LOGGER.info(((Employee)employee).getTableId().getId());
-			LOGGER.info(((Employee)employee).getTag().getRfidUid().getValue());
-			LOGGER.info(((Employee)employee).getTag().getProtocol());
-			LOGGER.info(((Employee)employee).getTag().getType());
-			LOGGER.info(((Employee)employee).getTag().getIssue().getIssueDate());
-			LOGGER.info(((Employee)employee).getTag().getIssue().getExpirationDate());
+
+	public static void createJaxbXml(String xmlfile) {
+		new JaxbEmployeeParser().createEmployeeXml(xmlfile);
+	}
+
+	public static void runJaxbParser(String xmlfile) {
+		try {
+			new JaxbEmployeeParser().parse(xmlfile, "");
+		} catch (XmlParserException e) {
+			LOGGER.error(e);
+		}
+	}
+
+	private static void printStaff(List<Person> staff) {
+		for (Person employee : staff) {
+			LOGGER.info(((Employee) employee).getFirstName());
+			LOGGER.info(((Employee) employee).getPatronym());
+			LOGGER.info(((Employee) employee).getLastName());
+			LOGGER.info(((Employee) employee).getBirthday());
+			LOGGER.info(((Employee) employee).getPosition());
+			LOGGER.info(((Employee) employee).getRoom().getRoomName());
+			LOGGER.info(((Employee) employee).getTableId().getId());
+			LOGGER.info(((Employee) employee).getTag().getRfidUid().getValue());
+			LOGGER.info(((Employee) employee).getTag().getProtocol());
+			LOGGER.info(((Employee) employee).getTag().getType());
+			LOGGER.info(((Employee) employee).getTag().getIssue()
+					.getIssueDate());
+			LOGGER.info(((Employee) employee).getTag().getIssue()
+					.getExpirationDate());
 			LOGGER.info("**************************************");
 		}
 	}
