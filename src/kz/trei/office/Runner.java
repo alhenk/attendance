@@ -74,7 +74,7 @@ public class Runner {
 		
 		 try {
 				File _file = new File("./resources/staff_.xml");
-				JAXBContext jaxbContext = JAXBContext.newInstance(Employee.class);
+				JAXBContext jaxbContext = JAXBContext.newInstance(new Class[]{Employee.class, RfidTag.class});
 		 
 				Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
 				Person worker = (Person) jaxbUnmarshaller.unmarshal(_file);

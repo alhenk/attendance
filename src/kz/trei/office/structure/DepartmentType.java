@@ -1,7 +1,9 @@
 package kz.trei.office.structure;
 
 import javax.xml.bind.annotation.XmlEnum;
+import javax.xml.bind.annotation.XmlType;
 
+@XmlType(name = "department")
 @XmlEnum
 public enum DepartmentType {
 	ACCOUNTANCY,

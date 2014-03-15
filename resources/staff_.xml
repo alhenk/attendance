@@ -11,9 +11,9 @@
     <room>ROOM107</room>
     <tableId id="КК00000007"/>
     <rfidTag>
-        <uid>
-            <value>E0040100594737350000</value>
-        </uid>
+        <rfidUid>
+            <uid>E0040100594737350000</uid>
+        </rfidUid>
         <type>CARD</type>
         <protocol>ISO14443A</protocol>
         <issue>

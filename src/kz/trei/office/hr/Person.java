@@ -1,11 +1,10 @@
 package kz.trei.office.hr;
 
 import java.io.Serializable;
-
 import javax.xml.bind.annotation.XmlType;
-
 import kz.trei.office.util.DateStamp;
 
+//@XmlAccessorOrder(XmlAccessOrder.ALPHABETICAL)
 @XmlType (propOrder={"firstName","patronym","lastName","birthday"})
 public abstract class Person implements Serializable, Comparable<Person> {
 	private static final long serialVersionUID = -756620067328644499L;

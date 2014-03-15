@@ -7,21 +7,22 @@ import java.util.Date;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
 import kz.trei.office.util.DateStamp;
 import kz.trei.office.util.PropertyManager;
-
+@XmlRootElement(name = "issue")
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "issue")
+@XmlType(propOrder = { "issueDate", "expirationDate"})
 public class Issue implements Serializable, Comparable<Issue> {
 	private static final long serialVersionUID = -7410469239152467286L;
 	static {
 		PropertyManager.load("configure.properties");
 	}
-	@XmlElement
+	@XmlElement(required = true)
 	private DateStamp issueDate;
-	@XmlElement
+	@XmlElement(required = true)
 	private DateStamp expirationDate;
 
 	/**

@@ -3,28 +3,28 @@ package kz.trei.office.rfid;
 import java.io.Serializable;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
 import kz.trei.office.util.PropertyManager;
 
+@XmlRootElement(name = "rfidUid")
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "rfidUid")
+@XmlType
 public final class RfidUID implements Serializable, Comparable<RfidUID> {
 	private static final long serialVersionUID = 2727289459571896461L;
 	static {
 		PropertyManager.load("configure.properties");
 	}
-	
-	private String value;
+	private String uid;
 
 	public RfidUID() {
 	}
 
 	private RfidUID(String value) {
-		this.value = value;
+		this.uid = value;
 	}
 
 	public static boolean isValid(String uid) {
@@ -42,15 +42,15 @@ public final class RfidUID implements Serializable, Comparable<RfidUID> {
 			throw new IllegalArgumentException();
 		}
 	}
-	
+	//@XmlAttribute(name="uid")
 	public String getValue() {
-		return value;
+		return uid;
 	}
 
 	
 	public void setValue(String value) {
 		if (isValid(value)) {
-			this.value = value;
+			this.uid = value;
 		} else{
 			throw new IllegalArgumentException(value +" is not valid UID");
 		}
@@ -60,7 +60,7 @@ public final class RfidUID implements Serializable, Comparable<RfidUID> {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((value == null) ? 0 : value.hashCode());
+		result = prime * result + ((uid == null) ? 0 : uid.hashCode());
 		return result;
 	}
 
@@ -73,22 +73,22 @@ public final class RfidUID implements Serializable, Comparable<RfidUID> {
 		if (getClass() != obj.getClass())
 			return false;
 		RfidUID other = (RfidUID) obj;
-		if (value == null) {
-			if (other.value != null)
+		if (uid == null) {
+			if (other.uid != null)
 				return false;
-		} else if (!value.equals(other.value))
+		} else if (!uid.equals(other.uid))
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "RfidUID [UID = " + value + "]";
+		return "RfidUID [UID = " + uid + "]";
 	}
 
 	@Override
 	public int compareTo(RfidUID anotherUID) {
-		return value.compareTo(anotherUID.getValue());
+		return uid.compareTo(anotherUID.getValue());
 	}
 
 }

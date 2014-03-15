@@ -12,7 +12,8 @@ import kz.trei.office.util.PropertyManager;
  * 1C account data base
  * @throws  IllegalArgumentException
  */
-@XmlType(name = "tableId")
+
+@XmlType
 public final class Table1C {
 	static{
 		PropertyManager.load("configure.properties");

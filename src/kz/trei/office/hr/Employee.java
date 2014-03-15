@@ -2,8 +2,9 @@ package kz.trei.office.hr;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-
+import javax.xml.bind.annotation.XmlType;
 import kz.trei.office.rfid.RfidTag;
 import kz.trei.office.structure.DepartmentType;
 import kz.trei.office.structure.PositionType;
@@ -12,13 +13,21 @@ import kz.trei.office.structure.Table1C;
 import kz.trei.office.util.DateStamp;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlRootElement
+@XmlRootElement (name = "employee")
+@XmlType (propOrder={"position","department","room","tableId","rfidTag"})
 public class Employee extends Person {
 	private static final long serialVersionUID = -8363247132437924285L;
+	//@XmlAttribute(required = true)
+	//@XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+	@XmlElement(required = true)
 	private PositionType position;
+	@XmlElement(required = true)
 	private DepartmentType department;
+	@XmlElement(required = true)
 	private RoomType room;
+	@XmlElement(required = true)
 	private Table1C tableId;
+	@XmlElement(required = true)
 	private RfidTag rfidTag;
 
 	public Employee() {
