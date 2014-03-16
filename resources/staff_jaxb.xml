@@ -12,8 +12,8 @@
             </positions>
             <department>RESEARCH_AND_DEVELOPMENT</department>
             <rooms>
-                <room>ROOM107</room>
                 <room>ROOM204</room>
+                <room>ROOM107</room>
             </rooms>
             <rfidTag uid="E0040100594737350000">
                 <type>CARD</type>

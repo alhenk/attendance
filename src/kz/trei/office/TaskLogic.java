@@ -7,6 +7,7 @@ import org.apache.log4j.Logger;
 
 import kz.trei.office.hr.Employee;
 import kz.trei.office.hr.Person;
+import kz.trei.office.hr.Staff;
 import kz.trei.office.parser.EmployeeParser;
 import kz.trei.office.parser.JaxbEmployeeParser;
 import kz.trei.office.parser.XmlParserException;
@@ -50,12 +51,15 @@ public final class TaskLogic {
 	}
 
 	public static void createJaxbXml(String xmlfile) {
-		new JaxbEmployeeParser().createEmployeeXml(xmlfile);
+		Staff staff = JaxbEmployeeParser.createTestStaff();
+		LOGGER.info("See "+ xmlfile);
+		new JaxbEmployeeParser().createStaffXml(staff, xmlfile);
 	}
 
 	public static void runJaxbParser(String xmlfile) {
 		try {
-			new JaxbEmployeeParser().parse(xmlfile, "");
+			List<Person> staff = (List<Person>) new JaxbEmployeeParser().parse(xmlfile, "");
+			LOGGER.info(staff);
 		} catch (XmlParserException e) {
 			LOGGER.error(e);
 		}

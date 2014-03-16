@@ -24,28 +24,49 @@ import kz.trei.office.util.DateStamp;
 public class JaxbEmployeeParser implements EmployeeParser {
 	private static final Logger LOGGER = Logger
 			.getLogger(JaxbEmployeeParser.class);
-	private List<Person> staff;
 
 	@Override
 	public List<Person> parse(String xmlfile, String xsdfile)
 			throws XmlParserException {
+		return parseStaff(xmlfile,xsdfile).getPersonnel();
+	}
+
+	public Staff parseStaff(String xmlfile, String xsdfile) throws XmlParserException {
+		Staff staff;
+		
+//		SchemaFactory sf = SchemaFactory.newInstance(
+//			    javax.xml.XMLConstants.W3C_XML_SCHEMA_NS_URI);
+//			Schema schema = sf.newSchema(new File(xsdfile));
+//			unmarshaller.setSchema(schema);
 		try {
-			File file = new File("./resources/staff_jaxb.xml");
+			File file = new File(xmlfile);
 			JAXBContext jaxbContext = JAXBContext
 					.newInstance(new Class[] { Staff.class, Employee.class,
 							RfidTag.class, Table1C.class });
-
 			Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-			Staff staff = (Staff) jaxbUnmarshaller.unmarshal(file);
-			System.out.println(staff);
-
+			staff = (Staff) jaxbUnmarshaller.unmarshal(file);
 		} catch (JAXBException e) {
 			LOGGER.error(e);
+			throw new XmlParserException("ParserStaff JAXB Exception");
 		}
 		return staff;
 	}
 
-	public void createEmployeeXml(String fileName) {
+	public void createStaffXml(Staff staff, String fileName) {
+		try {
+			File file = new File(fileName);
+			JAXBContext jaxbContext = JAXBContext.newInstance(new Class[] {
+					Staff.class, Employee.class });
+			Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
+			jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+			jaxbMarshaller.marshal(staff, file);
+			// jaxbMarshaller.marshal(staff, System.out);
+		} catch (JAXBException e) {
+			LOGGER.error(e);
+		}
+	}
+
+	public static Staff createTestStaff() {
 		Person person = new Employee(Table1C.createID("КК00000007"));
 		Staff staff = new Staff();
 		person.setBirthday(DateStamp.create("1967-06-10"));
@@ -59,7 +80,6 @@ public class JaxbEmployeeParser implements EmployeeParser {
 		((Employee) person).addRoom(RoomType.ROOM107);
 		((Employee) person).addRoom(RoomType.ROOM204);
 		Issue issue = new Issue();
-		System.out.println(issue);
 		RfidTag rfidTag = new RfidTag.Builder()
 				.setProtocol(ProtocolType.ISO14443A)
 				.setRfidUID(RfidUID.createUID("E0040100594737350000"))
@@ -77,28 +97,12 @@ public class JaxbEmployeeParser implements EmployeeParser {
 		((Employee) person).addPosition(PositionType.SECURITY_GUARD);
 		((Employee) person).addRoom(RoomType.ROOM101);
 		issue = new Issue();
-		System.out.println(issue);
 		rfidTag = new RfidTag.Builder().setProtocol(ProtocolType.ISO15693)
 				.setRfidUID(RfidUID.createUID("3A08265B")).setIssue(issue)
 				.setRfidType(RfidType.KEYFOB).build();
 
 		((Employee) person).setTag(rfidTag);
 		staff.addEmployee(person);
-
-		try {
-
-			File file = new File(fileName);
-			JAXBContext jaxbContext = JAXBContext.newInstance(new Class[] {
-					Staff.class, Employee.class });
-			Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
-			// output pretty printed
-			jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-
-			jaxbMarshaller.marshal(staff, file);
-			jaxbMarshaller.marshal(staff, System.out);
-
-		} catch (JAXBException e) {
-			LOGGER.error(e);
-		}
+		return staff;
 	}
 }
