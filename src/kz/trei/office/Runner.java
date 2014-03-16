@@ -17,14 +17,13 @@ public class Runner {
 		LOGGER.info("RUN SAX PARSER");
 		TaskLogic.runSaxParser(xmlfile, xsdfile);
 		LOGGER.info("RUN StAX PARSER");
-		TaskLogic.runStaxParser(xmlfile, xsdfile);
-
+		TaskLogic.runStaxParser(xmlfile, null);
 		String jaxbXmlFile = PropertyManager
 				.getValue("parser.staff.jaxb.xmlfile");
 		LOGGER.info("CREATE JAXB XMLFILE");
 		TaskLogic.createJaxbXml(jaxbXmlFile);
 		LOGGER.info("RUN JAXB PARSER");
-		TaskLogic.runJaxbParser(jaxbXmlFile);
+		TaskLogic.runJaxbParser(jaxbXmlFile, null);
 		LOGGER.info("RUN DOM PARSER");
 		TaskLogic.runDomParser(xmlfile, xsdfile);
 	}

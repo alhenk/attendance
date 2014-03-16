@@ -19,10 +19,10 @@ import kz.trei.office.structure.RoomType;
 import kz.trei.office.util.PropertyManager;
 
 public final class TaskLogic {
+	private static final Logger LOGGER = Logger.getLogger(TaskLogic.class);
 	static {
 		PropertyManager.load("configure.properties");
 	}
-	private static final Logger LOGGER = Logger.getLogger(TaskLogic.class);
 
 	private TaskLogic() {
 	}
@@ -53,26 +53,28 @@ public final class TaskLogic {
 
 	public static void createJaxbXml(String xmlfile) {
 		Staff staff = JaxbEmployeeParser.createTestStaff();
-		LOGGER.info("See "+ xmlfile);
+		LOGGER.info("See " + xmlfile);
 		new JaxbEmployeeParser().createStaffXml(staff, xmlfile);
 	}
 
-	public static void runJaxbParser(String xmlfile) {
+	public static void runJaxbParser(String xmlfile, String xsdfile) {
 		try {
-			List<Person> staff = (List<Person>) new JaxbEmployeeParser().parse(xmlfile, "");
+			List<Person> staff = (List<Person>) new JaxbEmployeeParser().parse(
+					xmlfile, xsdfile);
 			LOGGER.info(staff);
 		} catch (XmlParserException e) {
 			LOGGER.error(e);
 		}
 	}
-	
-	public static void runDomParser(String xmlfile, String xsdfile){
+
+	public static void runDomParser(String xmlfile, String xsdfile) {
 		try {
-			List<Person> staff = new DomEmployeeParser().parse(xmlfile, xsdfile);
+			List<Person> staff = new DomEmployeeParser()
+					.parse(xmlfile, xsdfile);
 			LOGGER.info(staff);
 		} catch (XmlParserException e) {
 			LOGGER.info(e);
-		}	
+		}
 	}
 
 	private static void printStaff(List<Person> staff) {

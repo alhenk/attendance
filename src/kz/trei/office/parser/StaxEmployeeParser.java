@@ -1,7 +1,9 @@
 package kz.trei.office.parser;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,8 +12,13 @@ import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamConstants;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
+import javax.xml.transform.stax.StAXSource;
+import javax.xml.validation.Schema;
+import javax.xml.validation.SchemaFactory;
+import javax.xml.validation.Validator;
 
 import org.apache.log4j.Logger;
+import org.xml.sax.SAXException;
 
 import kz.trei.office.hr.Employee;
 import kz.trei.office.hr.Person;
@@ -50,6 +57,13 @@ public class StaxEmployeeParser implements EmployeeParser {
 		Issue.Builder issue = new Issue.Builder();
 		try {
 			reader = inputFactory.createXMLStreamReader(inputStream);
+			if (xsdfile != null) {
+				SchemaFactory schFactory = SchemaFactory
+						.newInstance(W3C_XML_SCHEMA);
+				Schema sch = schFactory.newSchema(new File(xsdfile));
+				Validator validator = sch.newValidator();
+				validator.validate(new StAXSource(reader));
+			}
 			while (reader.hasNext()) {
 				int type = reader.next();
 				switch (type) {
@@ -122,7 +136,7 @@ public class StaxEmployeeParser implements EmployeeParser {
 					break;
 				}
 			}
-		} catch (XMLStreamException e) {
+		} catch (XMLStreamException | SAXException | IOException e) {
 			LOGGER.error(e);
 			return null;
 		}

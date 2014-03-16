@@ -2,11 +2,17 @@ package kz.trei.office.parser;
 
 import java.io.File;
 import java.util.List;
+
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
+import javax.xml.validation.Schema;
+import javax.xml.validation.SchemaFactory;
+
 import org.apache.log4j.Logger;
+import org.xml.sax.SAXException;
+
 import kz.trei.office.hr.Employee;
 import kz.trei.office.hr.Person;
 import kz.trei.office.hr.Staff;
@@ -28,26 +34,33 @@ public class JaxbEmployeeParser implements EmployeeParser {
 	@Override
 	public List<Person> parse(String xmlfile, String xsdfile)
 			throws XmlParserException {
-		return parseStaff(xmlfile,xsdfile).getPersonnel();
+		return parseStaff(xmlfile, xsdfile).getPersonnel();
 	}
 
-	public Staff parseStaff(String xmlfile, String xsdfile) throws XmlParserException {
-		Staff staff;
-		
-//		SchemaFactory sf = SchemaFactory.newInstance(
-//			    javax.xml.XMLConstants.W3C_XML_SCHEMA_NS_URI);
-//			Schema schema = sf.newSchema(new File(xsdfile));
-//			unmarshaller.setSchema(schema);
+	public Staff parseStaff(String xmlfile, String xsdfile)
+			throws XmlParserException {
+		Staff staff = null;
 		try {
 			File file = new File(xmlfile);
 			JAXBContext jaxbContext = JAXBContext
 					.newInstance(new Class[] { Staff.class, Employee.class,
 							RfidTag.class, Table1C.class });
 			Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+
+			if (xsdfile != null) {
+				SchemaFactory sf = SchemaFactory
+						.newInstance(javax.xml.XMLConstants.W3C_XML_SCHEMA_NS_URI);
+				Schema schema = sf.newSchema(new File(xsdfile));
+				jaxbUnmarshaller.setSchema(schema);
+			}
 			staff = (Staff) jaxbUnmarshaller.unmarshal(file);
 		} catch (JAXBException e) {
 			LOGGER.error(e);
 			throw new XmlParserException("ParserStaff JAXB Exception");
+		} catch (SAXException e) {
+			LOGGER.error(e);
+			throw new XmlParserException(
+					"ParserStaff Validation Schema JAXB Exception");
 		}
 		return staff;
 	}

@@ -40,13 +40,15 @@ public class SaxEmployeeParser implements EmployeeParser {
 			throws XmlParserException {
 		staff = new ArrayList<Person>();
 		try {
-			SchemaFactory schemaFactory = SchemaFactory
-					.newInstance(W3C_XML_SCHEMA);
-			Schema schema = schemaFactory.newSchema(new File(xsdfile));
 			SAXParserFactory factory = SAXParserFactory.newInstance();
-			factory.setValidating(false);// "true" for using DTD!
-			factory.setSchema(schema);
-			factory.setNamespaceAware(true);
+			if (xsdfile != null) {
+				SchemaFactory schemaFactory = SchemaFactory
+						.newInstance(W3C_XML_SCHEMA);
+				Schema schema = schemaFactory.newSchema(new File(xsdfile));
+				factory.setValidating(false);// "true" for using DTD!
+				factory.setSchema(schema);
+				factory.setNamespaceAware(true);
+			}
 			SAXParser saxParser = factory.newSAXParser();
 			DefaultHandler handler = new PersonHandler();
 			saxParser.parse(xmlfile, handler);
