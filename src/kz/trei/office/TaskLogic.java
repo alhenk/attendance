@@ -8,6 +8,7 @@ import org.apache.log4j.Logger;
 import kz.trei.office.hr.Employee;
 import kz.trei.office.hr.Person;
 import kz.trei.office.hr.Staff;
+import kz.trei.office.parser.DomEmployeeParser;
 import kz.trei.office.parser.EmployeeParser;
 import kz.trei.office.parser.JaxbEmployeeParser;
 import kz.trei.office.parser.XmlParserException;
@@ -63,6 +64,15 @@ public final class TaskLogic {
 		} catch (XmlParserException e) {
 			LOGGER.error(e);
 		}
+	}
+	
+	public static void runDomParser(String xmlfile, String xsdfile){
+		try {
+			List<Person> staff = new DomEmployeeParser().parse(xmlfile, xsdfile);
+			LOGGER.info(staff);
+		} catch (XmlParserException e) {
+			LOGGER.info(e);
+		}	
 	}
 
 	private static void printStaff(List<Person> staff) {

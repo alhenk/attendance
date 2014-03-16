@@ -7,8 +7,8 @@
             <lastName>Koryagin</lastName>
             <birthday>1967-06-10</birthday>
             <positions>
-                <position>DEPARTMENT_HEAD</position>
                 <position>CHIEF_METROLOGIST</position>
+                <position>DEPARTMENT_HEAD</position>
             </positions>
             <department>RESEARCH_AND_DEVELOPMENT</department>
             <rooms>
