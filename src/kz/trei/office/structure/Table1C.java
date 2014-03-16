@@ -5,6 +5,7 @@ import java.util.regex.Pattern;
 
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.XmlValue;
 
 import kz.trei.office.util.PropertyManager;
 /**
@@ -51,7 +52,7 @@ public final class Table1C {
 	/**
 	 * Table ID number (KK00000001)
 	 */
-	@XmlAttribute
+	@XmlValue
 	private String id;
 	/**
 	 * Default constructor

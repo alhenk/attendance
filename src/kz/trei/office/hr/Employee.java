@@ -21,17 +21,17 @@ import kz.trei.office.util.DateStamp;
 @XmlType(propOrder = { "position", "department", "room", "rfidTag", "tableId" })
 public class Employee extends Person {
 	private static final long serialVersionUID = -8363247132437924285L;
-	@XmlElement(required = true)
-	@XmlElementWrapper(name = "positions")
+	@XmlElement(name="position",required = true)
+	@XmlElementWrapper(name = "positions", required = true)
 	private Set<PositionType> position;
-	@XmlElement(required = true)
+	@XmlElement(name = "department", required = true)
 	private DepartmentType department;
 	@XmlElement(name = "room", required = true)
 	@XmlElementWrapper(name = "rooms")
 	private Set<RoomType> room;
-	@XmlElement(required = true)
+	@XmlElement(name = "tableId", required = true)
 	private Table1C tableId;
-	@XmlElement(required = true)
+	@XmlElement(name = "rfidTag", required = true)
 	private RfidTag rfidTag;
 
 	public Employee() {
@@ -99,7 +99,7 @@ public class Employee extends Person {
 		return tableId;
 	}
 
-	@XmlAttribute(name = "tableId")
+	@XmlAttribute(name = "id")
 	public String getTableIdValue() {
 		return tableId.getId();
 	}

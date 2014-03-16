@@ -1,26 +1,53 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<employee tableId="КК00000007">
-    <firstName>Alexandr</firstName>
-    <patronym>G.</patronym>
-    <lastName>Koryagin</lastName>
-    <birthday>1967-06-10</birthday>
-    <positions>
-        <position>CHIEF_METROLOGIST</position>
-        <position>DEPARTMENT_HEAD</position>
-    </positions>
-    <department>RESEARCH_AND_DEVELOPMENT</department>
-    <rooms>
-        <room>ROOM107</room>
-        <room>ROOM204</room>
-    </rooms>
-    <rfidTag uid="E0040100594737350000">
-        <type>CARD</type>
-        <protocol>ISO14443A</protocol>
-        <issue>
-            <issueDate>2014-03-15</issueDate>
-            <expirationDate>2015-03-15</expirationDate>
-        </issue>
-        <rfidUid>E0040100594737350000</rfidUid>
-    </rfidTag>
-    <tableId id="КК00000007"/>
-</employee>
+<staff>
+    <employees>
+        <employee xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="employee" id="КК00000007">
+            <firstName>Alexandr</firstName>
+            <patronym>G.</patronym>
+            <lastName>Koryagin</lastName>
+            <birthday>1967-06-10</birthday>
+            <positions>
+                <position>DEPARTMENT_HEAD</position>
+                <position>CHIEF_METROLOGIST</position>
+            </positions>
+            <department>RESEARCH_AND_DEVELOPMENT</department>
+            <rooms>
+                <room>ROOM107</room>
+                <room>ROOM204</room>
+            </rooms>
+            <rfidTag uid="E0040100594737350000">
+                <type>CARD</type>
+                <protocol>ISO14443A</protocol>
+                <issue>
+                    <issueDate>2014-03-16</issueDate>
+                    <expirationDate>2015-03-16</expirationDate>
+                </issue>
+                <rfidUid>E0040100594737350000</rfidUid>
+            </rfidTag>
+            <tableId>КК00000007</tableId>
+        </employee>
+        <employee xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="employee" id="КК00000012">
+            <firstName>Oleg</firstName>
+            <patronym>I.</patronym>
+            <lastName>Krugov</lastName>
+            <birthday>1991-05-21</birthday>
+            <positions>
+                <position>SECURITY_GUARD</position>
+            </positions>
+            <department>ADMINISTRATIVE_SERVICE_UTILITY</department>
+            <rooms>
+                <room>ROOM101</room>
+            </rooms>
+            <rfidTag uid="3A08265B">
+                <type>KEYFOB</type>
+                <protocol>ISO15693</protocol>
+                <issue>
+                    <issueDate>2014-03-16</issueDate>
+                    <expirationDate>2015-03-16</expirationDate>
+                </issue>
+                <rfidUid>3A08265B</rfidUid>
+            </rfidTag>
+            <tableId>КК00000012</tableId>
+        </employee>
+    </employees>
+</staff>
