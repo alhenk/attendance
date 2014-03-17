@@ -1,0 +1,59 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://www.trei.kz/attendance/tns" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="staff">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="employees">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="employee" maxOccurs="unbounded" minOccurs="0">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element type="xs:string" name="firstName"/>
+                    <xs:element type="xs:string" name="patronym"/>
+                    <xs:element type="xs:string" name="lastName"/>
+                    <xs:element type="xs:date" name="birthday"/>
+                    <xs:element name="positions">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element type="xs:string" name="position" maxOccurs="unbounded" minOccurs="0"/>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element type="xs:string" name="department"/>
+                    <xs:element name="rooms">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element type="xs:string" name="room" maxOccurs="unbounded" minOccurs="0"/>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="rfidTag">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element type="xs:string" name="tagtype"/>
+                          <xs:element type="xs:string" name="protocol"/>
+                          <xs:element name="issue">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element type="xs:date" name="issueDate"/>
+                                <xs:element type="xs:date" name="expirationDate"/>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element type="xs:string" name="rfidUid"/>
+                        </xs:sequence>
+                        <xs:attribute type="xs:string" name="uid" use="optional"/>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element type="xs:string" name="tableId"/>
+                  </xs:sequence>
+                  <xs:attribute type="xs:string" name="id" use="optional"/>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
