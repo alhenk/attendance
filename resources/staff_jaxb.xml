@@ -19,8 +19,8 @@
                 <tagtype>CARD</tagtype>
                 <protocol>ISO14443A</protocol>
                 <issue>
-                    <issueDate>2014-03-17</issueDate>
-                    <expirationDate>2015-03-17</expirationDate>
+                    <issueDate>2014-03-18</issueDate>
+                    <expirationDate>2015-03-18</expirationDate>
                 </issue>
                 <rfidUid>E0040100594737350000</rfidUid>
             </tns:rfidTag>
@@ -42,8 +42,8 @@
                 <tagtype>KEYFOB</tagtype>
                 <protocol>ISO15693</protocol>
                 <issue>
-                    <issueDate>2014-03-17</issueDate>
-                    <expirationDate>2015-03-17</expirationDate>
+                    <issueDate>2014-03-18</issueDate>
+                    <expirationDate>2015-03-18</expirationDate>
                 </issue>
                 <rfidUid>3A08265B</rfidUid>
             </tns:rfidTag>

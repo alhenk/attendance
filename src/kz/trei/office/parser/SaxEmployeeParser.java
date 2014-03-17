@@ -85,7 +85,6 @@ public class SaxEmployeeParser implements EmployeeParser {
 			if (qName.equalsIgnoreCase("tns:EMPLOYEE")) {
 				employee = new Employee.Builder();
 				String value = attributes.getValue("id");
-				LOGGER.debug(value);
 				if (value == null) {
 					employee.setTableId(Table1C.createRandomID());
 				} else {
@@ -112,7 +111,6 @@ public class SaxEmployeeParser implements EmployeeParser {
 				staff.add(employee.build());
 			} else if (qName.equalsIgnoreCase("tns:FIRSTNAME")) {
 				employee.setFirstName(elementValue.toString().trim());
-				LOGGER.debug(elementValue.toString().trim());
 			} else if (qName.equalsIgnoreCase("tns:PATRONYM")) {
 				employee.setPatronym(elementValue.toString().trim());
 			} else if (qName.equalsIgnoreCase("tns:LASTNAME")) {
