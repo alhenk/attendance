@@ -20,10 +20,11 @@ public class Runner {
 		TaskLogic.runStaxParser(xmlfile, null);
 		String jaxbXmlFile = PropertyManager
 				.getValue("parser.staff.jaxb.xmlfile");
-		LOGGER.info("CREATE JAXB XMLFILE");
-		TaskLogic.createJaxbXml(jaxbXmlFile);
+//		LOGGER.info("CREATE JAXB XMLFILE");
+//		TaskLogic.createJaxbXml(jaxbXmlFile);
 		LOGGER.info("RUN JAXB PARSER");
 		TaskLogic.runJaxbParser(jaxbXmlFile, null);
+//		TaskLogic.runJaxbParser(xmlfile, null);
 		LOGGER.info("RUN DOM PARSER");
 		TaskLogic.runDomParser(xmlfile, xsdfile);
 	}

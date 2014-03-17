@@ -113,9 +113,8 @@ public class StaxEmployeeParser implements EmployeeParser {
 						employee.setDepartment(DepartmentType
 								.valueOf(elementText));
 					} else if (elementName.equalsIgnoreCase("ROOM")) {
-						RoomType room = RoomType.DEFAULT;
-						employee.addRoom(room.select(Integer
-								.valueOf(elementText)));
+						employee.addRoom(RoomType
+								.valueOf(elementText));
 					} else if (elementName.equalsIgnoreCase("TABLEID")) {
 						employee.setTableId(Table1C.createID(elementText));
 					} else if (elementName.equalsIgnoreCase("RFIDTAG")) {

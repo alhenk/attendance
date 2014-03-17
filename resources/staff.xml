@@ -1,43 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tns:staff xmlns:tns="http://www.trei.kz/attendance/tns"
+<tns:staff xmlns:tns="http://www.trei.kz/attendance/tns" 
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.trei.kz/attendance/tns staff.xsd">
+	
+	<tns:employees>
+		<tns:employee  id="КК00000001">
+			<tns:firstName>Александр</tns:firstName>
+			<tns:patronym>Геннадьевич</tns:patronym>
+			<tns:lastName>Корягин</tns:lastName>
+			<tns:birthday>1967-06-10</tns:birthday>
+			<tns:positions>
+				<tns:position>DEPARTMENT_HEAD</tns:position>
+			</tns:positions>
+			<tns:department>RESEARCH_AND_DEVELOPMENT</tns:department>
+			<tns:rooms>
+				<tns:room>ROOM107</tns:room>
+			</tns:rooms>
+			<tns:rfidTag uid="FE0467EF">
+				<tns:tagtype>CARD</tns:tagtype>
+				<tns:protocol>ISO14443A</tns:protocol>
+				<tns:issue>
+					<tns:issueDate>2014-03-05</tns:issueDate>
+					<tns:expirationDate>2015-03-05</tns:expirationDate>
+				</tns:issue>
+				<tns:rfidUid>FE0467EF</tns:rfidUid>
+			</tns:rfidTag>
+			<tns:tableId>КК00000001</tns:tableId>
+		</tns:employee>
 
-	<tns:employee tableId="КК00000001">
-		<firstName>Александр</firstName>
-		<patronym>Геннадьевич</patronym>
-		<lastName>Корягин</lastName>
-		<birthday>1967-06-10</birthday>
-		<position>DEPARTMENT_HEAD</position>
-		<department>RESEARCH_AND_DEVELOPMENT</department>
-		<room>107</room>
-		<rfidTag uid="FE0467EF">
-			<tagtype>CARD</tagtype>
-			<protocol>ISO14443A</protocol>
-			<issue>
-				<issueDate>2014-03-05</issueDate>
-				<expirationDate>2015-03-05</expirationDate>
-			</issue>
-		</rfidTag>
-	</tns:employee>
-
-	<tns:employee tableId="КУ00000002">
-		<firstName>Ivan</firstName>
-		<patronym>Ivanych</patronym>
-		<lastName>Ivanov</lastName>
-		<birthday>1991-08-02</birthday>
-		<position>ENGINEER</position>
-		<position>WAREHOUSE_MANAGER</position>
-		<department>ASSEMBLY</department>
-		<room>102</room>
-		<room>204</room>
-		<rfidTag uid="E0040100594737350000">
-			<tagtype>KEYFOB</tagtype>
-			<protocol>ISO15693</protocol>
-			<issue>
-				<issueDate>2014-02-20</issueDate>
-				<expirationDate>2015-02-20</expirationDate>
-			</issue>
-		</rfidTag>
-	</tns:employee>
+		<tns:employee  id="КУ00000007">
+			<tns:firstName>Ivan</tns:firstName>
+			<tns:patronym>Ivanych</tns:patronym>
+			<tns:lastName>Ivanov</tns:lastName>
+			<tns:birthday>1991-08-02</tns:birthday>
+			<tns:positions>
+				<tns:position>ENGINEER</tns:position>
+				<tns:position>WAREHOUSE_MANAGER</tns:position>
+			</tns:positions>
+			<tns:department>ASSEMBLY</tns:department>
+			<tns:rooms>
+				<tns:room>ROOM102</tns:room>
+				<tns:room>ROOM204</tns:room>
+			</tns:rooms>
+			<tns:rfidTag uid="E0040100594737350000">
+				<tns:tagtype>KEYFOB</tns:tagtype>
+				<tns:protocol>ISO15693</tns:protocol>
+				<tns:issue>
+					<tns:issueDate>2014-02-20</tns:issueDate>
+					<tns:expirationDate>2015-02-20</tns:expirationDate>
+				</tns:issue>
+				<tns:rfidUid>E0040100594737350000</tns:rfidUid>
+			</tns:rfidTag>
+			<tns:tableId>КК00000007</tns:tableId>
+		</tns:employee>
+	</tns:employees>
 </tns:staff>

@@ -23,6 +23,7 @@ import kz.trei.office.structure.PositionType;
 import kz.trei.office.structure.RoomType;
 import kz.trei.office.structure.Table1C;
 import kz.trei.office.util.DateStamp;
+
 import org.apache.log4j.Logger;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
@@ -83,7 +84,8 @@ public class SaxEmployeeParser implements EmployeeParser {
 			elementValue.setLength(0);
 			if (qName.equalsIgnoreCase("tns:EMPLOYEE")) {
 				employee = new Employee.Builder();
-				String value = attributes.getValue("tableId");
+				String value = attributes.getValue("id");
+				LOGGER.debug(value);
 				if (value == null) {
 					employee.setTableId(Table1C.createRandomID());
 				} else {
@@ -93,13 +95,13 @@ public class SaxEmployeeParser implements EmployeeParser {
 						LOGGER.error(e);
 					}
 				}
-			} else if (qName.equalsIgnoreCase("RFIDTAG")) {
+			} else if (qName.equalsIgnoreCase("tns:RFIDTAG")) {
 				tag = new RfidTag.Builder();
 				String value = attributes.getValue("uid");
 				if (value != null) {
 					tag.setRfidUID(RfidUID.createUID(value));
 				}
-			} else if (qName.equalsIgnoreCase("ISSUE")) {
+			} else if (qName.equalsIgnoreCase("tns:ISSUE")) {
 				issue = new Issue.Builder();
 			}
 		}
@@ -108,42 +110,42 @@ public class SaxEmployeeParser implements EmployeeParser {
 				throws SAXException {
 			if (qName.equalsIgnoreCase("tns:EMPLOYEE")) {
 				staff.add(employee.build());
-			} else if (qName.equalsIgnoreCase("FIRSTNAME")) {
+			} else if (qName.equalsIgnoreCase("tns:FIRSTNAME")) {
 				employee.setFirstName(elementValue.toString().trim());
-			} else if (qName.equalsIgnoreCase("PATRONYM")) {
+				LOGGER.debug(elementValue.toString().trim());
+			} else if (qName.equalsIgnoreCase("tns:PATRONYM")) {
 				employee.setPatronym(elementValue.toString().trim());
-			} else if (qName.equalsIgnoreCase("LASTNAME")) {
+			} else if (qName.equalsIgnoreCase("tns:LASTNAME")) {
 				employee.setLastName(elementValue.toString().trim());
-			} else if (qName.equalsIgnoreCase("BIRTHDAY")) {
+			} else if (qName.equalsIgnoreCase("tns:BIRTHDAY")) {
 				employee.setBirthday(DateStamp.create(elementValue.toString()
 						.trim()));
-			} else if (qName.equalsIgnoreCase("POSITION")) {
+			} else if (qName.equalsIgnoreCase("tns:POSITION")) {
 				employee.addPosition(PositionType.valueOf(elementValue
 						.toString().trim()));
-			} else if (qName.equalsIgnoreCase("DEPARTMENT")) {
+			} else if (qName.equalsIgnoreCase("tns:DEPARTMENT")) {
 				employee.setDepartment(DepartmentType.valueOf(elementValue
 						.toString().trim()));
-			} else if (qName.equalsIgnoreCase("ROOM")) {
-				RoomType room = RoomType.DEFAULT;
-				employee.addRoom(room.select(Integer.valueOf(elementValue
-						.toString().trim())));
-			} else if (qName.equalsIgnoreCase("TABLEID")) {
+			} else if (qName.equalsIgnoreCase("tns:ROOM")) {
+				employee.addRoom(RoomType.valueOf(elementValue
+						.toString().trim()));
+			} else if (qName.equalsIgnoreCase("tns:TABLEID")) {
 				employee.setTableId(Table1C.createID(elementValue.toString()
 						.trim()));
-			} else if (qName.equalsIgnoreCase("RFIDTAG")) {
+			} else if (qName.equalsIgnoreCase("tns:RFIDTAG")) {
 				employee.setTag(tag.build());
-			} else if (qName.equalsIgnoreCase("TAGTYPE")) {
+			} else if (qName.equalsIgnoreCase("tns:TAGTYPE")) {
 				tag.setRfidType(RfidType
 						.valueOf(elementValue.toString().trim()));
-			} else if (qName.equalsIgnoreCase("PROTOCOL")) {
+			} else if (qName.equalsIgnoreCase("tns:PROTOCOL")) {
 				tag.setProtocol(ProtocolType.valueOf(elementValue.toString()
 						.trim()));
-			} else if (qName.equalsIgnoreCase("ISSUE")) {
+			} else if (qName.equalsIgnoreCase("tns:ISSUE")) {
 				tag.setIssue(issue.build());
-			} else if (qName.equalsIgnoreCase("ISSUEDATE")) {
+			} else if (qName.equalsIgnoreCase("tns:ISSUEDATE")) {
 				issue.setIssueDate(DateStamp.create(elementValue.toString()
 						.trim()));
-			} else if (qName.equalsIgnoreCase("EXPIRATIONDATE")) {
+			} else if (qName.equalsIgnoreCase("tns:EXPIRATIONDATE")) {
 				issue.setExpirationDate(DateStamp.create(elementValue
 						.toString().trim()));
 			}

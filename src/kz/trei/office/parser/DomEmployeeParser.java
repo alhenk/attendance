@@ -63,57 +63,56 @@ public class DomEmployeeParser implements EmployeeParser {
 				if (node.getNodeType() == Node.ELEMENT_NODE) {
 					Element eElement = (Element) node;
 					employee.setTableId(Table1C.createID(eElement
-							.getAttribute("tableId")));
+							.getAttribute("id")));
 					employee.setFirstName(eElement
-							.getElementsByTagName("firstName").item(0)
+							.getElementsByTagName("tns:firstName").item(0)
 							.getTextContent());
-					String patronym = eElement.getElementsByTagName("patronym")
+					String patronym = eElement.getElementsByTagName("tns:patronym")
 							.item(0).getTextContent();
 					if (patronym != null) {
 						employee.setPatronym(patronym);
 					}
 					employee.setLastName(eElement
-							.getElementsByTagName("lastName").item(0)
+							.getElementsByTagName("tns:lastName").item(0)
 							.getTextContent());
 					employee.setBirthday(DateStamp.create(eElement
-							.getElementsByTagName("birthday").item(0)
+							.getElementsByTagName("tns:birthday").item(0)
 							.getTextContent()));
 					for (int i = 0; i < eElement.getElementsByTagName(
-							"position").getLength(); i++) {
+							"tns:position").getLength(); i++) {
 						employee.addPosition(PositionType.valueOf(eElement
-								.getElementsByTagName("position").item(i)
+								.getElementsByTagName("tns:position").item(i)
 								.getTextContent()));
 					}
 					employee.setDepartment(DepartmentType.valueOf(eElement
-							.getElementsByTagName("department").item(0)
+							.getElementsByTagName("tns:department").item(0)
 							.getTextContent()));
-					for (int i = 0; i < eElement.getElementsByTagName("room")
+					for (int i = 0; i < eElement.getElementsByTagName("tns:room")
 							.getLength(); i++) {
-						RoomType roomType = RoomType.DEFAULT;
-						employee.addRoom(roomType.select(Integer
-								.valueOf(eElement.getElementsByTagName("room")
-										.item(i).getTextContent())));
+						employee.addRoom(RoomType.valueOf(eElement
+								.getElementsByTagName("tns:room").item(0)
+								.getTextContent()));
 					}
 					rfidTag = new RfidTag.Builder();
 					NodeList rfidNodes = eElement
-							.getElementsByTagName("rfidTag");
+							.getElementsByTagName("tns:rfidTag");
 					Element rfidElement = (Element) rfidNodes.item(0);
 					rfidTag.setRfidUID(RfidUID.createUID(rfidElement
 							.getAttribute("uid")));
 					rfidTag.setProtocol(ProtocolType.valueOf(rfidElement
-							.getElementsByTagName("protocol").item(0)
+							.getElementsByTagName("tns:protocol").item(0)
 							.getTextContent()));
 					rfidTag.setRfidType(RfidType.valueOf(rfidElement
-							.getElementsByTagName("tagtype").item(0)
+							.getElementsByTagName("tns:tagtype").item(0)
 							.getTextContent()));
 					Issue.Builder issue = new Issue.Builder();
-					rfidNodes = eElement.getElementsByTagName("issue");
+					rfidNodes = eElement.getElementsByTagName("tns:issue");
 					rfidElement = (Element) rfidNodes.item(0);
 					issue.setIssueDate(DateStamp.create(rfidElement
-							.getElementsByTagName("issueDate").item(0)
+							.getElementsByTagName("tns:issueDate").item(0)
 							.getTextContent()));
 					issue.setIssueDate(DateStamp.create(rfidElement
-							.getElementsByTagName("expirationDate").item(0)
+							.getElementsByTagName("tns:expirationDate").item(0)
 							.getTextContent()));
 					rfidTag.setIssue(issue.build());
 					employee.setTag(rfidTag.build());
