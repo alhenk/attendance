@@ -39,7 +39,7 @@ public class StaxEmployeeParser implements EmployeeParser {
 			.getLogger(StaxEmployeeParser.class);
 
 	public static boolean isValid(String xmlfile, String xsdfile) {
-		XMLStreamReader xmlReader;
+		XMLStreamReader xmlReader=null;
 		try {
 			xmlReader = XMLInputFactory.newInstance().createXMLStreamReader(
 					new FileInputStream(xmlfile));
@@ -63,6 +63,12 @@ public class StaxEmployeeParser implements EmployeeParser {
 		} catch (IOException e) {
 			e.printStackTrace();
 			return false;
+		}finally{
+			try {
+				xmlReader.close();
+			} catch (XMLStreamException e) {
+				LOGGER.error(e);
+			}
 		}
 		// no exception thrown, so valid
 		LOGGER.info("Document (" + xmlfile +") is valid");
@@ -74,7 +80,7 @@ public class StaxEmployeeParser implements EmployeeParser {
 			throws XmlParserException {
 
 		XMLInputFactory inputFactory = XMLInputFactory.newInstance();
-		XMLStreamReader xmlReader;
+		XMLStreamReader xmlReader=null;
 		//XMLStreamReader schemaReader;
 		String elementName = "";
 		String elementText = "";
@@ -157,6 +163,12 @@ public class StaxEmployeeParser implements EmployeeParser {
 		} catch (XMLStreamException | FileNotFoundException e) {
 			LOGGER.error(e);
 			return null;
+		}finally{
+			try {
+				xmlReader.close();
+			} catch (XMLStreamException e) {
+				LOGGER.error(e);
+			}
 		}
 
 		return staff;
