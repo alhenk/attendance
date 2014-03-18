@@ -11,8 +11,7 @@ import kz.trei.office.util.PropertyManager;
  * 
  * @throws IllegalArgumentException
  */
-
-@XmlType
+@XmlType(name = "tableId", namespace ="http://www.trei.kz/attendance/tns")
 public final class Table1C {
 	static {
 		PropertyManager.load("configure.properties");

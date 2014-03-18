@@ -5,6 +5,9 @@ import java.util.Map;
 
 import javax.xml.bind.annotation.XmlEnum;
 import javax.xml.bind.annotation.XmlEnumValue;
+import javax.xml.bind.annotation.XmlType;
+
+@XmlType(name = "room", namespace ="http://www.trei.kz/attendance/tns")
 @XmlEnum
 public enum RoomType {
 	@XmlEnumValue("DEFAULT")

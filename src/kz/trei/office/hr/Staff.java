@@ -12,9 +12,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlRootElement(name = "staff")
+@XmlRootElement(name = "staff", namespace ="http://www.trei.kz/attendance/tns")
 public class Staff {
-	@XmlElement(name = "employee", required = true)
+	@XmlElement(name = "employee", required = true, namespace ="http://www.trei.kz/attendance/tns" )
 	@XmlElementWrapper(name = "employees")
 	private List<Person> employees;
 

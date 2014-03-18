@@ -4,7 +4,7 @@ import javax.xml.bind.annotation.XmlEnum;
 import javax.xml.bind.annotation.XmlEnumValue;
 import javax.xml.bind.annotation.XmlType;
 
-@XmlType(name = "department")
+@XmlType(name = "department", namespace ="http://www.trei.kz/attendance/tns")
 @XmlEnum
 public enum DepartmentType {
 	@XmlEnumValue("ACCOUNTANCY")

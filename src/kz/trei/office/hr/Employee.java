@@ -17,7 +17,7 @@ import kz.trei.office.structure.Table1C;
 import kz.trei.office.util.DateStamp;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlRootElement(name = "employee")
+@XmlRootElement(name = "employee", namespace ="http://www.trei.kz/attendance/tns")
 @XmlType(propOrder = { "position", "department", "room", "rfidTag", "tableId" })
 public class Employee extends Person {
 	private static final long serialVersionUID = -8363247132437924285L;

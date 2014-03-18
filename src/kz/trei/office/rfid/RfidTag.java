@@ -7,7 +7,7 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
-@XmlRootElement(name = "RfidTag")
+@XmlRootElement(name = "rfidTag", namespace ="http://www.trei.kz/attendance/tns")
 // @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(propOrder = { "type", "protocol", "issue", "rfidUid" })
 public class RfidTag implements Serializable, Comparable<RfidTag> {

@@ -4,7 +4,7 @@ import javax.xml.bind.annotation.XmlEnum;
 import javax.xml.bind.annotation.XmlEnumValue;
 import javax.xml.bind.annotation.XmlType;
 
-@XmlType(name = "position")
+@XmlType(name = "position", namespace ="http://www.trei.kz/attendance/tns")
 @XmlEnum
 public enum PositionType {
 	@XmlEnumValue("GENERAL_DIRECTOR")

@@ -7,12 +7,12 @@ import java.util.Date;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
 import kz.trei.office.util.DateStamp;
 import kz.trei.office.util.PropertyManager;
-@XmlRootElement(name = "issue")
+
+//@XmlRootElement(name = "issue", namespace ="http://www.trei.kz/attendance/tns")
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(propOrder = { "issueDate", "expirationDate"})
 public class Issue implements Serializable, Comparable<Issue> {

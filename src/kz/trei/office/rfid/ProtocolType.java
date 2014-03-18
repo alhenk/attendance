@@ -4,7 +4,7 @@ import javax.xml.bind.annotation.XmlEnum;
 import javax.xml.bind.annotation.XmlEnumValue;
 import javax.xml.bind.annotation.XmlType;
 
-@XmlType(name = "protocol")
+@XmlType(name = "protocol", namespace ="http://www.trei.kz/attendance/tns")
 @XmlEnum
 public enum ProtocolType {
 	@XmlEnumValue("ISO14443A")

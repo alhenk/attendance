@@ -13,7 +13,7 @@ import javax.xml.bind.annotation.XmlValue;
 import org.apache.log4j.Logger;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType
+@XmlType(name = "dateStamp", namespace ="http://www.trei.kz/attendance/tns")
 public class DateStamp implements Serializable, Comparable<DateStamp> {
 	private static final long serialVersionUID = -8961625269572879384L;
 	private static final Logger LOGGER = Logger.getLogger(DateStamp.class);

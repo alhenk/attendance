@@ -5,13 +5,13 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.XmlValue;
 
 import kz.trei.office.util.PropertyManager;
 
-@XmlRootElement(name = "rfidUid")
+//@XmlRootElement(name = "rfidUid", namespace ="http://www.trei.kz/attendance/tns")
+//@XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType
 public final class RfidUID implements Serializable, Comparable<RfidUID> {
