@@ -12,8 +12,8 @@
             </tns:positions>
             <tns:department>RESEARCH_AND_DEVELOPMENT</tns:department>
             <tns:rooms>
-                <tns:room>ROOM107</tns:room>
                 <tns:room>ROOM204</tns:room>
+                <tns:room>ROOM107</tns:room>
             </tns:rooms>
             <tns:rfidTag uid="E0040100594737350000">
                 <tagtype>CARD</tagtype>
