@@ -44,7 +44,7 @@ public class JaxbEmployeeParser implements EmployeeParser {
 			File file = new File(xmlfile);
 			JAXBContext jaxbContext = JAXBContext
 					.newInstance(new Class[] { Staff.class, Employee.class,
-							RfidTag.class, Table1C.class });
+							RfidTag.class});
 			Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
 
 			if (xsdfile != null) {
@@ -70,7 +70,7 @@ public class JaxbEmployeeParser implements EmployeeParser {
 			File file = new File(fileName);
 			JAXBContext jaxbContext = JAXBContext.newInstance(new Class[] {
 					Staff.class, Employee.class,
-					RfidTag.class, Table1C.class  });
+					RfidTag.class });
 			Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
 			jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 			jaxbMarshaller.marshal(staff, file);
