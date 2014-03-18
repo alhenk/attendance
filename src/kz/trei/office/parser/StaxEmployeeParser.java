@@ -39,7 +39,7 @@ public class StaxEmployeeParser implements EmployeeParser {
 			.getLogger(StaxEmployeeParser.class);
 
 	public static boolean isValid(String xmlfile, String xsdfile) {
-		XMLStreamReader xmlReader=null;
+		XMLStreamReader xmlReader = null;
 		try {
 			xmlReader = XMLInputFactory.newInstance().createXMLStreamReader(
 					new FileInputStream(xmlfile));
@@ -63,7 +63,7 @@ public class StaxEmployeeParser implements EmployeeParser {
 		} catch (IOException e) {
 			e.printStackTrace();
 			return false;
-		}finally{
+		} finally {
 			try {
 				xmlReader.close();
 			} catch (XMLStreamException e) {
@@ -71,7 +71,7 @@ public class StaxEmployeeParser implements EmployeeParser {
 			}
 		}
 		// no exception thrown, so valid
-		LOGGER.info("Document (" + xmlfile +") is valid");
+		LOGGER.info("Document (" + xmlfile + ") is valid");
 		return true;
 	}
 
@@ -79,17 +79,24 @@ public class StaxEmployeeParser implements EmployeeParser {
 	public List<Person> parse(String xmlfile, String xsdfile)
 			throws XmlParserException {
 
+		if (xsdfile != null) {
+			if (!isValid(xmlfile, xsdfile)) {
+				throw new XmlParserException("Document (" + xmlfile + ") is valid");
+			}
+			
+		}
 		XMLInputFactory inputFactory = XMLInputFactory.newInstance();
-		XMLStreamReader xmlReader=null;
-		//XMLStreamReader schemaReader;
+		XMLStreamReader xmlReader = null;
+		// XMLStreamReader schemaReader;
 		String elementName = "";
 		String elementText = "";
 		List<Person> staff = new ArrayList<Person>();
 		Employee.Builder employee = new Employee.Builder();
 		RfidTag.Builder tag = new RfidTag.Builder();
 		Issue.Builder issue = new Issue.Builder();
-		try{
-			xmlReader = inputFactory.createXMLStreamReader(new FileInputStream(xmlfile));
+		try {
+			xmlReader = inputFactory.createXMLStreamReader(new FileInputStream(
+					xmlfile));
 			while (xmlReader.hasNext()) {
 				int type = xmlReader.next();
 				switch (type) {
@@ -97,8 +104,8 @@ public class StaxEmployeeParser implements EmployeeParser {
 					elementName = xmlReader.getLocalName();
 					if (elementName.equalsIgnoreCase("EMPLOYEE")) {
 						employee = new Employee.Builder();
-						String value = xmlReader
-								.getAttributeValue(null, "tableId");
+						String value = xmlReader.getAttributeValue(null,
+								"tableId");
 						if (value == null) {
 							employee.setTableId(Table1C.createRandomID());
 						} else {
@@ -163,14 +170,13 @@ public class StaxEmployeeParser implements EmployeeParser {
 		} catch (XMLStreamException | FileNotFoundException e) {
 			LOGGER.error(e);
 			return null;
-		}finally{
+		} finally {
 			try {
 				xmlReader.close();
 			} catch (XMLStreamException e) {
 				LOGGER.error(e);
 			}
 		}
-
 		return staff;
 	}
 }

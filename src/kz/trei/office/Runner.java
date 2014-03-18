@@ -24,11 +24,11 @@ public class Runner {
 
 		LOGGER.info("RUN SAX PARSER");
 		TaskLogic.runSaxParser(xmlfile, xsdfile);
-		
+
 		LOGGER.info("RUN StAX VALIDATOR");
-		StaxEmployeeParser.isValid(xmlfile,xsdfile);
+		StaxEmployeeParser.isValid(xmlfile, xsdfile);
 		LOGGER.info("RUN StAX PARSER");
-		TaskLogic.runStaxParser(xmlfile, "");
+		TaskLogic.runStaxParser(xmlfile, xsdfile);
 
 		LOGGER.info("CREATE JAXB XMLFILE");
 		TaskLogic.createJaxbXml(jaxbXmlFile);
