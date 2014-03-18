@@ -1,0 +1,25 @@
+javalab project 3
+
+ATTENDANCE
+access control system
+Employees have following properties:
+Personal dates
+	firsName
+	patronym (optinal)
+	lastName
+	birthDay
+
+	Position (double hatting is allowed)
+	Department (optional, for example director does not belong to any department)
+	Room (a list of room assigned to the person or the person has access to them)
+	TableID (table id assigned to employee accordingly to 1C account data base)
+
+	RfidTag (RFID access tag)
+			uid  - (identification number)
+			type - (car, keyfob, sticker)
+			protocol - (radio frequency protocol)
+			issue (issue date and expiration date)
+
+Staff - collection of Employees 
+RfidTags - collection of tags
+Attendances - collection of pass through events 

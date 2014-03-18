@@ -7,8 +7,8 @@
             <tns:lastName>Koryagin</tns:lastName>
             <tns:birthday>1967-06-10</tns:birthday>
             <tns:positions>
-                <tns:position>CHIEF_METROLOGIST</tns:position>
                 <tns:position>DEPARTMENT_HEAD</tns:position>
+                <tns:position>CHIEF_METROLOGIST</tns:position>
             </tns:positions>
             <tns:department>RESEARCH_AND_DEVELOPMENT</tns:department>
             <tns:rooms>

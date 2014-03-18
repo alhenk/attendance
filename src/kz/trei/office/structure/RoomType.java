@@ -40,8 +40,7 @@ public enum RoomType {
 	@XmlEnumValue("ROOM206")
 	ROOM206(206, "SERVER"),
 	@XmlEnumValue("ROOM207")
-	ROOM207(207, "PRODUCTION"),
-	;
+	ROOM207(207, "PRODUCTION");
 
 	private int roomNumber;
 	private String roomName;

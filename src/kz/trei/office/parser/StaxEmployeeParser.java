@@ -50,7 +50,7 @@ public class StaxEmployeeParser implements EmployeeParser {
 		XMLStreamReader reader;
 		String elementName = "";
 		String elementText = "";
-		List<Person> staff = new ArrayList<>();
+		List<Person> staff = new ArrayList<Person>();
 
 		Employee.Builder employee = new Employee.Builder();
 		RfidTag.Builder tag = new RfidTag.Builder();
@@ -113,8 +113,7 @@ public class StaxEmployeeParser implements EmployeeParser {
 						employee.setDepartment(DepartmentType
 								.valueOf(elementText));
 					} else if (elementName.equalsIgnoreCase("ROOM")) {
-						employee.addRoom(RoomType
-								.valueOf(elementText));
+						employee.addRoom(RoomType.valueOf(elementText));
 					} else if (elementName.equalsIgnoreCase("TABLEID")) {
 						employee.setTableId(Table1C.createID(elementText));
 					} else if (elementName.equalsIgnoreCase("RFIDTAG")) {
@@ -135,7 +134,13 @@ public class StaxEmployeeParser implements EmployeeParser {
 					break;
 				}
 			}
-		} catch (XMLStreamException | SAXException | IOException e) {
+		} catch (XMLStreamException e) {
+			LOGGER.error(e);
+			return null;
+		} catch (SAXException e) {
+			LOGGER.error(e);
+			return null;
+		} catch (IOException e) {
 			LOGGER.error(e);
 			return null;
 		}
