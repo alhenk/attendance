@@ -42,9 +42,10 @@ public class JaxbEmployeeParser implements EmployeeParser {
 		Staff staff = null;
 		try {
 			File file = new File(xmlfile);
-			JAXBContext jaxbContext = JAXBContext
-					.newInstance(new Class[] { Staff.class, Employee.class,
-							RfidTag.class});
+			JAXBContext jaxbContext = JAXBContext.newInstance(new Class[] {
+					Staff.class, Employee.class, RfidTag.class,
+					DepartmentType.class, PositionType.class, RoomType.class,
+					RfidUID.class, Table1C.class, DateStamp.class });
 			Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
 
 			if (xsdfile != null) {
@@ -69,12 +70,13 @@ public class JaxbEmployeeParser implements EmployeeParser {
 		try {
 			File file = new File(fileName);
 			JAXBContext jaxbContext = JAXBContext.newInstance(new Class[] {
-					Staff.class, Employee.class,
-					RfidTag.class });
+					Staff.class, Employee.class, RfidTag.class,
+					DepartmentType.class, PositionType.class, RoomType.class,
+					RfidUID.class, Table1C.class, DateStamp.class });
 			Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
 			jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 			jaxbMarshaller.marshal(staff, file);
-			// jaxbMarshaller.marshal(staff, System.out);
+			//jaxbMarshaller.marshal(staff, System.out);
 		} catch (JAXBException e) {
 			LOGGER.error(e);
 		}

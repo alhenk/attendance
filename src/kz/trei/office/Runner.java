@@ -32,33 +32,36 @@ public class Runner {
 
 		String xmlfile = PropertyManager.getValue("parser.staff.xmlfile");
 		String xsdfile = PropertyManager.getValue("parser.staff.xsdfile");
-
-//		LOGGER.info("RUN SAX PARSER");
-//		TaskLogic.runSaxParser(xmlfile, xsdfile);
-//		LOGGER.info("RUN StAX PARSER");
-//		TaskLogic.runStaxParser(xmlfile, null);
-//		String jaxbXmlFile = PropertyManager
-//				.getValue("parser.staff.jaxb.xmlfile");
-//		LOGGER.info("CREATE JAXB XMLFILE");
-//		TaskLogic.createJaxbXml(jaxbXmlFile);
-//		LOGGER.info("RUN JAXB PARSER");
-//		TaskLogic.runJaxbParser(jaxbXmlFile, null);
-////		TaskLogic.runJaxbParser(xmlfile, null);
-//		LOGGER.info("RUN DOM PARSER");
-//		TaskLogic.runDomParser(xmlfile, xsdfile);
 		
-		JAXBContext jaxbContext;
-		try {
-			SchemaOutputResolver sor = new MySchemaOutputResolver();
-			jaxbContext = JAXBContext.newInstance(Staff.class, Employee.class,
-					RfidTag.class, DepartmentType.class, PositionType.class, RoomType.class
-					, RfidUID.class, Table1C.class, DateStamp.class);
-			jaxbContext.generateSchema(sor);
-		} catch (JAXBException e) {
-			LOGGER.info(e);
-		}catch (IOException e) {
-			LOGGER.info(e);
-		}
+		
+
+		LOGGER.info("RUN SAX PARSER");
+		TaskLogic.runSaxParser(xmlfile, xsdfile);
+		LOGGER.info("RUN StAX PARSER");
+		TaskLogic.runStaxParser(xmlfile, null);
+		String jaxbXmlFile = PropertyManager.getValue("parser.staff.jaxb.xmlfile");
+		String jaxbXsdFile = PropertyManager.getValue("parser.staff.jaxb.auto.xsdfile");
+		
+		LOGGER.info("CREATE JAXB XMLFILE");
+		TaskLogic.createJaxbXml(jaxbXmlFile);
+		LOGGER.info("RUN JAXB PARSER");
+		TaskLogic.runJaxbParser(jaxbXmlFile, jaxbXsdFile);
+//		TaskLogic.runJaxbParser(xmlfile, null);
+		LOGGER.info("RUN DOM PARSER");
+		TaskLogic.runDomParser(xmlfile, xsdfile);
+		
+//		JAXBContext jaxbContext;
+//		try {
+//			SchemaOutputResolver sor = new MySchemaOutputResolver();
+//			jaxbContext = JAXBContext.newInstance(Staff.class, Employee.class,
+//					RfidTag.class, DepartmentType.class, PositionType.class, RoomType.class
+//					, RfidUID.class, Table1C.class, DateStamp.class);
+//			jaxbContext.generateSchema(sor);
+//		} catch (JAXBException e) {
+//			LOGGER.info(e);
+//		}catch (IOException e) {
+//			LOGGER.info(e);
+//		}
 		
 		 
 	}
