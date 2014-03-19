@@ -17,11 +17,11 @@ import kz.trei.office.structure.Table1C;
 import kz.trei.office.util.DateStamp;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlRootElement(name = "employee", namespace ="http://www.trei.kz/attendance/tns")
-@XmlType(propOrder = { "position", "department", "room", "rfidTag", "tableId" })
+@XmlRootElement(name = "employee", namespace = "http://www.trei.kz/attendance/tns")
+@XmlType( propOrder = { "position", "department", "room", "rfidTag" })
 public class Employee extends Person {
 	private static final long serialVersionUID = -8363247132437924285L;
-	@XmlElement(name="position",required = true)
+	@XmlElement(name = "position", required = true)
 	@XmlElementWrapper(name = "positions", required = true)
 	private Set<PositionType> position;
 	@XmlElement(name = "department", required = true)
@@ -29,7 +29,7 @@ public class Employee extends Person {
 	@XmlElement(name = "room", required = true)
 	@XmlElementWrapper(name = "rooms")
 	private Set<RoomType> room;
-	@XmlElement(name = "tableId", required = true)
+	@XmlAttribute(name = "id", required = true)
 	private Table1C tableId;
 	@XmlElement(name = "rfidTag", required = true)
 	private RfidTag rfidTag;
@@ -99,7 +99,6 @@ public class Employee extends Person {
 		return tableId;
 	}
 
-	@XmlAttribute(name = "id")
 	public String getTableIdValue() {
 		return tableId.getId();
 	}
@@ -208,7 +207,7 @@ public class Employee extends Person {
 				+ this.getLastName()
 				+ ", uid = "
 				+ ((rfidTag != null && rfidTag.getRfidUid() != null) ? rfidTag
-						.getRfidUid().getValue() : "null") + ", tableID = "
+						.getRfidUid().getRfidUID() : "null") + ", tableID = "
 				+ ((this.tableId != null) ? this.tableId.getId() : "null")
 				+ "]";
 	}

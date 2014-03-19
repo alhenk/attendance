@@ -23,9 +23,7 @@
 					<tns:issueDate>2014-03-05</tns:issueDate>
 					<tns:expirationDate>2015-03-05</tns:expirationDate>
 				</tns:issue>
-				<tns:rfidUid>FE0467EF</tns:rfidUid>
 			</tns:rfidTag>
-			<tns:tableId>КК00000001</tns:tableId>
 		</tns:employee>
 
 		<tns:employee  id="КУ00000007">
@@ -49,9 +47,7 @@
 					<tns:issueDate>2014-02-20</tns:issueDate>
 					<tns:expirationDate>2015-02-20</tns:expirationDate>
 				</tns:issue>
-				<tns:rfidUid>E0040100594737350000</tns:rfidUid>
 			</tns:rfidTag>
-			<tns:tableId>КК00000007</tns:tableId>
 		</tns:employee>
 	</tns:employees>
 </tns:staff>

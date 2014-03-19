@@ -40,7 +40,6 @@
 						minOccurs="0"></xs:element>
 					<xs:element name="rooms" type="tns:rooms"></xs:element>
 					<xs:element name="rfidTag" type="tns:rfidTag" />
-					<xs:element name="tableId" type="tns:tableId"></xs:element>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
@@ -87,7 +86,6 @@
 			<xs:element name="tagtype" type="tns:cardtype"></xs:element>
 			<xs:element name="protocol" type="tns:rfprotocol"></xs:element>
 			<xs:element name="issue" type="tns:issue"></xs:element>
-			<xs:element name="rfidUid" type="tns:uid"></xs:element>
 		</xs:sequence>
 		<xs:attribute name="uid" type="tns:uid" use="required"></xs:attribute>
 	</xs:complexType>

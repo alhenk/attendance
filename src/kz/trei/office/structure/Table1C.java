@@ -2,7 +2,6 @@ package kz.trei.office.structure;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.XmlValue;
 import kz.trei.office.util.PropertyManager;
 
@@ -11,7 +10,7 @@ import kz.trei.office.util.PropertyManager;
  * 
  * @throws IllegalArgumentException
  */
-@XmlType(name = "tableId", namespace ="http://www.trei.kz/attendance/tns")
+//@XmlType(name = "tableId", namespace ="http://www.trei.kz/attendance/tns")
 public final class Table1C {
 	static {
 		PropertyManager.load("configure.properties");
@@ -56,7 +55,7 @@ public final class Table1C {
 	 * Table ID number (KK00000001)
 	 */
 	@XmlValue
-	private String id;
+	private String tableId;
 
 	/**
 	 * Default constructor
@@ -68,21 +67,22 @@ public final class Table1C {
 	 * Constructor with direct assignment.
 	 */
 	private Table1C(String id) {
-		this.id = id;
+		this.tableId = id;
 	}
 
 	/**
 	 * Getter
 	 */
+	
 	public String getId() {
-		return id;
+		return tableId;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((tableId == null) ? 0 : tableId.hashCode());
 		return result;
 	}
 
@@ -95,10 +95,10 @@ public final class Table1C {
 		if (getClass() != obj.getClass())
 			return false;
 		Table1C other = (Table1C) obj;
-		if (id == null) {
-			if (other.id != null)
+		if (tableId == null) {
+			if (other.tableId != null)
 				return false;
-		} else if (!id.equals(other.id))
+		} else if (!tableId.equals(other.tableId))
 			return false;
 		return true;
 	}

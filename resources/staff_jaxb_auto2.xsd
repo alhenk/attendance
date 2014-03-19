@@ -16,7 +16,6 @@
       <xs:element name="tagtype" type="rfidType"/>
       <xs:element name="protocol" type="protocol"/>
       <xs:element ref="issue"/>
-      <xs:element ref="rfidUid" minOccurs="0"/>
     </xs:sequence>
     <xs:attribute name="uid" type="xs:string"/>
   </xs:complexType>

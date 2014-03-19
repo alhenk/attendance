@@ -19,12 +19,10 @@
                 <tagtype>CARD</tagtype>
                 <protocol>ISO14443A</protocol>
                 <issue>
-                    <issueDate>2014-03-18</issueDate>
-                    <expirationDate>2015-03-18</expirationDate>
+                    <issueDate>2014-03-19</issueDate>
+                    <expirationDate>2015-03-19</expirationDate>
                 </issue>
-                <rfidUid>E0040100594737350000</rfidUid>
             </tns:rfidTag>
-            <tns:tableId>КК00000007</tns:tableId>
         </tns:employee>
         <tns:employee xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="tns:employee" id="КК00000012">
             <tns:firstName>Oleg</tns:firstName>
@@ -42,12 +40,10 @@
                 <tagtype>KEYFOB</tagtype>
                 <protocol>ISO15693</protocol>
                 <issue>
-                    <issueDate>2014-03-18</issueDate>
-                    <expirationDate>2015-03-18</expirationDate>
+                    <issueDate>2014-03-19</issueDate>
+                    <expirationDate>2015-03-19</expirationDate>
                 </issue>
-                <rfidUid>3A08265B</rfidUid>
             </tns:rfidTag>
-            <tns:tableId>КК00000012</tns:tableId>
         </tns:employee>
     </tns:employees>
 </tns:staff>

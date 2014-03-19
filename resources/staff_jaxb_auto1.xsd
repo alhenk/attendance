@@ -48,7 +48,6 @@
             </xs:complexType>
           </xs:element>
           <xs:element name="rfidTag" type="rfidTag"/>
-          <xs:element name="tableId" type="table1C"/>
         </xs:sequence>
         <xs:attribute name="id" type="xs:string"/>
       </xs:extension>

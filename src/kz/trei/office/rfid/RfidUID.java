@@ -3,30 +3,28 @@ package kz.trei.office.rfid;
 import java.io.Serializable;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlType;
+
 import javax.xml.bind.annotation.XmlValue;
 
 import kz.trei.office.util.PropertyManager;
 
-//@XmlRootElement(name = "rfidUid", namespace ="http://www.trei.kz/attendance/tns")
-//@XmlRootElement
-@XmlAccessorType(XmlAccessType.FIELD)
-@XmlType
 public final class RfidUID implements Serializable, Comparable<RfidUID> {
 	private static final long serialVersionUID = 2727289459571896461L;
 	static {
 		PropertyManager.load("configure.properties");
 	}
 	@XmlValue
-	private String uid;
+	private String rfidUID;
 
 	public RfidUID() {
 	}
 
 	private RfidUID(String value) {
-		this.uid = value;
+		this.rfidUID = value;
+	}
+	
+	public static RfidUID create (){
+		return new RfidUID();
 	}
 
 	public static boolean isValid(String uid) {
@@ -45,14 +43,13 @@ public final class RfidUID implements Serializable, Comparable<RfidUID> {
 		}
 	}
 	
-	public String getValue() {
-		return uid;
+	public String getRfidUID() {
+		return rfidUID;
 	}
-
-	
+		
 	public void setValue(String value) {
 		if (isValid(value)) {
-			this.uid = value;
+			this.rfidUID = value;
 		} else{
 			throw new IllegalArgumentException(value +" is not valid UID");
 		}
@@ -62,7 +59,7 @@ public final class RfidUID implements Serializable, Comparable<RfidUID> {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((uid == null) ? 0 : uid.hashCode());
+		result = prime * result + ((rfidUID == null) ? 0 : rfidUID.hashCode());
 		return result;
 	}
 
@@ -75,22 +72,22 @@ public final class RfidUID implements Serializable, Comparable<RfidUID> {
 		if (getClass() != obj.getClass())
 			return false;
 		RfidUID other = (RfidUID) obj;
-		if (uid == null) {
-			if (other.uid != null)
+		if (rfidUID == null) {
+			if (other.rfidUID != null)
 				return false;
-		} else if (!uid.equals(other.uid))
+		} else if (!rfidUID.equals(other.rfidUID))
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "RfidUID [UID = " + uid + "]";
+		return "RfidUID [UID = " + rfidUID + "]";
 	}
 
 	@Override
 	public int compareTo(RfidUID anotherUID) {
-		return uid.compareTo(anotherUID.getValue());
+		return rfidUID.compareTo(anotherUID.getRfidUID());
 	}
 
 }

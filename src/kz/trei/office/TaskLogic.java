@@ -96,7 +96,7 @@ public final class TaskLogic {
 				}
 			}
 			LOGGER.info(((Employee) employee).getTableId().getId());
-			LOGGER.info(((Employee) employee).getTag().getRfidUid().getValue());
+			LOGGER.info(((Employee) employee).getTag().getRfidUid().getRfidUID());
 			LOGGER.info(((Employee) employee).getTag().getProtocol());
 			LOGGER.info(((Employee) employee).getTag().getType());
 			LOGGER.info("Issue Date "

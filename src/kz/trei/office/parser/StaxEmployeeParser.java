@@ -83,8 +83,8 @@ public class StaxEmployeeParser implements EmployeeParser {
 			if (!isValid(xmlfile, xsdfile)) {
 				throw new XmlParserException("Document (" + xmlfile + ") is valid");
 			}
-			
 		}
+		
 		XMLInputFactory inputFactory = XMLInputFactory.newInstance();
 		XMLStreamReader xmlReader = null;
 		// XMLStreamReader schemaReader;

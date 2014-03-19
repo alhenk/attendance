@@ -3,7 +3,6 @@ package kz.trei.office;
 import org.apache.log4j.Logger;
 
 import kz.trei.office.parser.JaxbEmployeeSchema;
-import kz.trei.office.parser.StaxEmployeeParser;
 import kz.trei.office.util.PropertyManager;
 
 public class Runner {
@@ -25,8 +24,6 @@ public class Runner {
 		LOGGER.info("RUN SAX PARSER");
 		TaskLogic.runSaxParser(xmlfile, xsdfile);
 
-		LOGGER.info("RUN StAX VALIDATOR");
-		StaxEmployeeParser.isValid(xmlfile, xsdfile);
 		LOGGER.info("RUN StAX PARSER");
 		TaskLogic.runStaxParser(xmlfile, xsdfile);
 
@@ -38,7 +35,7 @@ public class Runner {
 
 		LOGGER.info("RUN JAXB PARSER");
 		TaskLogic.runJaxbParser(jaxbXmlFile, jaxbXsdFile);
-		// TaskLogic.runJaxbParser(xmlfile, null);
+//		// TaskLogic.runJaxbParser(xmlfile, null);
 		LOGGER.info("RUN DOM PARSER");
 		TaskLogic.runDomParser(xmlfile, xsdfile);
 	}
