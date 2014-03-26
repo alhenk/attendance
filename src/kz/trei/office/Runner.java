@@ -22,7 +22,7 @@ public class Runner {
 				.getValue("parser.staff.jaxb.auto.xsdfile");
 
 		LOGGER.info("RUN SAX PARSER");
-		TaskLogic.runSaxParser(xmlfile, xsdfile);
+		TaskLogic.runSaxParser("./resources/staff.xml", xsdfile);
 
 		LOGGER.info("RUN StAX PARSER");
 		TaskLogic.runStaxParser(xmlfile, xsdfile);

@@ -12,15 +12,15 @@
             </tns:positions>
             <tns:department>RESEARCH_AND_DEVELOPMENT</tns:department>
             <tns:rooms>
-                <tns:room>ROOM107</tns:room>
                 <tns:room>ROOM204</tns:room>
+                <tns:room>ROOM107</tns:room>
             </tns:rooms>
             <tns:rfidTag uid="E0040100594737350000">
                 <tagtype>CARD</tagtype>
                 <protocol>ISO14443A</protocol>
                 <issue>
-                    <issueDate>2014-03-19</issueDate>
-                    <expirationDate>2015-03-19</expirationDate>
+                    <issueDate>2014-03-26</issueDate>
+                    <expirationDate>2015-03-26</expirationDate>
                 </issue>
             </tns:rfidTag>
         </tns:employee>
@@ -40,8 +40,8 @@
                 <tagtype>KEYFOB</tagtype>
                 <protocol>ISO15693</protocol>
                 <issue>
-                    <issueDate>2014-03-19</issueDate>
-                    <expirationDate>2015-03-19</expirationDate>
+                    <issueDate>2014-03-26</issueDate>
+                    <expirationDate>2015-03-26</expirationDate>
                 </issue>
             </tns:rfidTag>
         </tns:employee>
